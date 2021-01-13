@@ -10,7 +10,7 @@ var exiting = false;
 process.on('SIGINT', () => {
   if (exiting) {
     // 终止当前NODE的进程
-    console.log('推出');
+    console.log('退出');
     process.exit();  
   } else {
     // 第一次按下

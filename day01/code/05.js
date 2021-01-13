@@ -13,7 +13,6 @@ var render = () => {
   // 将当前控制台清空
   process.stdout.write('\033[2J');
   process.stdout.write('\033[0f');
-
   // 输出新的内容
   if (current === frames.length) { current = 0; }
   process.stdout.write(frames[current++]);

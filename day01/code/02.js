@@ -4,6 +4,7 @@ console.log(argv);
 // 参数中的前两位成员都没什么意义
 
 var argvs = process.argv.slice(2);
+console.log('argvs',argvs)
 
 switch (argvs[0]) {
   case 'init':
