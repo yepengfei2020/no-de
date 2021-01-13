@@ -1,0 +1,2847 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dropEffect="none" class="no-js ">
+<head>
+<meta charset="utf-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+
+<title>
+
+使用 Node.js 的优势和劣势都有哪些？ - 知乎
+
+</title>
+
+<meta name="apple-itunes-app" content="app-id=432274380, app-argument=zhihu://questions/19653241">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta http-equiv="mobile-agent" content="format=html5;url=https://www.zhihu.com/question/19653241">
+<meta id="znonce" name="znonce" content="1bdf863907cd4337aacb7e492b3062ac">
+
+
+<link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-152.f361b474.png" sizes="152x152">
+<link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-120.346e7055.png" sizes="120x120">
+<link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-76.3101f5fe.png" sizes="76x76">
+<link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-60.a6575a64.png" sizes="60x60">
+
+
+<link rel="shortcut icon" href="https://static.zhihu.com/static/favicon.ico" type="image/x-icon">
+
+<link rel="search" type="application/opensearchdescription+xml" href="https://static.zhihu.com/static/search.xml" title="知乎" />
+<link rel="stylesheet" href="https://static.zhihu.com/static/revved/-/css/z.e00193fd.css">
+
+
+
+
+
+<!--[if lt IE 9]>
+<script src="https://static.zhihu.com/static/components/respond/dest/respond.min.js"></script>
+<link href="https://static.zhihu.com/static/components/respond/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+<link href="/static/components/respond/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+<script src="/static/components/respond/cross-domain/respond.proxy.js"></script>
+<![endif]-->
+<script src="https://static.zhihu.com/static/revved/-/js/instant.4b42dd60.js"></script>
+
+
+
+
+</head>
+
+<body class="zhi ">
+
+
+
+<div role="navigation" class="zu-top">
+<div class="zg-wrap modal-shifting clearfix" id="zh-top-inner">
+<a href="/" class="zu-top-link-logo" id="zh-top-link-logo" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_zhihu_logo">知乎</a>
+
+<div class="top-nav-profile">
+<a href="/people/icestone" class="zu-top-nav-userinfo ">
+<span class="name">汪磊</span>
+<img class="Avatar" src="https://pic1.zhimg.com/e2c6cd1983ff666f0aa4b6b5c7f98418_s.jpg" srcset="https://pic1.zhimg.com/e2c6cd1983ff666f0aa4b6b5c7f98418_xs.jpg 2x" alt="汪磊" />
+<span id="zh-top-nav-new-pm" class="zg-noti-number zu-top-nav-pm-count"
+style="visibility:hidden" data-count="0">
+
+</span>
+</a>
+<ul class="top-nav-dropdown" id="top-nav-profile-dropdown">
+<li>
+<a href="/people/icestone">
+<i class="zg-icon zg-icon-dd-home"></i>我的主页
+</a>
+</li>
+
+<li>
+<a href="/inbox">
+<i class="zg-icon zg-icon-dd-pm"></i>私信
+<span id="zh-top-nav-pm-count" class="zu-top-nav-pm-count zg-noti-number"
+style="visibility:hidden" data-count="0">
+
+</span>
+</a>
+</li>
+<li>
+<a href="/settings">
+<i class="zg-icon zg-icon-dd-settings"></i>设置
+</a>
+</li>
+<li>
+<a href="/logout">
+<i class="zg-icon zg-icon-dd-logout"></i>退出
+</a>
+</li>
+</ul>
+
+</div>
+
+
+
+<button class="zu-top-add-question" id="zu-top-add-question">提问</button>
+
+
+<div role="search" id="zh-top-search" class="zu-top-search">
+<form method="GET" action="/search" id="zh-top-search-form" class="zu-top-search-form">
+
+
+
+<input type="hidden" name="type" value="question">
+<label for="q" class="hide-text">知乎搜索</label><input type="text" class="zu-top-search-input" id="q" name="q" autocomplete="off" value="" placeholder="搜索问题、话题或人">
+<button type="submit" class="zu-top-search-button"><span class="hide-text">搜索</span><span class="sprite-global-icon-magnifier-dark"></span></button>
+</form>
+</div>
+
+
+
+<div id="zg-top-nav" class="zu-top-nav">
+<ul class="zu-top-nav-ul zg-clear">
+
+<li class="zu-top-nav-li " id="zh-top-nav-home">
+<a class="zu-top-nav-link" href="/" id="zh-top-link-home" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_home">首页</a>
+</li>
+<li class="top-nav-topic-selector zu-top-nav-li " id="zh-top-nav-topic">
+<a class="zu-top-nav-link" href="/topic" id="top-nav-dd-topic">话题</a>
+
+</li>
+<li class="zu-top-nav-li " id="zh-top-nav-explore">
+<a class="zu-top-nav-link" href="/explore">发现</a>
+</li>
+
+<li class="top-nav-noti zu-top-nav-li ">
+<a class="zu-top-nav-link" href="javascript:;" id="zh-top-nav-count-wrap" role="button"><span class="mobi-arrow"></span>消息</a>
+</li>
+
+
+
+</ul>
+<div class="zu-top-nav-live zu-noti7-popup zg-r5px no-hovercard" id="zh-top-nav-live-new" role="popup" tabindex="0">
+<div class="zu-top-nav-live-inner zg-r5px">
+<div class="zu-top-live-icon">&nbsp;</div>
+<div class="zu-home-noti-inner" id="zh-top-nav-live-new-inner">
+<div class="zm-noti7-popup-tab-container clearfix" tabindex="0">
+<button class="zm-noti7-popup-tab-item message">
+<span class="icon">消息</span>
+</button>
+<button class="zm-noti7-popup-tab-item user">
+<span class="icon">用户</span>
+</button>
+<button class="zm-noti7-popup-tab-item thanks">
+<span class="icon">赞同和感谢</span>
+</button>
+</div>
+</div>
+<div class="zm-noti7-frame-border top"></div>
+<div class="zm-noti7-frame">
+<div class="zm-noti7-content">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-content" style="display:none;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-content" style="display:none;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="zm-noti7-frame-border bottom"></div>
+<div class="zm-noti7-popup-footer">
+<a href="/notifications" class="zm-noti7-popup-footer-all zg-right">查看全部 &raquo;</a>
+<a href="/settings/notification" class="zm-noti7-popup-footer-set" title="通知设置" ><i class="zg-icon zg-icon-settings"></i></a>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+<div class="zg-wrap">
+<div class="zu-global-nitify-inner">
+<a class="zu-global-notify-close" href="javascript:;" title="关闭" name="close">x</a>
+<span class="zu-global-notify-icon"></span>
+<span class="zu-global-notify-msg"></span>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-redirect-info" style="display:none"></div>
+
+
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-notification-summary" style="display:none;">
+<div class="zg-wrap">
+<div class="zu-global-nitify-inner">
+<span class="zu-global-notify-icon"></span>
+<ul class="zu-question-notify-wrap">
+</ul>
+</div>
+</div>
+</div>
+<div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope itemtype="http://schema.org/Question" id="zh-single-question-page" data-urltoken="19653241" role="main">
+<div class="zu-main-content">
+<div class="zu-main-content-inner">
+
+
+<meta itemprop="isTopQuestion" content="false" />
+<meta itemprop="visitsCount" content="272173" />
+
+
+
+
+<div class="zm-tag-editor zg-section">
+<div class="zm-tag-editor-labels zg-clear">
+
+<a class="zm-item-tag"
+href="/topic/19550516"
+data-tip="t$b$19550516" data-token="19550516" data-topicid="98">
+Web 开发
+</a>
+
+<a class="zm-item-tag"
+href="/topic/19569535"
+data-tip="t$b$19569535" data-token="19569535" data-topicid="6445">
+Node.js
+</a>
+
+</div>
+</div>
+<div id="zh-question-title" data-editable="true">
+
+<h2 class="zm-item-title zm-editable-content">
+
+使用 Node.js 的优势和劣势都有哪些？
+
+</h2>
+</div>
+<div id="zh-question-detail" class="zm-item-rich-text" data-resourceid="41199" data-action="/question/detail">
+
+<div class="zm-editable-content">有大公司用吗？</div>
+
+
+</div>
+<div class="zm-item-meta zm-item-comment-el clearfix" id="zh-question-meta-wrap">
+<div class="zm-meta-panel">
+
+<a href="#" name="report-question" class="report zg-right">
+<i class="z-icon-report-o"></i>举报</a>
+
+<a href="#" name="addcomment" class="toggle-comment meta-item">
+<i class="z-icon-comment"></i>3 条评论
+</a>
+<a href="#" name="share" class="share meta-item">
+<i class="z-icon-share"></i>分享
+</a>
+
+
+<span class="zg-bull">&bull;</span>
+<a href="#" name="invite" class="meta-item">邀请回答</a>
+
+
+
+
+</div>
+<div class="panel-container">
+
+</div>
+</div>
+
+<div class="zh-answers-title clearfix">
+
+<div id="zh-answers-filter" class="answers-sorter">
+
+<span class="lbl">按投票排序</span>
+<a class="lbl" href="/question/19653241?sort=created">按时间排序</a>
+
+<i class="zg-icon zg-icon-double-arrow"></i>
+</div>
+
+<h3 data-num="48" id="zh-question-answer-num">48 个回答</h3>
+</div>
+<div class="zh-question-answer-summary-wrap zm-item-rich-text" id="zh-question-answer-summary-wrap" style="display:none;">
+<h3>
+<a href="http://www.zhihu.com/question/20014415" target="_blank" class="zg-right zg-link-litblue" style="font-weight:normal">什么是答案总结？</a>
+答案总结</h3>
+<div id="zh-question-answer-summary" class="zg-section"
+data-resourceid="41199" data-action="/question/summary">
+
+<div class="zm-editable-content"></div>
+
+</div>
+</div>
+
+<div id="zh-question-answer-wrap" data-pagesize="20" class="zh-question-answer-wrapper" data-widget="navigable" data-navigable-options="{&quot;items&quot;: &quot;&gt;.zm-item-answer&quot;}" data-init="{&quot;params&quot;: {&quot;url_token&quot;: 19653241, &quot;pagesize&quot;: 20, &quot;offset&quot;: 0}, &quot;nodename&quot;: &quot;QuestionAnswerListV2&quot;}">
+
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemprop="topAnswer"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1526477"
+data-atoken="15993549"
+data-collapsed="0"
+data-created="1358763507"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1526477"></a>
+
+
+<div class="zm-votebar">
+<button class="up pressed">
+<i class="icon vote-arrow"></i>
+<span class="count">273</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/fengqiasia" data-tip="p$t$fengqiasia">
+<img src="https://pic1.zhimg.com/4cdb1b660_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$fengqiasia" href="/people/fengqiasia">FengqiAsia</a><span title="香港联科集团旗下公有云" class="bio">，香港联科集团旗下公有云</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="273">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$icestone" href="https://www.zhihu.com/people/icestone" class="zg-link" title="汪磊">汪磊</a>、</span><span class="user-block"><a data-tip="p$t$li-xiang-35-22" href="https://www.zhihu.com/people/li-xiang-35-22" class="zg-link" title="李响">李响</a>、</span><span class="user-block"><a data-tip="p$t$collins-chan" href="https://www.zhihu.com/people/collins-chan" class="zg-link" title="Collins Chan">Collins Chan</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="FengqiAsia" data-entry-url="/question/19653241/answer/15993549">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+先回答第二个问题吧。Node.js其实有很多大公司都在用的，比如eBay, Microsoft, 你可以去Node.js官网看看：<a href="//link.zhihu.com/?target=http%3A//nodejs.org/" class=" wrap external" target="_blank" rel="nofollow noreferrer">node.js<i class="icon-external"></i></a>要想知道更详细的列表，可以看这里：<a href="//link.zhihu.com/?target=https%3A//github.com/joyent/node/wiki/Projects%2C-Applications%2C-and-Companies-Using-Node" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">https://</span><span class="visible">github.com/joyent/node/</span><span class="invisible">wiki/Projects,-Applications,-and-Companies-Using-Node</span><span class="ellipsis"></span><i class="icon-external"></i></a>再稍微花点时间，搜集一些网上资料回答第一个问题：优势和劣势。要讲清楚这个问题，…
+
+<a href="/question/19653241/answer/15993549" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+先回答第二个问题吧。Node.js其实有很多大公司都在用的，比如eBay, Microsoft, 你可以去Node.js官网看看：<a href="//link.zhihu.com/?target=http%3A//nodejs.org/" class=" wrap external" target="_blank" rel="nofollow noreferrer">node.js<i class="icon-external"></i></a><br>要想知道更详细的列表，可以看这里：<a href="//link.zhihu.com/?target=https%3A//github.com/joyent/node/wiki/Projects%2C-Applications%2C-and-Companies-Using-Node" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">https://</span><span class="visible">github.com/joyent/node/</span><span class="invisible">wiki/Projects,-Applications,-and-Companies-Using-Node</span><span class="ellipsis"></span><i class="icon-external"></i></a><br><br>再稍微花点时间，搜集一些网上资料回答第一个问题：优势和劣势。<br>要讲清楚这个问题，先讲讲整个Web应用程序架构（包括流量、处理器速度和内存速度）中的瓶颈。瓶颈在于服务器能够处理的并发连接的最大数量。Node.js解决这个问题的方法是：更改连接到服务器的方式。每个连接发射一个在Node.js引擎的进程中运行的事件，而不是为每个连接生成一个新的OS线程（并为其分配一些配套内存）。Node.js不会死锁，因为它根本不允许使用锁，它不会直接阻塞 I/O 调用。Node.js还宣称，运行它的服务器能支持数万个并发连接。<br><br>Node本身运行V8 JavaScript。V8 JavaScript引擎是Google用于其Chrome浏览器的底层JavaScript引擎。Google使用V8创建了一个用C++编写的超快解释器，该解释器拥有另一个独特特征：您可以下载该引擎并将其嵌入任何应用程序。V8 JavaScript引擎并不仅限于在一个浏览器中运行。因此，Node.js实际上会使用Google编写的V8 JavaScript引擎，并将其重建为可在服务器上使用。<br><br>Node.js优点：<br>1、采用事件驱动、异步编程，为网络服务而设计。其实Javascript的匿名函数和闭包特性非常适合事件驱动、异步编程。而且JavaScript也简单易学，很多前端设计人员可以很快上手做后端设计。<br>2、Node.js非阻塞模式的IO处理给Node.js带来在相对低系统资源耗用下的高性能与出众的负载能力，非常适合用作依赖其它IO资源的中间层服务。3、Node.js轻量高效，可以认为是数据密集型分布式部署环境下的实时应用系统的完美解决方案。Node非常适合如下情况：在响应客户端之前，您预计可能有很高的流量，但所需的服务器端逻辑和处理不一定很多。<br><br>Node.js缺点：<br>1、可靠性低<br>2、单进程，单线程，只支持单核CPU，不能充分的利用多核CPU服务器。一旦这个进程崩掉，那么整个web服务就崩掉了。<br><br>不过以上缺点可以可以通过代码的健壮性来弥补。目前Node.js的网络服务器有以下几种支持多进程的方式：<br><br>#1 开启多个进程，每个进程绑定不同的端口，用反向代理服务器如 Nginx 做负载均衡，好处是我们可以借助强大的 Nginx 做一些过滤检查之类的操作，同时能够实现比较好的均衡策略，但坏处也是显而易见——我们引入了一个间接层。<br>#2 多进程绑定在同一个端口侦听。在Node.js中，提供了进程间发送“文件句柄” 的功能，这个功能实在是太有用了（貌似是yahoo 的工程师提交的一个patch） ，不明真相的群众可以看这里： <a href="//link.zhihu.com/?target=http%3A//www.lst.de/%7Eokir/blackhats/node121.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">Unix socket magic<i class="icon-external"></i></a><br>#3 一个进程负责监听、接收连接，然后把接收到的连接平均发送到子进程中去处理。<br><br>在Node.js v0.5.10+ 中，内置了cluster 库，官方宣称直接支持多进程运行方式。Node.js 官方为了让API 接口傻瓜化，用了一些比较tricky的方法，代码也比较绕。这种多进程的方式，不可避免的要牵涉到进程通信、进程管理之类的东西。<br>此外，有两个Node.js的module：multi-node 和 cluster ，采用的策略和以上介绍的类似，但使用这些module往往有一些缺点：<br>#1 更新不及时<br>#2 复杂庞大，往往绑定了很多其他的功能，用户往往被绑架<br>#3 遇到问题难以解决<br><br><br>Node表现出众的典型示例包括：<br><br>1、RESTful API<br>提供RESTful API的Web服务接收几个参数，解析它们，组合一个响应，并返回一个响应（通常是较少的文本）给用户。这是适合Node的理想情况，因为您可以构建它来处理数万条连接。它仍然不需要大量逻辑；它本质上只是从某个数据库中查找一些值并将它们组成一个响应。由于响应是少量文本，入站请求也是少量的文本，因此流量不高，一台机器甚至也可以处理最繁忙的公司的API需求。<br><br>2、Twitter队列<br>想像一下像Twitter这样的公司，它必须接收tweets并将其写入数据库。实际上，每秒几乎有数千条tweet达到，数据库不可能及时处理高峰时段所需的写入数量。Node成为这个问题的解决方案的重要一环。如您所见，Node能处理数万条入站tweet。它能快速而又轻松地将它们写入一个内存排队机制（例如memcached），另一个单独进程可以从那里将它们写入数据库。Node在这里的角色是迅速收集tweet，并将这个信息传递给另一个负责写入的进程。想象一下另一种设计（常规PHP服务器会自己尝试处理对数据库本身的写入）：每个tweet都会在写入数据库时导致一个短暂的延迟，因为数据库调用正在阻塞通道。由于数据库延迟，一台这样设计的机器每秒可能只能处理2000条入站tweet。每秒处理100万条tweet则需要500个服务器。相反，Node能处理每个连接而不会阻塞通道，从而能够捕获尽可能多的tweets。一个能处理50000条tweet的Node机器仅需20台服务器即可。<br><br>3、电子游戏统计数据<br>如果您在线玩过《使命召唤》这款游戏，当您查看游戏统计数据时，就会立即意识到一个问题：要生成那种级别的统计数据，必须跟踪海量信息。这样，如果有数百万玩家同时在线玩游戏，而且他们处于游戏中的不同位置，那么很快就会生成海量信息。Node是这种场景的一种很好的解决方案，因为它能采集游戏生成的数据，对数据进行最少的合并，然后对数据进行排队，以便将它们写入数据库。使用整个服务器来跟踪玩家在游戏中发射了多少子弹看起来很愚蠢，如果您使用Apache这样的服务器，可能会有一些有用的限制；但相反，如果您专门使用一个服务器来跟踪一个游戏的所有统计数据，就像使用运行Node的服务器所做的那样，那看起来似乎是一种明智之举。<br><br><br>总的来说，Node.js的应用场景<br><br>1) 适合<br><br>JSON APIs——构建一个Rest/JSON API服务，Node.js可以充分发挥其非阻塞IO模型以及JavaScript对JSON的功能支持(如JSON.stringfy函数)<br>单页面、多Ajax请求应用——如Gmail，前端有大量的异步请求，需要服务后端有极高的响应速度<br>基于Node.js开发Unix命令行工具——Node.js可以大量生产子进程，并以流的方式输出，这使得它非常适合做Unix命令行工具<br>流式数据——传统的Web应用，通常会将HTTP请求和响应看成是原子事件。而Node.js会充分利用流式数据这个特点，构建非常酷的应用。如实时文件上传系统transloadit<br>准实时应用系统——如聊天系统、微博系统，但Javascript是有垃圾回收机制的，这就意味着，系统的响应时间是不平滑的(GC垃圾回收会导致系统这一时刻停止工作)。如果想要构建硬实时应用系统，Erlang是个不错的选择<br><br><br>2) 不适合<br><br>CPU使用率较重、IO使用率较轻的应用——如视频编码、人工智能等，Node.js的优势无法发挥<br>简单Web应用——此类应用的特点是，流量低、物理架构简单，Node.js无法提供像Ruby的Rails或者Python的Django这样强大的框架<br>NoSQL + Node.js——如果仅仅是为了追求时髦，且自己对这两门技术还未深入理解的情况下，不要冒险将业务系统搭建在这两个漂亮的名词上，建议使用MySQL之类的传统数据库<br><br>如果系统可以匹配Node.js的适用场景，那么是时候采取具体的措施来说服老板了。<br><br><br>说服自己老板采用Node.js的方式<br><br>构建一个简单的原型——花一周时间构建系统某一部分的原型是非常值得的，同时也很容易和老板在某一点达成一致，等到系统真的在某一部分应用了Node.js，就是打开局面的时候<br>寻找开发者——首先JavaScript语言的普及度很高，一般公司都不乏Web前端工程师，而此类工程师的学习门槛也非常低。这就意味着Node.js很容易招人，或者公司就隐藏了一些高手<br>强大的社区支持——Node.js社区非常活跃，吸引很多优秀的工程师，这就意味着公司可以很容易从社区得到免费或者付费的支持<br>系统性能考虑——JavaScript引擎Google V8，加之原生异步IO模型，使得Node.js在性能的表现非常出色，处理数以千计的并发请求非常轻松<br>专业公司的支持——使用开源技术的最大问题是，原作者不承诺对其产品进行技术支持或者质量保证。现在Node.js已经得到Joyent公司的赞助，这就保证了未来Node.js的发展是可持续性的<br><br><br><br><br>参考文档：<br>1. <a href="//link.zhihu.com/?target=http%3A//www.52maomao.info/node-js-working-principle-and-advantages-and-disadvantages.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">浅谈Node.js的工作原理及优缺点<i class="icon-external"></i></a><br>2. <a href="//link.zhihu.com/?target=http%3A//blog.csdn.net/kaosini/article/details/8089597" class=" wrap external" target="_blank" rel="nofollow noreferrer">Node.js优缺点<i class="icon-external"></i></a><br>3. <a href="//link.zhihu.com/?target=http%3A//cnodejs.org/topic/4f16442ccae1f4aa27001081" class=" wrap external" target="_blank" rel="nofollow noreferrer">NodeJs 多核多进程并行框架实作<i class="icon-external"></i></a><br>4. <a href="//link.zhihu.com/?target=http%3A//www.infoq.com/cn/news/2012/05/suggest-boss-nodejs" class=" wrap external" target="_blank" rel="nofollow noreferrer">Flexi传授如何说服自己的老板采用Node.js<i class="icon-external"></i></a><br><br><u><b>风起亚洲云：</b></u>香港联科集团旗下 基于Joyent技术的<b>风起亚洲云</b>充分发挥了<b>Node.js</b>的优势,从而降低了云平台的CPU功耗，增加容量和扩展性。如果您有兴趣，请点击：<a href="//link.zhihu.com/?target=http%3A//www.fengqi.asia/cn/index.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">風起亞洲<i class="icon-external"></i></a>
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1526477-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/15993549">发布于 2013-01-21</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>7 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="4542844"
+data-atoken="23306641"
+data-collapsed="0"
+data-created="1394466612"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-4542844"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">130</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+<span class="name">匿名用户</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="130">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$li-xiang-35-22" href="https://www.zhihu.com/people/li-xiang-35-22" class="zg-link" title="李响">李响</a>、</span><span class="user-block"><a data-tip="p$t$changwei1997" href="https://www.zhihu.com/people/changwei1997" class="zg-link" title="昌维">昌维</a>、</span><span class="user-block"><a data-tip="p$t$liu-zheng-feng-83" href="https://www.zhihu.com/people/liu-zheng-feng-83" class="zg-link" title="高老庄庄主">高老庄庄主</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="匿名用户" data-entry-url="/question/19653241/answer/23306641">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+我们在用 Node.js 处理知乎主站的 web 实时推送。你现在看到的 Feed 、消息的实时更新，背后就是几个 node 进程扛起来的。优点：1. 处理高并发场景性能更高在用 <a href="//link.zhihu.com/?target=http%3A//socket.io" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">socket.io</span><span class="invisible"></span><i class="icon-external"></i></a> 之前，推送服务是用 ajax polling 做的。我们用 Tornado 和 Node.js 做…
+
+<a href="/question/19653241/answer/23306641" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+我们在用 Node.js 处理知乎主站的 web 实时推送。你现在看到的 Feed 、消息的实时更新，背后就是几个 node 进程扛起来的。<br><br>优点：<br><br>1. 处理高并发场景性能更高<br><br>在用 <a href="//link.zhihu.com/?target=http%3A//socket.io" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">socket.io</span><span class="invisible"></span><i class="icon-external"></i></a> 之前，推送服务是用 ajax polling 做的。我们用 Tornado 和 Node.js 做过两个版本的推送服务。在当时的测试环境下，Node.js 的 CPU 时间是 Tornado 的三分之一，内存使用是 Tornado 的一半，代码行数只有 Tornado 的三分之一（Node.js 版是用 coffee 写的）。后来我们使用了 <a href="//link.zhihu.com/?target=http%3A//socket.io" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">socket.io</span><span class="invisible"></span><i class="icon-external"></i></a>，CPU 开销进一步降低。<br><br>2. 函数式编程非常适合写异步回调链<br><br>用 Node.js 配合 CoffeeScript 写异步操作链非常便利，相比之下 Tornado 无论是写命名函数的回调，还是 yield 一个 Task 都没那么自然。<br><br>缺点：<br><br>1. 大量匿名函数使异常栈变得不好看。<br>
+2. 无法以 request 为单位 catch 异常，必须确保不要在不 catch 异常的第三方库的回调里的抛异常，这在一个异步操作链条里是一件比较麻烦的事。解决方法之一是对那些不 catch 异常的第三方库做一些封装，把所有的异常变成事件，改成 on('error') 形式的 API。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="4542844-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2014-03-10" target="_blank" href="/question/19653241/answer/23306641">编辑于 2014-03-11</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>27 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1112595"
+data-atoken="14969381"
+data-collapsed="0"
+data-created="1343460361"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1112595"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">350</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/roquin" data-tip="p$t$roquin">
+<img src="https://pic2.zhimg.com/c5ef55785_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$roquin" href="/people/roquin">宓俊</a><span title="用Node.js开发了 Am I Hacked." class="bio">，用Node.js开发了 Am I Hacked.</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="350">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$li-xiang-35-22" href="https://www.zhihu.com/people/li-xiang-35-22" class="zg-link" title="李响">李响</a>、</span><span class="user-block"><a data-tip="p$t$zyue-84" href="https://www.zhihu.com/people/zyue-84" class="zg-link" title="zyue">zyue</a>、</span><span class="user-block"><a data-tip="p$t$yao-yong-xia" href="https://www.zhihu.com/people/yao-yong-xia" class="zg-link" title="姚永夏">姚永夏</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="宓俊" data-entry-url="/question/19653241/answer/14969381">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+我用 Node.js 开发了 Am I Hacked，算是有一点用 Node.js 支持大流量的经验。先列一些数字服务器是 Linode 512，也就是 Linode 上最低端的 VPS ，只有 512MB 的内存。数据库，Node.js 程序和静态文件都放在同一台服务器上。大部分查询耗时 20-100ms 。少数…
+
+<a href="/question/19653241/answer/14969381" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+我用 Node.js 开发了 Am I Hacked，算是有一点用 Node.js 支持大流量的经验。先列一些数字<ul><li>服务器是 Linode 512，也就是 Linode 上最低端的 VPS ，只有 512MB 的内存。</li><li>数据库，Node.js 程序和静态文件都放在同一台服务器上。</li><li>大部分查询耗时 20-100ms 。少数查询由于缓存 miss 较多，耗时会高达500ms。</li><li>最高日PV超过了一百万，Google Analytic 上显示的同时在线人数最高达2000。</li><li>平均每秒能完成20-30次查询，瓶颈在磁盘IO，CPU几乎无压力。</li><li>虽然压力如此之大，首页几乎都能在一秒内打开，查询也会在3秒内返回。</li><li>Node.js 程序占用内存 90MB-110MB，剩余内存都被磁盘缓存占据。</li></ul>以我的了解，Python 和 Ruby 上的非 Event Driven 的 Framework 根本不可能达到这样的性能。<br><br>然后说说 Node.js 的其他优点<ul><li>Node.js 的架构与 Django, Rails 等传统的 Framework 不同，不需要放在 Nginx / Apache 后，利用 WSGI， CGI 之类的接口一板一眼的 [接受Request] -&gt; [运行程序逻辑] -&gt; [生成并返回Response]。这是一个巨大的变化，之前一些无法想象的功能都有可能实现了。比如 <a href="//link.zhihu.com/?target=https%3A//github.com/Miserlou/DirtyShare" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">https://</span><span class="visible">github.com/Miserlou/Dir</span><span class="invisible">tyShare</span><span class="ellipsis"></span><i class="icon-external"></i></a> 可以用浏览器实现 P2P 的文件传输。正因为 Node.js 可以更精细的控制 Request 和 Response 的时间和内容，websocket 似乎天生就是为 Node.js 而生的，而配合 <a href="//link.zhihu.com/?target=http%3A//socket.io" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">socket.io</span><span class="invisible"></span><i class="icon-external"></i></a> 这个神奇的库之后，在 realtime webapp 这个领域，Node.js 已经没有对手了。</li><li>Node.js 的包管理器 npm 设计得比 python 和 ruby 好很多。有很多的 module 开发者。</li></ul>当然也有一些缺点<ul><li>Debug 很困难。没有 stack trace，出了问题很难查找问题的原因。</li><li>如果设计不好，很容易让代码充满 callback 。实在受不了的可以考虑一下 <a href="//link.zhihu.com/?target=https%3A//github.com/laverdet/node-fibers/" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">https://</span><span class="visible">github.com/laverdet/nod</span><span class="invisible">e-fibers/</span><span class="ellipsis"></span><i class="icon-external"></i></a> 这个项目。不过 Node.js 的核心团队并不推荐使用。</li></ul><br>有没有大公司使用？<ul><li>LinkedIn Mobile 的 服务器端完全是用 Node.js 写的。</li><li>Yahoo 有一部分新项目使用了 Node.js。</li><li>阿里巴巴内部也有一些新项目用到了 Node.js。 </li></ul>
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1112595-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/14969381">发布于 2012-07-28</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>48 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1128244"
+data-atoken="15007183"
+data-collapsed="0"
+data-created="1343913405"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1128244"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">48</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/catchen" data-tip="p$t$catchen">
+<img src="https://pic3.zhimg.com/1916213aa_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$catchen" href="/people/catchen">Cat Chen</a><span title="上知乎，求欢乐" class="bio">，上知乎，求欢乐</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="48">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$liang-dong-25-86" href="https://www.zhihu.com/people/liang-dong-25-86" class="zg-link" title="月半月半胖">月半月半胖</a>、</span><span class="user-block"><a data-tip="p$t$mo-ao-xie" href="https://www.zhihu.com/people/mo-ao-xie" class="zg-link" title="莫敖叶">莫敖叶</a>、</span><span class="user-block"><a data-tip="p$t$chen-haroun" href="https://www.zhihu.com/people/chen-haroun" class="zg-link" title="陈haroun">陈haroun</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="Cat Chen" data-entry-url="/question/19653241/answer/15007183">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+Node.js 的优势是「高并发」，所以很适合用来做 IO 调度，但不太适合用来做复杂计算。Yahoo 在使用 Node.js，并且已经有了自己的 Node.js 云服务，使用起来类似于 Heroku 或 Google AppEngine——上传应用的源代码，云端自动处理好依赖关系，然后分配适当的…
+
+<a href="/question/19653241/answer/15007183" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+Node.js 的优势是「高并发」，所以很适合用来做 IO 调度，但不太适合用来做复杂计算。<br><br>Yahoo 在使用 Node.js，并且已经有了自己的 Node.js 云服务，使用起来类似于 Heroku 或 Google AppEngine——上传应用的源代码，云端自动处理好依赖关系，然后分配适当的资源来运行。Yahoo 使用的方式也很明确，后端真正复杂的逻辑不会用 Node.js 来写，而是 C++ 写好的 JSON API 接口。当来自 Internet 的请求来到 Node.js 时，Node.js 处理部分业务逻辑，但不做复杂计算，将业务逻辑分解为后端 JSON API 调用能解决的问题，然后发起调用。Node.js 的优势在于这些 JSON API 调用都是异步的，等待返回期间不占用任何资源，所以 Node.js 作为前端服务器能够承载更高的并发度。<br><br>如果个性化服务是一种趋势，那么 Node.js 高并发的优势就比较明显。个性化服务使得内容数据不能在前端服务器做缓存，因为每个人看到的都不一样。这时候前端服务器就必须处理每一个请求，但后端数据计算则可以并行地做，让用户感觉不到明显延时。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1128244-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/15007183">发布于 2012-08-02</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>6 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="2971861"
+data-atoken="19481226"
+data-collapsed="0"
+data-created="1382093451"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-2971861"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">24</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/why520crazy" data-tip="p$t$why520crazy">
+<img src="https://pic3.zhimg.com/ccf676352_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$why520crazy" href="/people/why520crazy">徐海峰</a><span title="Node.js，AngularJS，C#爱好者" class="bio">，Node.js，AngularJS，C#爱好者</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="24">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$zhao-jian-71-51" href="https://www.zhihu.com/people/zhao-jian-71-51" class="zg-link" title="赵健">赵健</a>、</span><span class="user-block"><a data-tip="p$t$zhang-lei-29-67" href="https://www.zhihu.com/people/zhang-lei-29-67" class="zg-link" title="张磊">张磊</a>、</span><span class="user-block"><a data-tip="p$t$yongning-bian" href="https://www.zhihu.com/people/yongning-bian" class="zg-link" title="Yongning Bian">Yongning Bian</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="徐海峰" data-entry-url="/question/19653241/answer/19481226">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+优点：1. 异步事件驱动，单进程线程，占用服务器资源少，高并发支持好，虽然单进程，但可以通过官方的 cluster 模块开启多个实例充分利用多核CPU的优势. 节约了服务器的资源，同时又能达到理想的状态2. 入门简单，非常适合做 单页程序 + RESTfull API，Work…
+
+<a href="/question/19653241/answer/19481226" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+优点：<br>1. 异步事件驱动，单进程线程，占用服务器资源少，高并发支持好，虽然单进程，但可以通过官方的 cluster 模块开启多个实例充分利用多核CPU的优势. 节约了服务器的资源，同时又能达到理想的状态<br>2. 入门简单，非常适合做 单页程序 + RESTfull API，Worktile就是采用Angular JS + Node.js实现的SPA，基本上完美配合。<br>3. 我觉得Node.js也非常适合<strong>动态网页</strong>web开发，虽然官方没有提供像Apache 和 Tomcat 这样的网页服务器和JSP这样的动态创建网页的技术，但是有很多优秀的第三方模块可以使用， 用 express mvc框架 加上你喜欢的模板引擎（ejs，jade，dot ），感觉还是很棒的<br><br>缺点：<br>1. 异步编程的缺点往往就是到处callback，代码不优雅，但是可以通过一些第三方的同步模式的模块进行弥补<br>2. 不适合做企业级应用开发，特别是复杂业务逻辑的，代码不好维护，事务支持不是很好。<br><br>有人说debug成本高，这要取决于你使用什么开发工具了，推荐webstorm，可以对Node.js程序进行单步调试<br><br>另外，Node.js也可以独立做操作复杂的后台服务，所以想怎么玩就怎么玩，一切代码尽在你的手中，我也是今年刚接触Node.js，入门快 简单 带给我的是惊喜。每种开发语言都有他的优势和劣势，作为码农，强烈建议没事学学Node.js，我公司的产品 <a href="//link.zhihu.com/?target=https%3A//worktile.com/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Worktile 让工作更简单<i class="icon-external"></i></a> 就是采用Node.js 开发的，性能和稳定性都还不错
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="2971861-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2013-10-18" target="_blank" href="/question/19653241/answer/19481226">编辑于 2013-12-25</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>14 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="20541903"
+data-atoken="62820615"
+data-collapsed="0"
+data-created="1441696828"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-20541903"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">11</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/alsotang" data-tip="p$t$alsotang">
+<img src="https://pic2.zhimg.com/88a564529_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$alsotang" href="/people/alsotang">alsotang</a><span title="CNode 社区现任负责人" class="bio">，CNode 社区现任负责人</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="11">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$ding-wang-47" href="https://www.zhihu.com/people/ding-wang-47" class="zg-link" title="ding wang">ding wang</a>、</span><span class="user-block"><a data-tip="p$t$zdf-wh" href="https://www.zhihu.com/people/zdf-wh" class="zg-link" title="zdf wh">zdf wh</a>、</span><span class="user-block"><a data-tip="p$t$yao-wu-6-19" href="https://www.zhihu.com/people/yao-wu-6-19" class="zg-link" title="Yao Wu">Yao Wu</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="alsotang" data-entry-url="/question/19653241/answer/62820615">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+优势：会写 js 的人多（其实就是前端人多），人多带来了生态圈的繁荣。<b>记住，这是主要原因</b>。不仅 web 开发目前越来越方便，而且 node.js + html + css 正在侵蚀其他一些性能要求不高的领域，比如 gui 啊，移动端之类的。点亮了 node.js 的技能后，你会发现…
+
+<a href="/question/19653241/answer/62820615" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+优势：<br><br><ul><li>会写 js 的人多（其实就是前端人多），人多带来了生态圈的繁荣。<b>记住，这是主要原因</b>。不仅 web 开发目前越来越方便，而且 node.js + html + css 正在侵蚀其他一些性能要求不高的领域，比如 gui 啊，移动端之类的。点亮了 node.js 的技能后，你会发现这些领域都朝你打开了门。<br></li><li>前后端语言互通。虽然很多人都说语言不是问题，架构才是问题吧啦吧啦的。但是想要进入一个新的领域（比如前端写后端），语言确实是一大门槛。而 node.js 显著地降低了这一门槛。一些简单的逻辑，前后端一个人写的话，省下的沟通成本比起工作量成本差不多，干脆一起做吧。在这块，技术虽然本身我不认为带来了什么优势，但从开发者管理的角度说，前后端语言互通是存在优势的。</li></ul><br>高并发以及 V8 很快这是事实没错，可大部分人用 node.js 做 web 开发的话，这两点优势能够利用到多少？<br><br>劣势：<br><br><ul><li>js 语言比较烂，入门的时候容易坑。用惯了之后，只使用某个语言子集，其实用起来也没那么差。<br></li><li>js 语言本身太灵活了，别人的代码看不懂。js 不是静态类型的，无法借助 ide。</li><li>在后端开发方面，最佳实践还处在探索期。所以不仅会出现上面所说的别人的代码看不懂的问题。还会让你在使用的过程中，不知该遵从哪一个流派</li><li>异步流程控制。node.js 出来都五年多了吧？还特么 generator, callback, co, promise 打个不停。</li></ul>
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="20541903-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/62820615">发布于 2015-09-08</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>7 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="2125909"
+data-atoken="17471199"
+data-collapsed="0"
+data-created="1371022346"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-2125909"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">9</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/kenny-lang" data-tip="p$t$kenny-lang">
+<img src="https://pic2.zhimg.com/f67290c19_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$kenny-lang" href="/people/kenny-lang">Kenny Lang</a><span title="热血软件工程师 / Googler" class="bio">，热血软件工程师 / Googler</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="9">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$zdf-wh" href="https://www.zhihu.com/people/zdf-wh" class="zg-link" title="zdf wh">zdf wh</a>、</span><span class="user-block"><a data-tip="p$t$cai-fa-24" href="https://www.zhihu.com/people/cai-fa-24" class="zg-link" title="cai fa">cai fa</a>、</span><span class="user-block"><a data-tip="p$t$celing" href="https://www.zhihu.com/people/celing" class="zg-link" title="蛋黄儿">蛋黄儿</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="Kenny Lang" data-entry-url="/question/19653241/answer/17471199">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+讨论NodeJs的优劣，就必须要说道javascript的优劣。javascript的严重劣势：1.debug成本很高。2.出现bug时behavior不稳定。3. js本身存在bug。4. 代码不易读。但javascript的最大优势：1.快。2.占用资源少。3.易上手。因而，NodeJs继承了js的有点的缺点。但…
+
+<a href="/question/19653241/answer/17471199" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+讨论NodeJs的优劣，就必须要说道javascript的优劣。<br>javascript的严重劣势：<br>1.debug成本很高。<br>2.出现bug时behavior不稳定。<br>3. js本身存在bug。<br>4. 代码不易读。<br><br>但javascript的最大优势：<br>1.快。<br>2.占用资源少。<br>3.易上手。<br><br>因而，NodeJs继承了js的有点的缺点。但是，由于这个framework比较火，所有在陆陆续续出现了好多比较好用的add-on package。安装这些package也极为简单。由于这些add-on，NodeJs就有了很多新优点：<br><br>1. 和mangoDB等NoSql的数据库有很方便易用的接口(interface). （个人认为non-sql的database是未来）<br>2. 和facebook, twitter, weibo, wechat等其他社交网络登陆认证系统有方便易用的借口——passport。等等<br>3. 前后端、数据库统一。<br><br>有人说，在未来10年内NodeJs将变成server的主导framework。但10年后人们将会为这个based on JavaScript的framework付出惨痛代价。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="2125909-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2013-06-12" target="_blank" href="/question/19653241/answer/17471199">编辑于 2013-06-12</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>9 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="3747809"
+data-atoken="21375381"
+data-collapsed="0"
+data-created="1388811146"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-3747809"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">9</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/yorkie" data-tip="p$t$yorkie">
+<img src="https://pic1.zhimg.com/d5977288948f374da4e5bd46198bf288_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$yorkie" href="/people/yorkie">Yorkie</a><span title="github.com/yorkie" class="bio">，<a href="//link.zhihu.com/?target=http%3A//github.com/yorkie" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">github.com/yorkie</span><span class="invisible"></span><i class="icon-external"></i></a></span>
+</div>
+<div class="zm-item-vote-info " data-votecount="9">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$zdf-wh" href="https://www.zhihu.com/people/zdf-wh" class="zg-link" title="zdf wh">zdf wh</a>、</span><span class="user-block"><a data-tip="p$t$changwei1997" href="https://www.zhihu.com/people/changwei1997" class="zg-link" title="昌维">昌维</a>、</span><span class="user-block"><a data-tip="p$t$li-ma-ma-94" href="https://www.zhihu.com/people/li-ma-ma-94" class="zg-link" title="李马马">李马马</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="Yorkie" data-entry-url="/question/19653241/answer/21375381">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+看了楼上一些回答，说什么javascript是动态语言，不好debug之类的，而且对比来对比去，都是web server上的对比。1. NodeJS作为web server是一个相当出色的IO服务器，而Nodejs性能之所以如此高是依赖于joyent自己搞的libuv，而开发效率之所以高是因为v8，所…
+
+<a href="/question/19653241/answer/21375381" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+看了楼上一些回答，说什么javascript是动态语言，不好debug之类的，而且对比来对比去，都是web server上的对比。<br>1. NodeJS作为web server是一个相当出色的IO服务器，而Nodejs性能之所以如此高是依赖于joyent自己搞的libuv，而开发效率之所以高是因为v8，所以如果你觉得js不好调试，大可以直接使用libuv，然后各种断点，当然这是在你不会使用nodejs自带的debug模块的前提下<br>2. NodeJS真的就只能做做web server，其他免谈。问题来源主要是v8与内存问题，之前做过一个类似爬虫的程序，需要支持万级别用户，用NodeJS写的话，效率没有问题，但内存问题严重，500个任务就需要消耗差不多700-800M空间，后台用libuv+c重写，业务逻辑类似，已经可以单机支持4w-5w的用户量了。因此如果是对内存有非常严格的要求，就建议不要使用node了
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="3747809-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/21375381">发布于 2014-01-04</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1127169"
+data-atoken="15004577"
+data-collapsed="0"
+data-created="1343892764"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1127169"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">33</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/jackyz" data-tip="p$t$jackyz">
+<img src="https://pic2.zhimg.com/50c8e96c1_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$jackyz" href="/people/jackyz">赵东炜</a><span title="创业者, Coder ..." class="bio">，创业者, Coder ...</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="33">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$junior-lang" href="https://www.zhihu.com/people/junior-lang" class="zg-link" title="junior lang">junior lang</a>、</span><span class="user-block"><a data-tip="p$t$liu-han-44" href="https://www.zhihu.com/people/liu-han-44" class="zg-link" title="橘上">橘上</a>、</span><span class="user-block"><a data-tip="p$t$qing-jia-15" href="https://www.zhihu.com/people/qing-jia-15" class="zg-link" title="花下遮">花下遮</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="赵东炜" data-entry-url="/question/19653241/answer/15004577">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+我们正在用 node.js 开发系统。系统架构和肉饼同学描述的一模一样：前端 javascript ／ app＋JSONAPI＋node后端。到目前为止的感觉是：好的部分1，统一语言。整个 team 里除了我，都是刚毕业（当然有个学习曲线了，但过了就好了），现在所有人前后端通吃，…
+
+<a href="/question/19653241/answer/15004577" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+我们正在用 node.js 开发系统。系统架构和肉饼同学描述的一模一样：<br>前端 javascript ／ app＋JSONAPI＋node后端。<br><br>到目前为止的感觉是：<br><br>好的部分<br><br>1，统一语言。整个 team 里除了我，都是刚毕业（当然有个学习曲线了，但过了就好了），现在所有人前后端通吃，有问题谁都能从前端一直追到数据库。<br>2，统一模型。如果你已经习惯异步和回调，那么配合 redis/mq 之类的设施，思考起来会很一致。<br>3，社区活跃。各种包，几乎所有能想得到的需求，都有人做了包出来 npm 一装就好。<br><br>不好的部分<br><br>1，有的包成熟度不高，有时需要 debug 包的内部问题，已经碰到好几回，好在都是开源的，虽说费点劲，但大多都能解决。<br>2，容易写出糟糕的代码，callback 的执行流程有时并不是很符合直觉，需要定期 review 和重构来加以避免。<br><br>另外，澄清一下<br><br>单线程，tcp，这些是常规误解，在 node 0.8 以上版本已经都不是问题。此外，我个人并不认为 node 不适合做 web 开发，虽然现在架构的趋势是比较偏向于 thin json api，但 express 框架确实也能很好地（而且很漂亮）解决上述诸如：路由、缓存、中间件、cookie、session、template 之类的 web 典型问题。<br><br>至于是否面向对象，我觉得和代码的组织没有关系。node 提供了完备的 pacakge 机制。代码组织不是问题。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1127169-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/15004577">发布于 2012-08-02</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>8 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="4564182"
+data-atoken="23356763"
+data-collapsed="0"
+data-created="1394607634"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-4564182"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">6</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/imk2" data-tip="p$t$imk2">
+<img src="https://pic3.zhimg.com/dd97d253e_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$imk2" href="/people/imk2">苏千</a><span title="生命是一场幻觉" class="bio">，生命是一场幻觉</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="6">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$tonnytwo" href="https://www.zhihu.com/people/tonnytwo" class="zg-link" title="刘少卿">刘少卿</a>、</span><span class="user-block"><a data-tip="p$t$wei-teng-73-22" href="https://www.zhihu.com/people/wei-teng-73-22" class="zg-link" title="wei teng">wei teng</a>、</span><span class="user-block"><a data-tip="p$t$tencircle" href="https://www.zhihu.com/people/tencircle" class="zg-link" title="十斗">十斗</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="苏千" data-entry-url="/question/19653241/answer/23356763">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+都看别人说这么多了，还不如开启自己人生的第一个node进程
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+都看别人说这么多了，还不如开启自己人生的第一个node进程
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="4564182-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/23356763">发布于 2014-03-12</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="4532643"
+data-atoken="23283626"
+data-collapsed="0"
+data-created="1394426344"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-4532643"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">8</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/bao-yilei-32" data-tip="p$t$bao-yilei-32">
+<img src="https://pic4.zhimg.com/7861ffad42fc76704b8c1439e3c2428f_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$bao-yilei-32" href="/people/bao-yilei-32">BennyBao</a><span title="THE FSM BOILED FOR YOUR SINS" class="bio">，THE FSM BOILED FOR YOUR SINS</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="8">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$zhang-lei-29-67" href="https://www.zhihu.com/people/zhang-lei-29-67" class="zg-link" title="张磊">张磊</a>、</span><span class="user-block"><a data-tip="p$t$hu-bin-36-78" href="https://www.zhihu.com/people/hu-bin-36-78" class="zg-link" title="胡斌">胡斌</a>、</span><span class="user-block"><a data-tip="p$t$bai-xue-91" href="https://www.zhihu.com/people/bai-xue-91" class="zg-link" title="白学">白学</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="BennyBao" data-entry-url="/question/19653241/answer/23283626">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+Shelton在BigBang 3x13是这样说的——Windows 7 is much more user-friendly than Windows Vista… I don't like that!如果你们公司里有很多小白，那还是看看.Net或Java吧。如果你们公司里有很多大牛，千万别提Node.js，否则你拦都拦不住。
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+Shelton在BigBang 3x13是这样说的——Windows 7 is much more user-friendly than Windows Vista… I don't like that!<br>如果你们公司里有很多小白，那还是看看.Net或Java吧。<br>如果你们公司里有很多大牛，千万别提Node.js，否则你拦都拦不住。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="4532643-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2014-03-10" target="_blank" href="/question/19653241/answer/23283626">编辑于 2014-03-10</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1111153"
+data-atoken="14965823"
+data-collapsed="0"
+data-created="1343398699"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1111153"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">2</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/shudu" data-tip="p$t$shudu">
+<img src="https://pic1.zhimg.com/6a07059a8_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$shudu" href="/people/shudu">叔度</a><span title="系统开发工程师" class="bio">，系统开发工程师</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="2">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$laihengjin" href="https://www.zhihu.com/people/laihengjin" class="zg-link" title="来亨金">来亨金</a>、</span><span class="user-block"><a data-tip="p$t$wang-ru" href="https://www.zhihu.com/people/wang-ru" class="zg-link" title="王豆豆">王豆豆</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="叔度" data-entry-url="/question/19653241/answer/14965823">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+好处是前端同学也可以写后端程序了（JavaScript）。劣势是异步回调机制变成不是很容易。
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+好处是前端同学也可以写后端程序了（JavaScript）。<br>劣势是异步回调机制变成不是很容易。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1111153-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/14965823">发布于 2012-07-27</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1132930"
+data-atoken="15018653"
+data-collapsed="0"
+data-created="1344062748"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1132930"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">19</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/chengxu" data-tip="p$t$chengxu">
+<img src="https://pic4.zhimg.com/490b338cb_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$chengxu" href="/people/chengxu">cheng</a><span title="软件工程师" class="bio">，软件工程师</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="19">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$changwei1997" href="https://www.zhihu.com/people/changwei1997" class="zg-link" title="昌维">昌维</a>、</span><span class="user-block"><a data-tip="p$t$raphyer" href="https://www.zhihu.com/people/raphyer" class="zg-link" title="raphyer">raphyer</a>、</span><span class="user-block"><a data-tip="p$t$ivanliuyong" href="https://www.zhihu.com/people/ivanliuyong" class="zg-link" title="ivan">ivan</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="cheng" data-entry-url="/question/19653241/answer/15018653">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+我觉得nodejs目前还不足以取代lamp,lnmp架构，但是很多公司已经尝试使用nodejs做些实时的并发后端。盲目将nodejs来做web框架使用，并不一定可以发挥其优势，而且现在大多数公司不会贸然将新兴的技术用在核心的业务上，比如说web框架。但在其真正有优势的领…
+
+<a href="/question/19653241/answer/15018653" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+我觉得nodejs目前还不足以取代lamp,lnmp架构，但是很多公司已经尝试使用nodejs做些实时的并发后端。盲目将nodejs来做web框架使用，并不一定可以发挥其优势，而且现在大多数公司不会贸然将新兴的技术用在核心的业务上，比如说web框架。但在其真正有优势的领域，有技术前瞻性的技术领头人，还是会合理采用。<br>我所知道的使用nodejs做生产级别应用的，包括搜狐，搜狐小纸条后端就是用nodejs来处理消息的推送的，之前跟其负责人有过交流。<br>并不像很多人所言，nodejs会首先在web前段业务层上取代PHP等语言，相反，我认为，其最有可能会首先在服务器端取代原有的很多mq，server做某些工作，而这也应该是正确的方向。只是用nodejs来做框架开发用，有点偏颇，比如说用nodejs来开发某个社区nodeclub等。那只是为用nodejs而用nodejs。<br>nodejs的比较对象应该是tornado这些产品，而不是php 。。。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1132930-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2012-08-04" target="_blank" href="/question/19653241/answer/15018653">编辑于 2012-08-04</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>5 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="25831496"
+data-atoken="76017852"
+data-collapsed="0"
+data-created="1449663538"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-25831496"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">0</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/snowwaft" data-tip="p$t$snowwaft">
+<img src="https://pic1.zhimg.com/3818f5b75f75397c4f271437904fc8a0_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$snowwaft" href="/people/snowwaft">戴路</a>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0">
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="戴路" data-entry-url="/question/19653241/answer/76017852">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+优势天生异步，没有历史包袱。不像其他语言，即使有异步，协程，很多人依旧用同步的思维解决问题。缺点缺乏杀手级IDE，调试困难。
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+优势<br>天生异步，没有历史包袱。不像其他语言，即使有异步，协程，很多人依旧用同步的思维解决问题。<br><br>缺点<br>缺乏杀手级IDE，调试困难。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="25831496-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/76017852">发布于 2015-12-09</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="26709047"
+data-atoken="78205943"
+data-collapsed="0"
+data-created="1450869755"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-26709047"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">0</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/longtengdao" data-tip="p$t$longtengdao">
+<img src="https://pic3.zhimg.com/b52058d34ebf5633691693212e20805a_s.png" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$longtengdao" href="/people/longtengdao">龙腾道默默地</a><span title="上海waw专员" class="bio">，上海waw专员</span>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0">
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="龙腾道默默地" data-entry-url="/question/19653241/answer/78205943">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+除了es不能自定义语法之外没有缺点。
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+除了es不能自定义语法之外没有缺点。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="26709047-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/78205943">发布于 2015-12-23</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="3613933"
+data-atoken="21043331"
+data-collapsed="0"
+data-created="1387692751"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-3613933"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">0</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/webfans" data-tip="p$t$webfans">
+<img src="https://pic1.zhimg.com/ff7b9c098e2069d786ddd51d355424f4_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$webfans" href="/people/webfans">webfans</a><span title="互联网fans" class="bio">，互联网fans</span>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0">
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="webfans" data-entry-url="/question/19653241/answer/21043331">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+使用NODE JS 最根本的是那些公司不考广告盈利，而是依靠在线交易盈利，例如国外的那个支付公司，NODE JS是打造实时系统的，不适合按照pv、uv等买广告为生的公司
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+使用NODE JS 最根本的是那些公司不考广告盈利，而是依靠在线交易盈利，例如国外的那个支付公司，NODE JS是打造实时系统的，不适合按照pv、uv等买广告为生的公司
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="3613933-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/21043331">发布于 2013-12-22</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1753286"
+data-atoken="16554740"
+data-collapsed="0"
+data-created="1364748848"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1753286"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">3</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/halfmile" data-tip="p$t$halfmile">
+<img src="https://pic1.zhimg.com/a73376cb4_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$halfmile" href="/people/halfmile">谈熠</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="3">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$tencircle" href="https://www.zhihu.com/people/tencircle" class="zg-link" title="十斗">十斗</a>、</span><span class="user-block"><a data-tip="p$t$linkerlin" href="https://www.zhihu.com/people/linkerlin" class="zg-link" title="Linker">Linker</a>、</span><span class="user-block"><a data-tip="p$t$deepering" href="https://www.zhihu.com/people/deepering" class="zg-link" title="吕通">吕通</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="谈熠" data-entry-url="/question/19653241/answer/16554740">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+优势：互联网上 web 应用正在急速萎缩，而不需要web/html这张皮的应用正在疯长。node 和 erlang 是两个最适合这个潮流变迁的语言。而对人脑和肉眼来说，javascript 更加友善。劣势：太新了，API还在成熟过程中；不少开发者对javascript持有本能的抵触情绪。…
+
+<a href="/question/19653241/answer/16554740" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+优势：互联网上 web 应用正在急速萎缩，而不需要web/html这张皮的应用正在疯长。node 和 erlang 是两个最适合这个潮流变迁的语言。而对人脑和肉眼来说，javascript 更加友善。<br><br>劣势：太新了，API还在成熟过程中；不少开发者对javascript持有本能的抵触情绪。<br><br>此外，<br><br>1. 对于上面几位所说的：所谓 “不稳定，单线程” 劣势，我想说 没仔细深入的玩过之前，先不要妄下定论。V8是恐怕是这个星球上能被最广泛使用的最靠谱的虚拟机。<br><br>2. 对于LZ，互联网上有哪个"大"公司能够10年一成不变，屹立不倒吗？
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1753286-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/16554740">发布于 2013-04-01</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>3 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="3478226"
+data-atoken="20706999"
+data-collapsed="0"
+data-created="1386608707"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-3478226"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">1</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/xiemengfei" data-tip="p$t$xiemengfei">
+<img src="https://pic2.zhimg.com/515673c4aee91fd04491030e83e76ebd_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$xiemengfei" href="/people/xiemengfei">谢梦非</a><span title="&quot;" class="bio">，"</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="1">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$ou-yang-jie-90" href="https://www.zhihu.com/people/ou-yang-jie-90" class="zg-link" title="彭小漪">彭小漪</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="谢梦非" data-entry-url="/question/19653241/answer/20706999">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+优势：1.JS语法优势2.异步，性能好劣势：单线程，难以充分利用多核资源
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+优势：<br>1.JS语法优势<br>2.异步，性能好<br><br>劣势：<br>单线程，难以充分利用多核资源
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="3478226-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="/question/19653241/answer/20706999">发布于 2013-12-10</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>1 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="1244286"
+data-atoken="15292795"
+data-collapsed="0"
+data-created="1348503082"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-1244286"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">8</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/guan-bo" data-tip="p$t$guan-bo">
+<img src="https://pic1.zhimg.com/40bc410e0_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$guan-bo" href="/people/guan-bo">管博</a><span title="iPad收银系统" class="bio">，iPad收银系统</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="8">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$chen-feng-63-66" href="https://www.zhihu.com/people/chen-feng-63-66" class="zg-link" title="陈峰">陈峰</a>、</span><span class="user-block"><a data-tip="p$t$suihui-liu" href="https://www.zhihu.com/people/suihui-liu" class="zg-link" title="suihui liu">suihui liu</a>、</span><span class="user-block"><a data-tip="p$t$tong-phil" href="https://www.zhihu.com/people/tong-phil" class="zg-link" title="Tong Phil">Tong Phil</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="管博" data-entry-url="/question/19653241/answer/15292795">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+作为一个nodejser，我只能说它生机勃勃，很有希望。如果你想做一个WebService或者小系统, Nodejs会很轻，与其他的方式RoR/PHP/JAVA比没有什么特别的优势。虽然后者可能比较重，但比较成熟。如果你想做个很大的系统，企鹅、阿里那种级别的，Nodejs还是很让人…
+
+<a href="/question/19653241/answer/15292795" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+作为一个nodejser，我只能说它生机勃勃，很有希望。<br><br>如果你想做一个WebService或者小系统, Nodejs会很轻，与其他的方式RoR/PHP/JAVA比没有什么特别的优势。虽然后者可能比较重，但比较成熟。<br><br>如果你想做个很大的系统，企鹅、阿里那种级别的，Nodejs还是很让人期待的。在当今的技术条件下，困扰我们最大的不是计算力，也不是业务复杂度，更不是版本一致性，唯I/O而已。<br><br>计算力那是编译语言的强项，js做胶水就好了；业务可以拆分、基于事件驱动的解耦以及业务前置。至于那些认为回调深度嵌套不适宜些业务的，可以去@朴灵的<a href="//link.zhihu.com/?target=https%3A//github.com/JacksonTian/eventproxy" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">https://</span><span class="visible">github.com/JacksonTian/</span><span class="invisible">eventproxy</span><span class="ellipsis"></span><i class="icon-external"></i></a>上看看，用不多代码就可以解决。<br><br>有人说I/O可以用硬件堆，业务也是不断堆出来的，带宽堆不起，移动带宽更不能堆。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1244286-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2012-09-25" target="_blank" href="/question/19653241/answer/15292795">编辑于 2012-09-25</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>3 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+<div tabindex="-1" class="zm-item-answer  zm-item-expanded"
+
+itemscope itemtype="http://schema.org/Answer"
+data-aid="3605446"
+data-atoken="21022363"
+data-collapsed="0"
+data-created="1387601808"
+data-deleted="0"
+data-helpful="1"
+data-isowner="0"
+data-copyable="1"
+
+
+>
+<a class="zg-anchor-hidden" name="answer-3605446"></a>
+
+
+<div class="zm-votebar">
+<button class="up ">
+<i class="icon vote-arrow"></i>
+<span class="count">18</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down ">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="/people/qi-long-96" data-tip="p$t$qi-long-96">
+<img src="https://pic1.zhimg.com/da8e974dc_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$qi-long-96" href="/people/qi-long-96">张春亮</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="18">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$vanshady" href="https://www.zhihu.com/people/vanshady" class="zg-link" title="徐旻威">徐旻威</a>、</span><span class="user-block"><a data-tip="p$t$zhang-lei-29-67" href="https://www.zhihu.com/people/zhang-lei-29-67" class="zg-link" title="张磊">张磊</a>、</span><span class="user-block"><a data-tip="p$t$fancy_mind" href="https://www.zhihu.com/people/fancy_mind" class="zg-link" title="Leo Wang">Leo Wang</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="41199" data-action="/answer/content" data-author-name="张春亮" data-entry-url="/question/19653241/answer/21022363">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+有大公司用吗？ 用的不要太多， Groupon, Taobao, 最近Paypal完成转到node.js上面来了转： <a class=" wrap external" href="//link.zhihu.com/?target=http%3A//ourjs.com/detail/52a914f0127c763203000008" target="_blank" rel="nofollow noreferrer">PayPal为什么从Java迁移到Node.js，性能提高一倍，文件代码减少44%<i class="icon-external"></i></a>大家都知道PayPal是另一家迁移到Node.js平台的大型公司，Jeff Harrell的这篇博文 <a href="//link.zhihu.com/?target=https%3A//www.paypal-engineering.com/2013/11/22/node-js-at-paypal/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Node.js at PayPal<i class="icon-external"></i></a>…
+
+<a href="/question/19653241/answer/21022363" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+有大公司用吗？  用的不要太多， Groupon, Taobao, 最近Paypal完成转到node.js上面来了<br><br>转： <a class=" wrap external" href="//link.zhihu.com/?target=http%3A//ourjs.com/detail/52a914f0127c763203000008" target="_blank" rel="nofollow noreferrer">PayPal为什么从Java迁移到Node.js，性能提高一倍，文件代码减少44%<i class="icon-external"></i></a><br><br><p>大家都知道PayPal是另一家迁移到Node.js平台的大型公司，Jeff Harrell的这篇博文 <a href="//link.zhihu.com/?target=https%3A//www.paypal-engineering.com/2013/11/22/node-js-at-paypal/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Node.js at PayPal<i class="icon-external"></i></a>  解释了为什么从Java迁移出来的原因： 开发效率提高一倍（2个人用更少的时间干了5个人的活）， 性能提高一倍， 代码量减少33%, 文件减少40%：</p><p>（小编： 个人认为深层次原因是Java正在越来越走向封闭，而且变得越来越复杂而且oracle正在对Java收费，参见： <a href="//link.zhihu.com/?target=http%3A//www.infoq.com/cn/news/2010/11/oracle-to-release-two-jvms" class=" wrap external" target="_blank" rel="nofollow noreferrer">Oracle计划发布收费版JVM<i class="icon-external"></i></a> ， 这促使了越来越多的公司加入了去Java化的队伍）</p><p>外面有很多人说PayPal正在迁移到node.js平台。我很高兴地在这里宣布，传言是真的，我们正在从Java迁移至node.js</p><p>由于历史原因，我们的工程师一直分为两拨人，一拨在浏览器上写代码（HTML,CSS,JavaScript）；另一拨用Java写应用层的代码。
+想象一下，一个写HTML的不得不去叫一个写Java将A/B两个页面链接到一起吗？我们正在这样干，我们称这样的人为全端工程师，那些即可以设计精美界
+面和服务器后台的那些人。现在前后端已经没有界限了，这曾经是阻碍PayPal发现的一个很大的瓶颈。</p><p>Node.js帮助我们将前、后端合二为一，现在我们一个全端团队即可解决用户的所有问题。</p><p><strong>早期采纳</strong></p><p>像其他人一样，我们刚开始使用node.js做了一些demo用的原型程序。跟很多人一样，她表现出来的超高性能，让我们最终决定把她放到线上去。</p><p>我们最初使用express来路由请求，nconf用来配置，grunt用来创建tasks。Express非常普及，但是我们发现Express
+在多个团队协作时表现出的可伸缩性不足，它并不适合所有场合。Expres非常灵活，但在大型团队开发上的可扩展性不佳。最终我们的队员基于原生的
+node.js，并创建了Karken.js；她并不是一个框架，更像是一个规范，但相对于express，她更适合大型团队的扩展。我们希望我们的工程
+师专注他们的应用，而不是专注他们的运行环境。</p><p>我们已经在内部使用kraken.js好几个月了（我们马上会把他开源的！）我们的工程师非常渴望这个内部框架能尽快上线。</p><p>（小编：预测karken.js即将是，另一个超火的后端框架，火热程度参考twitter的bootstrap）</p><p>将node.js布署到线上</p><p>我们第一个采用nodejs的产品不是一个小的应用；是我们的浏览量最多的用户首页。我们希望步子迈得大一点，但是我们清楚知道其中的风险，所以我
+们同时还并行地运行了一个Java的程序。我们在开发和扩展Java方面非常有经验。所以一旦node.js应用出问题了，我们可以立即切回Java。不
+过，同时我们也发现了一些非常有意思的数据。</p><p><strong>开发</strong></p><p>从1月份开始，我们花了几个月的时间来搭建node.js的基础设施。比如：sessions（会话），centralized 
+logging(集中日志)，keystores(存储)。在这期间我们有5位Java工程师在开发Java。在开发了两个月后，两位工程师开始开发
+node.js应用。在6月初两个团队的开发进度已经一样了，两者的功能完全一样。开发node.js应用的那个小团队，尽管推迟了两个月，但是很快赶上
+了。这里我们对这些相同功能做的一些单元测试得出的结果：</p><p><br>Node.js的是：</p><p>更少的人开发的node.js应用比Java的快一倍；<br> 节省了33%的代码量；<br> 少了40的文件；</p><p>（小编，这里作者的意思并不是Java程序员的素质没有node.js的好，Java语言的特点决定她需要更多的人，更多的时间，更多的代码去完成在node.js下的同样的工作，并且吃力不讨好。参考：<a href="//link.zhihu.com/?target=http%3A//ourjs.com/detail/528b2d6ab5cbfd990b000002" class=" wrap external" target="_blank" rel="nofollow noreferrer">他们为什么说面向对象有问题,探讨面向对象的一些缺陷<i class="icon-external"></i></a> ；性能测评：<a href="//link.zhihu.com/?target=http%3A//ourjs.com/detail/52726d92031db63703000001" class=" wrap external" target="_blank" rel="nofollow noreferrer">Node.JS比Java EE快20% <i class="icon-external"></i></a>）</p><p>这是一个非常鼓舞人的证据，我们似乎应该更快地迁移到JavaScript平台上去。我们立即做了一个决定，暂停Java应用的开发，全心全意开发
+JavaScript应用。这对开发Java项目的工程师来说是个好消息，他们已经消除了对node.js的疑虑，非常高兴地投入到了并行的
+node.js开发上来，这样我们的开发效率提高了两倍。</p><p><strong>性能</strong></p><p>性能是一个非常有意思和具有争议性的话题。在我们这，我们有两个平台实现完全一样功能的程序；一个是使用基于Spring的内部Java框架；另一
+个是基于kraken.js，express，dust.js和其他开源框架。 
+这些程序包含三个API，每个API来响应2到5个请求，由Dust来模拟获取数据和显示页面。</p><p>我们用线上的环境去测试这两个应用，并收集了完成响应的时间和请求数。</p><p><strong>node.js vs Java 性能对比</strong></p><p>在这张图上你可以看到node.js应用的优势：每秒请求数量是Java的两倍。不过更有意思的是我们仅使用了单核的node去跟5核的Java来对比，我们非常希望将来继承扩大node.js的优势。<br> 渲染相同的页面，node.js节省了35%的时间。即每个页面节约了200豪秒，用户可以清楚地感觉到这样的区别。</p><p><strong>未来</strong></p><p>我们将继续使用node.js来构建我们的Web应用。像我们正在开发的那些门户，和已经上线的用户概览页面。还有一打正在进入Beta测试的那些工程，我们会继续分享我们在上线过程中的经验，数据。对于PayPal来说这是一个另人激动的时刻。</p>
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="3605446-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2013-12-21" target="_blank" href="/question/19653241/answer/21022363">编辑于 2014-08-14</a>
+</span>
+
+<a href="#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="#" class="meta-item zu-autohide" name="share">
+<i class="z-icon-share"></i>分享</a>
+<a href="#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">&bull;</span>
+
+<a href="#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">&bull;</span>
+<a href="#" name="report" class="meta-item zu-autohide">举报</a>
+
+
+
+<span class="zg-bull">&bull;</span>
+
+<a href="/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="zh-question-collapsed-link" class="zu-question-collap-title" style="display:" >
+<a href="javascript:;" name="expand" class="zg-link-gray" id="zh-question-collapsed-switcher">
+<span id="zh-question-collapsed-num">5</span> 个回答被折叠
+</a>
+（<a target="_blank" href="http://www.zhihu.com/question/20120168" class="zg-link-gray">为什么？</a>）
+</div>
+<div id="zh-question-collapsed-wrap" class="zh-question-answer-wrapper" style="display:none"></div>
+<a name="draft"></a>
+<div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
+<div class="zm-editable-tip"></div>
+<div class="zm-editable-content"></div>
+</div>
+<!-- 版权演示 -->
+
+<script type="text/x-template" id="copyright-demo-template">
+<article>
+
+<section>
+<p class="copyright-demo-title"> 这是你的回答正文 </p>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+</section>
+
+<section>
+<p class="copyright-demo-title"> 当其他人想复制你的一段回答 </p>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region1">
+<span class="copyright-ico-indicator" id="copyright-demo-indicator"></span>
+</div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region2"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region3"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region4"></div>
+<div class="copyright-demo-region"></div>
+</section>
+
+<section id="copyright-demo-frame3">
+<p class="copyright-demo-title"> 复制将受限，同时会弹出提醒 </p>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region"></div>
+<span class="copyright-ico-pointer copyright-demo-pointer"></span>
+</section>
+</article>
+</script>
+
+
+
+</div>
+</div>
+
+
+<div class="zu-main-sidebar">
+
+<div class="zm-side-section">
+<div class="zm-side-section-inner" id="zh-question-side-header-wrap">
+<button data-follow="q:m:button" class="follow-button zg-unfollow zg-btn-white" data-id="41199">取消关注</button>
+
+<div class="zg-btn-white" id="zh-question-operation-menu"
+>
+<i class="zg-icon-dropdown-menu zg-icon"></i><b class="hide-text">设置</b>
+</div>
+
+<div class="zh-question-followers-sidebar">
+<div class="zg-gray-normal">
+
+<a href="/question/19653241/followers"><strong>3194</strong></a>
+人关注该问题
+
+</div>
+
+<div class="list zu-small-avatar-list zg-clear">
+
+<a title="尼奥"
+data-tip="p$t$wangxiao"
+class="zm-item-link-avatar"
+href="/people/wangxiao">
+<img src="https://pic1.zhimg.com/2852b5c34_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="路人乙"
+data-tip="p$t$lei40251"
+class="zm-item-link-avatar"
+href="/people/lei40251">
+<img src="https://pic4.zhimg.com/62baf102e34f8263e57f5024d38ee227_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="Michael"
+data-tip="p$t$huangyou"
+class="zm-item-link-avatar"
+href="/people/huangyou">
+<img src="https://pic1.zhimg.com/da8e974dc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="王电轻"
+data-tip="p$t$Dian"
+class="zm-item-link-avatar"
+href="/people/Dian">
+<img src="https://pic4.zhimg.com/261acb33b_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="瓦斯寓情于景"
+data-tip="p$t$chuanmingliu"
+class="zm-item-link-avatar"
+href="/people/chuanmingliu">
+<img src="https://pic2.zhimg.com/eb943df1fdfc7fa387a652f0159b0d65_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="Lapital"
+data-tip="p$t$chen-zhen-hui"
+class="zm-item-link-avatar"
+href="/people/chen-zhen-hui">
+<img src="https://pic1.zhimg.com/da8e974dc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="kmokidd"
+data-tip="p$t$kmokidd"
+class="zm-item-link-avatar"
+href="/people/kmokidd">
+<img src="https://pic1.zhimg.com/6f3d8cb2d2baf8be1f84e8cdf53a7050_s.png" class="zm-item-img-avatar">
+</a>
+
+<a title="黄武"
+data-tip="p$t$huang-wu-69-29"
+class="zm-item-link-avatar"
+href="/people/huang-wu-69-29">
+<img src="https://pic1.zhimg.com/da8e974dc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="Link"
+data-tip="p$t$zivvia"
+class="zm-item-link-avatar"
+href="/people/zivvia">
+<img src="https://pic1.zhimg.com/da8e974dc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="王二小"
+data-tip="p$t$wang-er-xiao-48-92-95"
+class="zm-item-link-avatar"
+href="/people/wang-er-xiao-48-92-95">
+<img src="https://pic4.zhimg.com/fff707f51e0d7feb22710fe40d7d64f7_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="易郅"
+data-tip="p$t$yi-zhi-27-78"
+class="zm-item-link-avatar"
+href="/people/yi-zhi-27-78">
+<img src="https://pic3.zhimg.com/33eed2826_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="相轻"
+data-tip="p$t$YuxiangQue"
+class="zm-item-link-avatar"
+href="/people/YuxiangQue">
+<img src="https://pic1.zhimg.com/6520e65b0_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="杨昆"
+data-tip="p$t$yang"
+class="zm-item-link-avatar"
+href="/people/yang">
+<img src="https://pic3.zhimg.com/7a45eede7bf22e2a0a243f3048b7622e_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="吃西瓜不吐籽"
+data-tip="p$t$shuang-yan-60"
+class="zm-item-link-avatar"
+href="/people/shuang-yan-60">
+<img src="https://pic1.zhimg.com/3650ccace0d10ee3beb49c0f3c4b66d8_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="少正卯"
+data-tip="p$t$shaozhengmao"
+class="zm-item-link-avatar"
+href="/people/shaozhengmao">
+<img src="https://pic4.zhimg.com/2ac78f913_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="文韬"
+data-tip="p$t$winty"
+class="zm-item-link-avatar"
+href="/people/winty">
+<img src="https://pic3.zhimg.com/88197b85e_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="石建文"
+data-tip="p$t$shi-jian-wen-73"
+class="zm-item-link-avatar"
+href="/people/shi-jian-wen-73">
+<img src="https://pic1.zhimg.com/5a9cc84e23bd5a277527668803e2e368_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="ccfto"
+data-tip="p$t$ccfto"
+class="zm-item-link-avatar"
+href="/people/ccfto">
+<img src="https://pic1.zhimg.com/da8e974dc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="shameimaru-placeholder" data-loc="question_up" data-params='{&quot;question_token&quot;: 19653241}'></div>
+<div class="zm-side-section">
+<div class="zm-side-section-inner">
+<div id="zh-question-related-questions" class="zh-question-related-questions clearfix">
+
+<h3>相关问题</h3>
+<ul itemprop="relatedQuestion" itemscope itemtype="http://schema.org/ItemList">
+
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/Question"><a class="question_link" href="/question/24317445">中国国内 JavaScript 圈的现状如何？</a> <span class="num">46 个回答</span><meta itemprop="followerCount" content="875" /></li>
+
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/Question"><a class="question_link" href="/question/28207685">Web 前后端分离的意义大吗？</a> <span class="num">28 个回答</span><meta itemprop="followerCount" content="2156" /></li>
+
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/Question"><a class="question_link" href="/question/19609671">追求客户端和服务器编程语言的一致有多大的意义？</a> <span class="num">21 个回答</span><meta itemprop="followerCount" content="237" /></li>
+
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/Question"><a class="question_link" href="/question/21985612">如何评价 Riot.js？</a> <span class="num">12 个回答</span><meta itemprop="followerCount" content="245" /></li>
+
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/Question"><a class="question_link" href="/question/19769761">做前端开发必需要掌握切图技能吗？</a> <span class="num">44 个回答</span><meta itemprop="followerCount" content="869" /></li>
+
+</ul>
+</div>
+</div>
+</div>
+<div class="zm-side-section">
+<div class="zm-side-section-inner">
+<h3>问题状态</h3>
+<div class="zg-gray-normal">
+最近活动于 <span class="time">2016-02-26</span>
+<span class="zg-bull">&bull;</span>
+<a href="/question/19653241/log">查看问题日志</a>
+</div>
+<div class="zg-gray-normal">
+被浏览 <strong>272173</strong> 次，相关话题关注者 <strong>37545</strong> 人
+</div>
+</div>
+</div>
+<div class="shameimaru-placeholder" data-loc="question_down" data-params='{&quot;question_token&quot;: 19653241}'></div>
+
+</div>
+
+
+</div>
+
+
+<div id="zh-footer" class="zh-footer">
+<div class="content zg-wrap clearfix">
+<ul>
+
+<li><a href="https://liukanshan.zhihu.com" target="_blank">刘看山</a></li>
+
+<li><a href="/question/19581624" target="_blank">知乎指南</a></li>
+<li><a href="javascript:;" id="js-feedback-button">建议反馈</a></li>
+
+<li><a href="/app" target="_blank">移动应用</a></li>
+<li><a href="/careers">加入知乎</a></li>
+<li><a href="/terms" target="_blank">知乎协议</a></li>
+<li><a href="mailto:bd@zhihu.com">商务合作</a></li>
+
+</ul>
+
+<span class="copy">&copy; 2016 知乎</span>
+
+</div>
+</div>
+
+<script type="text/json" class="json-inline" data-name="guiders2">{"exclusive-popover":{},"section":{},"editor":[]}</script>
+<script type="text/json" class="json-inline" data-name="current_user">["\u6c6a\u78ca","icestone","https:\/\/pic1.zhimg.com\/e2c6cd1983ff666f0aa4b6b5c7f98418_s.jpg","35cfd4457b34c94b9cbc3e71ea9fa14b","\u73a9\u547d\u8ffd\u6c42\u671f\u5f85",0,0,true,"ice@wedn.net","",0,true,false,false,"30981457182720"]</script>
+<script type="text/json" class="json-inline" data-name="user_status">[null,null]</script>
+<script type="text/json" class="json-inline" data-name="env">["zhihu.com","comet.zhihu.com",false,null]</script>
+<script type="text/json" class="json-inline" data-name="permissions">[]</script>
+
+
+<script type="text/json" class="json-inline" data-name="ga_vars">{"user_created":1372657880000,"now":1456712701000,"abtest_mask":"---------1--------------------","user_attr":[1,0,0,"-",1],"user_hash":"35cfd4457b34c94b9cbc3e71ea9fa14b"}</script>
+
+<script type="text/json" class="json-inline" data-name="ra-urls">{"CommentApp":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CommentApp.fb23fa39.js"}</script>
+
+<script type="text/json" class="json-inline" data-name="current_question">{"status":"normal","isLocked":0,"detailEditReasonRequired":true,"editPermission":false,"isAnon":0,"qid":41199,"urlToken":19653241,"showInvitePanel":false,"askAboutMember":0}</script>
+<script type="text/json" class="json-inline" data-name="current_question_owner">false</script>
+<script type="text/json" class="json-inline" data-name="draft">[]</script>
+<script type="text/json" class="json-inline" data-name="my_answer">{}</script>
+<script type="text/json" class="json-inline" data-name="current_question_bio">{"selected_bio":"headline","type":"HEADLINE","value":"\u73a9\u547d\u8ffd\u6c42\u671f\u5f85"}</script>
+
+<script type="text/json" class="json-inline" data-name="redirect_to">""</script>
+
+
+
+<script src="https://static.zhihu.com/static/revved/-/js/vendor.ff76fbae.js"></script>
+<script src="https://static.zhihu.com/static/revved/-/js/closure/common.19ad44ac.js"></script>
+
+
+<script src="https://static.zhihu.com/static/revved/-/js/closure/richtexteditor.a2f9cac5.js" async></script>
+<script src="https://static.zhihu.com/static/revved/-/js/closure/page-main.e6b45192.js"></script>
+<meta name="entry" content="ZH.entrySQ" data-module-id="page-main">
+
+<script type="text/zscript" znonce="1bdf863907cd4337aacb7e492b3062ac"></script>
+
+<input type="hidden" name="_xsrf" value="c99e9daf2229a9c98c6c0a9d27a60851"/>
+</body>
+</html>

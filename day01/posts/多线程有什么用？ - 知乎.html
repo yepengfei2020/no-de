@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://www.zhihu.com/question/19901763 -->
+<html lang="zh-CN" dropeffect="none" class="js  show-app-promotion-bar cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./多线程有什么用？ - 知乎_files/za-0.1.1.min.js"></script><script async="" src="./多线程有什么用？ - 知乎_files/ga.js"></script>
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+
+<title>多线程有什么用？ - 知乎</title>
+
+<meta name="apple-itunes-app" content="app-id=432274380, app-argument=zhihu://questions/19901763">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="mobile-agent" content="format=html5;url=https://www.zhihu.com/question/19901763">
+<meta id="znonce" name="znonce" content="f9e4c2d9357f452a80dfbfb664513c67">
+
+
+<link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-152.f361b474.png" sizes="152x152">
+<link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-120.346e7055.png" sizes="120x120">
+<link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-76.3101f5fe.png" sizes="76x76">
+<link rel="apple-touch-icon" href="https://static.zhihu.com/static/revved/img/ios/touch-icon-60.a6575a64.png" sizes="60x60">
+
+
+<link rel="shortcut icon" href="https://static.zhihu.com/static/favicon.ico" type="image/x-icon">
+
+<link rel="search" type="application/opensearchdescription+xml" href="https://static.zhihu.com/static/search.xml" title="知乎">
+<link rel="stylesheet" href="./多线程有什么用？ - 知乎_files/z.e00193fd.css">
+
+
+
+
+
+<!--[if lt IE 9]>
+<script src="https://static.zhihu.com/static/components/respond/dest/respond.min.js"></script>
+<link href="https://static.zhihu.com/static/components/respond/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+<link href="/static/components/respond/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+<script src="/static/components/respond/cross-domain/respond.proxy.js"></script>
+<![endif]-->
+<script src="./多线程有什么用？ - 知乎_files/instant.4b42dd60.js"></script>
+
+
+
+
+<style>html.modal-open {overflow:hidden}html.modal-doc-overflow {margin-right:17px}html.modal-doc-overflow .modal-translate-shifting.sticky {transition-property:none; transform:translateX(-8.5px)}html.modal-doc-overflow .modal-shifting {position:relative; right:8.5px}</style><style type="text/css">._colors_text-muted_5fu-{color:#999}</style><style type="text/css">._Pager_root_2GoR{font-size:1.1em;text-align:center;line-height:3}._Pager_item_3xy4{padding:.5em;-webkit-transition:color .5s ease;transition:color .5s ease}</style><style type="text/css">._InputBox_root_1Xwi{width:100%;padding:9px 12px;min-height:38px;min-height:22px\9;line-height:1.4;color:#222;cursor:text;border:1px solid #ddd;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.1) inset;box-sizing:border-box;background:#fff}._InputBox_root_1Xwi:focus{border:1px solid #ccc}._InputBox_blur_3JWV._InputBox_empty_3_ur:before{content:attr(placeholder);color:#999}</style><style type="text/css">._CommentBox_dialog_2jQ_.modal-dialog{width:520px}._CommentBox_dialog_2jQ_.modal-dialog .modal-dialog-content{margin:0;padding:0}._CommentBox_root_G_1m{position:relative;margin-top:1em;margin-bottom:3em}._CommentBox_root_G_1m._CommentBox_embedded_1c_2{margin:0}._CommentBox_root_G_1m._CommentBox_embedded_1c_2._CommentBox_empty_1VbA{padding:1em}._CommentBox_root_G_1m._CommentBox_bordered_3Fo-{border:1px solid #ddd;border-radius:4px;box-shadow:0 1px 1px rgba(0,0,0,.05)}._CommentBox_list_10_K{padding-left:1em;padding-right:1em}._CommentBox_pagerBorder_yuO1{border-top:1px solid #eee}._CommentBox_list_10_K[hidden]+._CommentBox_pagerBorder_yuO1,._CommentBox_pagerBorder_yuO1[hidden]{border-top:none}._CommentBox_inConversations_MnYD{margin:0}._CommentBox_inConversations_MnYD ._CommentBox_list_10_K{margin:17px;padding:0;border:none}._CommentBox_inConversations_MnYD ._CommentBox_list_10_K._CommentBox_scrollable_87FS{padding-right:.1em}._CommentBox_inConversations_MnYD ._CommentBox_list_10_K>:first-child{padding-top:0}._CommentBox_inConversations_MnYD ._CommentBox_list_10_K>:last-child{padding-bottom:0}._CommentBox_button_1bar{font-size:.9em;cursor:pointer}._CommentBox_textButton_3t9_{padding:0;border:0;outline:0;background:none;cursor:pointer;color:#999}._CommentBox_textButton_3t9_:focus,html.no-touchevents ._CommentBox_textButton_3t9_:hover{color:#778087}._CommentBox_scrollable_87FS{padding-right:.9em;overflow-y:auto;max-height:550px;max-height:60vh;-webkit-overflow-scrolling:touch}@media (min-height:900px){._CommentBox_scrollable_87FS{max-height:550px}}._CommentBox_cannotCommentReason_1_q5{padding:1.5em 1em;border-radius:4px;text-align:center;background:#fbfbfb;border-top:1px solid #eee;color:#999}._CommentBox_root_G_1m._CommentBox_empty_1VbA ._CommentBox_cannotCommentReason_1_q5{border:none;background:#fff}._CommentBox_root_G_1m._CommentBox_embedded_1c_2 ._CommentBox_cannotCommentReason_1_q5{padding:.5em 1em}._CommentBox_loading_3DjF{padding:6px 12px;color:#999}._CommentBox_inConversations_MnYD ._CommentBox_loading_3DjF{padding:20px;text-align:center}._CommentBox_divider_3NgO{margin:0 -1em;height:0;color:#999;text-align:center;border-top:1px solid #eee}._CommentBox_divider_3NgO:last-child{margin-bottom:20px}._CommentBox_dividerText_eF9Y{position:relative;z-index:2;top:-.8em;padding:0 .8em;display:inline-block;background:#fff}</style><style type="text/css">._CommentForm_root_1-ko{position:relative;margin-top:1em}._CommentForm_bordered_2isg{margin:0;padding:1em;border-top:1px solid #eee;border-radius:0 0 4px 4px;background:#fbfbfb}._CommentForm_actions_ooEq{margin-top:1em;padding-bottom:0;text-align:right;line-height:33px;display:none}._CommentForm_expanded_39uD ._CommentForm_actions_ooEq{display:block}._CommentForm_submitButton_1N49{float:right}._CommentForm_cancelButton_cy3u{margin-right:1em}._CommentForm_mask_6Rp2{position:absolute;top:0;right:0;bottom:0;left:0}</style><style type="text/css">._CommentItem_root_PQNS{position:relative;list-style:none;outline:none;padding:.9em 0}._CommentItem_root_PQNS+._CommentItem_root_PQNS{border-top:1px solid #eee}._CommentItem_deleted_3yx3{color:#999}._CommentItem_likes_2hey{float:right;padding-right:2px}._CommentItem_avatarLink_3V51{float:left;margin:4px 1em 0 0}._CommentItem_avatar_3i-F{width:25px;height:25px;border-radius:2px}._CommentItem_body_3qwB{overflow:hidden}._CommentItem_content_CYqW{min-height:22px;word-wrap:break-word}._CommentItem_footer_46v8,._CommentItem_header_2JGh{color:#999}._CommentItem_footer_46v8,._CommentItem_footer_46v8 button{font-size:.95em}._CommentItem_action_Hk0w{margin-left:.6em;visibility:hidden}html.no-touchevents ._CommentItem_action_Hk0w:hover{color:#698ebf}._CommentItem_root_PQNS._CommentItem_focusin_1khT ._CommentItem_action_Hk0w,._CommentItem_root_PQNS:hover ._CommentItem_action_Hk0w,html.touchevents ._CommentItem_action_Hk0w{visibility:visible}._CommentItem_action_Hk0w .zg-icon{margin-right:5px;width:11px;height:11px;vertical-align:-1px}@media screen and (max-width:420px){._CommentItem_action_Hk0w .zg-icon{display:none}}._CommentItem_openConversations_36xr{float:right;padding-right:0;visibility:visible;font-size:.95em}._CommentItem_openConversations_36xr i{margin-right:.5em}</style><style type="text/css">[class*=sprite-comment-icon-]{display:inline-block;vertical-align:middle}.sprite-comment,[class*=sprite-comment-]{background-image:url(/static/revved/img/comment/sprites.auto.ad5f8607.png);background-repeat:no-repeat}.sprite-comment-icon-open-conversations-default{background-position:0 0;width:12px;height:11px}.sprite-comment-icon-open-conversations-hover,html.no-touchevents .sprite-comment-icon-open-conversations-default:hover,html.no-touchevents a:hover .sprite-comment-icon-open-conversations-default,html.no-touchevents button:hover .sprite-comment-icon-open-conversations-default{background-position:-14px 0;width:12px;height:11px}@media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi){.sprite-comment,[class*=sprite-comment-]{background-image:url(/static/revved/img/comment/sprites@2x.auto.222e7cdd.png);background-size:26px 11px}}</style></head>
+
+<body class="zhi ">
+
+
+
+<div role="navigation" class="zu-top">
+<div class="zg-wrap modal-shifting clearfix" id="zh-top-inner">
+<a href="https://www.zhihu.com/" class="zu-top-link-logo" id="zh-top-link-logo" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_zhihu_logo">知乎</a>
+
+<div class="top-nav-profile">
+<a href="https://www.zhihu.com/people/icestone" class="zu-top-nav-userinfo " id=":0" role="button" aria-haspopup="true" aria-activedescendant="">
+<span class="name">汪磊</span>
+<img class="Avatar" src="./多线程有什么用？ - 知乎_files/e2c6cd1983ff666f0aa4b6b5c7f98418_s.jpg" srcset="https://pic1.zhimg.com/e2c6cd1983ff666f0aa4b6b5c7f98418_xs.jpg 2x" alt="汪磊">
+<span id="zh-top-nav-new-pm" class="zg-noti-number zu-top-nav-pm-count" style="visibility:hidden" data-count="0">
+
+</span>
+</a>
+<ul class="top-nav-dropdown" id="top-nav-profile-dropdown" aria-labelledby=":0">
+<li>
+<a href="https://www.zhihu.com/people/icestone" tabindex="-1" id=":1">
+<i class="zg-icon zg-icon-dd-home"></i>我的主页
+</a>
+</li>
+
+<li>
+<a href="https://www.zhihu.com/inbox" tabindex="-1" id=":2">
+<i class="zg-icon zg-icon-dd-pm"></i>私信
+<span id="zh-top-nav-pm-count" class="zu-top-nav-pm-count zg-noti-number" style="visibility:hidden" data-count="0">
+
+</span>
+</a>
+</li>
+<li>
+<a href="https://www.zhihu.com/settings" tabindex="-1" id=":3">
+<i class="zg-icon zg-icon-dd-settings"></i>设置
+</a>
+</li>
+<li>
+<a href="https://www.zhihu.com/logout" tabindex="-1" id=":4">
+<i class="zg-icon zg-icon-dd-logout"></i>退出
+</a>
+</li>
+</ul>
+
+</div>
+
+
+
+<button class="zu-top-add-question" id="zu-top-add-question">提问</button>
+
+
+<div role="search" id="zh-top-search" class="zu-top-search">
+<form method="GET" action="https://www.zhihu.com/search" id="zh-top-search-form" class="zu-top-search-form">
+
+
+
+<input type="hidden" name="type" value="question">
+<label for="q" class="hide-text">知乎搜索</label><input type="text" class="zu-top-search-input" id="q" name="q" autocomplete="off" value="" placeholder="搜索问题、话题或人" role="combobox" aria-autocomplete="list">
+<button type="submit" class="zu-top-search-button"><span class="hide-text">搜索</span><span class="sprite-global-icon-magnifier-dark"></span></button>
+</form>
+</div>
+
+
+
+<div id="zg-top-nav" class="zu-top-nav">
+<ul class="zu-top-nav-ul zg-clear">
+
+<li class="zu-top-nav-li " id="zh-top-nav-home">
+<a class="zu-top-nav-link" href="https://www.zhihu.com/" id="zh-top-link-home" data-za-c="view_home" data-za-a="visit_home" data-za-l="top_navigation_home">首页</a>
+</li>
+<li class="top-nav-topic-selector zu-top-nav-li " id="zh-top-nav-topic">
+<a class="zu-top-nav-link" href="https://www.zhihu.com/topic" id="top-nav-dd-topic">话题</a>
+
+</li>
+<li class="zu-top-nav-li " id="zh-top-nav-explore">
+<a class="zu-top-nav-link" href="https://www.zhihu.com/explore">发现</a>
+</li>
+
+<li class="top-nav-noti zu-top-nav-li ">
+<a class="zu-top-nav-link" href="javascript:;" id="zh-top-nav-count-wrap" role="button"><span class="mobi-arrow"></span>消息<span id="zh-top-nav-count" class="zu-top-nav-count zg-noti-number" style="display: none;">0</span></a>
+</li>
+
+
+
+</ul>
+<div class="zu-top-nav-live zu-noti7-popup zg-r5px no-hovercard" id="zh-top-nav-live-new" role="popup" tabindex="0">
+<div class="zu-top-nav-live-inner zg-r5px">
+<div class="zu-top-live-icon">&nbsp;</div>
+<div class="zu-home-noti-inner" id="zh-top-nav-live-new-inner">
+<div class="zm-noti7-popup-tab-container clearfix" tabindex="0" role="tablist">
+<button class="zm-noti7-popup-tab-item message" role="tab">
+<span class="icon">消息</span>
+</button>
+<button class="zm-noti7-popup-tab-item user" role="tab">
+<span class="icon">用户</span>
+</button>
+<button class="zm-noti7-popup-tab-item thanks" role="tab">
+<span class="icon">赞同和感谢</span>
+</button>
+</div>
+</div>
+<div class="zm-noti7-frame-border top"></div>
+<div class="zm-noti7-frame">
+<div class="zm-noti7-content zh-scroller" style="position: relative; overflow: hidden;"><div class="zh-scroller-inner" style="height: 100%; width: 150%; overflow: auto;"><div class="zh-scroller-content" style="position: static; display: block; visibility: visible; overflow: hidden; width: 315px; min-height: 100%;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div></div><div class="zh-scroller-bar-container" style="position: absolute; right: 1px; top: 0px; height: 98px; width: 6px; border: 1px solid rgb(68, 68, 68); opacity: 0; cursor: default; border-radius: 2px; -webkit-user-select: none; background: rgb(102, 102, 102);"><div style="-webkit-user-select: none;"></div></div><div class="zh-scroller-bar" style="position: absolute; right: 2px; top: 2px; opacity: 0.5; width: 6px; border-radius: 3px; cursor: default; -webkit-user-select: none; display: none; background: rgb(0, 0, 0);"></div></div>
+<div class="zm-noti7-content zh-scroller" style="display: none; position: relative; overflow: hidden;"><div class="zh-scroller-inner" style="height: 100%; width: 150%; overflow: auto;"><div class="zh-scroller-content" style="position: static; display: block; visibility: visible; overflow: hidden; width: 315px; min-height: 100%;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div></div><div class="zh-scroller-bar-container" style="position: absolute; right: 1px; top: 0px; height: 98px; width: 6px; border: 1px solid rgb(68, 68, 68); opacity: 0; cursor: default; border-radius: 2px; -webkit-user-select: none; background: rgb(102, 102, 102);"><div style="-webkit-user-select: none;"></div></div><div class="zh-scroller-bar" style="position: absolute; right: 2px; top: 2px; opacity: 0.5; width: 6px; border-radius: 3px; cursor: default; -webkit-user-select: none; display: none; background: rgb(0, 0, 0);"></div></div>
+<div class="zm-noti7-content zh-scroller" style="display: none; position: relative; overflow: hidden;"><div class="zh-scroller-inner" style="height: 100%; width: 150%; overflow: auto;"><div class="zh-scroller-content" style="position: static; display: block; visibility: visible; overflow: hidden; width: 315px; min-height: 100%;">
+<div class="zm-noti7-content-inner">
+<div class="zm-noti7-content-body">
+<div class="zm-noti7-popup-loading">
+<span class="noti-spinner-loading"></span>
+</div>
+</div>
+</div>
+</div></div><div class="zh-scroller-bar-container" style="position: absolute; right: 1px; top: 0px; height: 98px; width: 6px; border: 1px solid rgb(68, 68, 68); opacity: 0; cursor: default; border-radius: 2px; -webkit-user-select: none; background: rgb(102, 102, 102);"><div style="-webkit-user-select: none;"></div></div><div class="zh-scroller-bar" style="position: absolute; right: 2px; top: 2px; opacity: 0.5; width: 6px; border-radius: 3px; cursor: default; -webkit-user-select: none; display: none; background: rgb(0, 0, 0);"></div></div>
+</div>
+<div class="zm-noti7-frame-border bottom"></div>
+<div class="zm-noti7-popup-footer">
+<a href="https://www.zhihu.com/notifications" class="zm-noti7-popup-footer-all zg-right">查看全部 »</a>
+<a href="https://www.zhihu.com/settings/notification" class="zm-noti7-popup-footer-set" title="通知设置"><i class="zg-icon zg-icon-settings"></i></a>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="zu-global-notify" id="zh-global-message" style="display:none">
+<div class="zg-wrap">
+<div class="zu-global-nitify-inner">
+<a class="zu-global-notify-close" href="javascript:;" title="关闭" name="close">x</a>
+<span class="zu-global-notify-icon"></span>
+<span class="zu-global-notify-msg"></span>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-redirect-info" style="display:none"></div>
+
+
+<div class="zu-global-notify zu-global-notify-info" id="zh-question-notification-summary" style="display:none;">
+<div class="zg-wrap">
+<div class="zu-global-nitify-inner">
+<span class="zu-global-notify-icon"></span>
+<ul class="zu-question-notify-wrap">
+</ul>
+</div>
+</div>
+</div>
+<div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope="" itemtype="http://schema.org/Question" id="zh-single-question-page" data-urltoken="19901763" role="main">
+<div class="zu-main-content">
+<div class="zu-main-content-inner">
+
+
+<meta itemprop="isTopQuestion" content="false">
+<meta itemprop="visitsCount" content="33636">
+
+
+
+
+<div class="zm-tag-editor zg-section">
+<div class="zm-tag-editor-labels zg-clear"><a data-tip="t$b$19550286" class="zm-item-tag" href="https://www.zhihu.com/topic/19550286">个人电脑</a><a data-tip="t$b$19555547" class="zm-item-tag" href="https://www.zhihu.com/topic/19555547">计算机</a><a data-tip="t$b$19564127" class="zm-item-tag" href="https://www.zhihu.com/topic/19564127">计算机技术</a><a data-tip="t$b$19619463" class="zm-item-tag" href="https://www.zhihu.com/topic/19619463">多线程</a><a href="javascript:;" class="zu-edit-button" name="edit"><i class="zu-edit-button-icon"></i>修改</a></div>
+</div>
+<div id="zh-question-title" data-editable="true" class="zm-editable-status-normal">
+
+<h2 class="zm-item-title zm-editable-content">多线程有什么用？<a href="javascript:;" class="zu-edit-button" name="edit"><i class="zu-edit-button-icon"></i>修改</a></h2>
+</div>
+<div id="zh-question-detail" class="zm-item-rich-text zm-editable-status-normal" data-resourceid="140761" data-action="/question/detail">
+
+<div class="zm-editable-content">最近看了多线程讲解很模糊<a href="javascript:;" class="zu-edit-button" name="edit"><i class="zu-edit-button-icon"></i>修改</a></div>
+
+
+</div>
+<div class="zm-item-meta zm-item-comment-el clearfix" id="zh-question-meta-wrap">
+<div class="zm-meta-panel">
+
+<a href="https://www.zhihu.com/question/19901763#" name="report-question" class="report zg-right goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-report-o"></i>举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class="toggle-comment meta-item">
+<i class="z-icon-comment"></i>1 条评论
+</a>
+<a href="https://www.zhihu.com/question/19901763#" name="share" class="share meta-item goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+<span class="zg-bull">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="invite" class="meta-item">邀请回答</a>
+
+
+
+
+</div>
+<div class="panel-container">
+
+<div class="question-invite-panel"></div><div class="zm-comment-box" style="display: none;"></div></div>
+</div>
+
+<div class="zh-answers-title clearfix">
+
+<div id="zh-answers-filter" class="answers-sorter">
+
+<span class="lbl">按投票排序</span>
+<a class="lbl" href="https://www.zhihu.com/question/19901763?sort=created">按时间排序</a>
+
+<i class="zg-icon zg-icon-double-arrow"></i>
+</div>
+
+<h3 data-num="10" id="zh-question-answer-num">10 个回答</h3>
+</div>
+<div class="zh-question-answer-summary-wrap zm-item-rich-text" id="zh-question-answer-summary-wrap" style="display:none;">
+<h3>
+<a href="http://www.zhihu.com/question/20014415" target="_blank" class="zg-right zg-link-litblue" style="font-weight:normal">什么是答案总结？</a>
+答案总结</h3>
+<div id="zh-question-answer-summary" class="zg-section zm-editable-status-normal" data-resourceid="140761" data-action="/question/summary">
+
+<div class="zm-editable-content" style="display: none;"><a href="javascript:;" class="zu-edit-button" name="edit"><i class="zu-edit-button-icon"></i>修改</a></div>
+
+</div>
+</div>
+
+<div id="zh-question-answer-wrap" data-pagesize="20" class="zh-question-answer-wrapper navigable" data-widget="navigable" data-navigable-options="{&quot;items&quot;: &quot;&gt;.zm-item-answer&quot;}" data-init="{&quot;params&quot;: {&quot;url_token&quot;: 19901763, &quot;pagesize&quot;: 20, &quot;offset&quot;: 0}, &quot;nodename&quot;: &quot;QuestionAnswerListV2&quot;}"><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemprop="topAnswer" itemscope="" itemtype="http://schema.org/Answer" data-aid="439249" data-atoken="13299543" data-collapsed="0" data-created="1320286305" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-439249"></a>
+
+
+<div style="visibility: hidden; position: static; top: auto; left: auto; display: block; float: left; margin: 0px 0px 0px -48px; width: 38px; height: 73px;"></div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/pansz" data-tip="p$t$pansz">
+<img src="./多线程有什么用？ - 知乎_files/310d85e8d_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$pansz" href="https://www.zhihu.com/people/pansz">pansz</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="575">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$heyyou-86" href="https://www.zhihu.com/people/heyyou-86" class="zg-link" title="HeyYou">HeyYou</a>、</span><span class="user-block"><a data-tip="p$t$cloudyhao" href="https://www.zhihu.com/people/cloudyhao" class="zg-link" title="cloudyhao">cloudyhao</a>、</span><span class="user-block"><a data-tip="p$t$li-yun-long-91-94" href="https://www.zhihu.com/people/li-yun-long-91-94" class="zg-link" title="DidoGod">DidoGod</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="pansz" data-entry-url="/question/19901763/answer/13299543">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+这么解释问题吧：1。单进程单线程：一个人在一个桌子上吃菜。2。单进程多线程：多个人在同一个桌子上一起吃菜。3。多进程单线程：多个人每个人在自己的桌子上吃菜。多线程的问题是多个人同时吃一道菜的时候容易发生争抢，例如两个人同时夹一个菜，一个人刚…
+
+<a href="https://www.zhihu.com/question/19901763/answer/13299543" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+这么解释问题吧：<br><br>1。单进程单线程：一个人在一个桌子上吃菜。<br>2。单进程多线程：多个人在同一个桌子上一起吃菜。<br>3。多进程单线程：多个人每个人在自己的桌子上吃菜。<br><br>多线程的问题是多个人同时吃一道菜的时候容易发生争抢，例如两个人同时夹一个菜，一个人刚伸出筷子，结果伸到的时候已经被夹走菜了。。。此时就必须等一个人夹一口之后，在还给另外一个人夹菜，也就是说资源共享就会发生冲突争抢。<br><br><br>1。对于 Windows 系统来说，【开桌子】的开销很大，因此 Windows 鼓励大家在一个桌子上吃菜。因此 Windows 多线程学习重点是要大量面对资源争抢与同步方面的问题。<br><br><br>2。对于 Linux 系统来说，【开桌子】的开销很小，因此 Linux 鼓励大家尽量每个人都开自己的桌子吃菜。这带来新的问题是：坐在两张不同的桌子上，说话不方便。因此，Linux 下的学习重点大家要学习进程间通讯的方法。<br><br>--<br>补充：有人对这个开桌子的开销很有兴趣。我把这个问题推广说开一下。<br><br>开桌子的意思是指创建进程。开销这里主要指的是时间开销。<br>可以做个实验：创建一个进程，在进程中往内存写若干数据，然后读出该数据，然后退出。此过程重复 1000 次，相当于创建/销毁进程 1000 次。在我机器上的测试结果是：       <br>UbuntuLinux：耗时 0.8 秒       <br>Windows7：耗时 79.8 秒        <br>两者开销大约相差一百倍。<br><br>这意味着，在 Windows 中，进程创建的开销不容忽视。换句话说就是，Windows 编程中不建议你创建进程，如果你的程序架构需要大量创建进程，那么最好是切换到 Linux 系统。<br><br>大量创建进程的典型例子有两个，一个是 gnu autotools 工具链，用于编译很多开源代码的，他们在 Windows 下编译速度会很慢，因此软件开发人员最好是避免使用 Windows。另一个是服务器，某些服务器框架依靠大量创建进程来干活，甚至是对每个用户请求就创建一个进程，这些服务器在 Windows 下运行的效率就会很差。这"可能"也是放眼全世界范围，Linux  服务器远远多于 Windows 服务器的原因。<br><br>--<br>再次补充：如果你是写服务器端应用的，其实在现在的网络服务模型下，开桌子的开销是可以忽略不计的，因为现在一般流行的是按照 CPU 核心数量开进程或者线程，开完之后在数量上一直保持，进程与线程内部使用协程或者异步通信来处理多个并发连接，因而开进程与开线程的开销可以忽略了。<br><br>另外一种新的开销被提上日程：核心切换开销。<br><br>现代的体系，一般 CPU 会有多个核心，而多个核心可以同时运行多个不同的线程或者进程。<br><br>当每个 CPU 核心运行一个进程的时候，由于每个进程的资源都独立，所以 CPU 核心之间切换的时候无需考虑上下文。<br><br>当每个 CPU 核心运行一个线程的时候，由于每个线程需要共享资源，所以这些资源必须从 CPU 的一个核心被复制到另外一个核心，才能继续运算，这占用了额外的开销。换句话说，在 CPU 为多核的情况下，多线程在性能上不如多进程。<br><br>因而，当前面向多核的服务器端编程中，需要习惯多进程而非多线程。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="439249-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2011-11-03" target="_blank" href="https://www.zhihu.com/question/19901763/answer/13299543">编辑于 2014-07-24</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>58 条评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+<button class="item-collapse js-collapse"><i class="sprite-global-icon-fold-white"></i>收起</button></div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="11908827" data-atoken="41291015" data-collapsed="0" data-created="1425636018" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-11908827"></a>
+
+
+<div class="zm-votebar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">4</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/geng-long-53" data-tip="p$t$geng-long-53">
+<img src="./多线程有什么用？ - 知乎_files/da8e974dc_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$geng-long-53" href="https://www.zhihu.com/people/geng-long-53">耿龙</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="4">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$leng-shui-qing" href="https://www.zhihu.com/people/leng-shui-qing" class="zg-link" title="冷水清">冷水清</a>、</span><span class="user-block"><a data-tip="p$t$wu-tian-cheng-88" href="https://www.zhihu.com/people/wu-tian-cheng-88" class="zg-link" data-original_title="吴天成">吴天成</a>、</span><span class="user-block"><a data-tip="p$t$xuqingkuang" href="https://www.zhihu.com/people/xuqingkuang" class="zg-link" title="框框">框框</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="耿龙" data-entry-url="/question/19901763/answer/41291015">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+使用多线程一般有两个不同的目的：一是把程序细分成几个功能相对独立的模块，防止其中一个功能模块阻塞导致整个程序假死（GUI程序是典型）另一个就是提高运行效率，比如多个核同时跑，或者单核里面，某个线程进行IO操作时，另一个线程可以同时执行。
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+使用多线程一般有两个不同的目的：<br>一是把程序细分成几个功能相对独立的模块，防止其中一个功能模块阻塞导致整个程序假死（GUI程序是典型）<br>另一个就是提高运行效率，比如多个核同时跑，或者单核里面，某个线程进行IO操作时，另一个线程可以同时执行。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="11908827-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="https://www.zhihu.com/question/19901763/answer/41291015">发布于 2015-03-06</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="440897" data-atoken="13303608" data-collapsed="0" data-created="1320378866" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-440897"></a>
+
+
+<div class="zm-votebar goog-scrollfloater">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">58</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/yskin" data-tip="p$t$yskin">
+<img src="./多线程有什么用？ - 知乎_files/b71a15752_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$yskin" href="https://www.zhihu.com/people/yskin">yskin</a><span title="股票跌了没？" class="bio">，股票跌了没？</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="58">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$si-nian-17-79" href="https://www.zhihu.com/people/si-nian-17-79" class="zg-link" title="思念">思念</a>、</span><span class="user-block"><a data-tip="p$t$yipialng" href="https://www.zhihu.com/people/yipialng" class="zg-link" title="行者">行者</a>、</span><span class="user-block"><a data-tip="p$t$zhihu_terry" href="https://www.zhihu.com/people/zhihu_terry" class="zg-link" title="王浩然">王浩然</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="yskin" data-entry-url="/question/19901763/answer/13303608">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+很多人答案说的是操作系统提供的多进程而不是单个程序内的多线程。 多线程使得程序内部可以分出多个线程来做多件事情，而不会造成程序界面卡死。比如迅雷等多线程下载工具就是典型的多线程。一个下载任务进来，迅雷把文件平分成10份，然后开10个线程分别下…
+
+<a href="https://www.zhihu.com/question/19901763/answer/13303608" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+很多人答案说的是操作系统提供的多进程而不是单个程序内的多线程。     <br><br> 多线程使得程序内部可以分出多个线程来做多件事情，而不会造成程序界面卡死。比如迅雷等多线程下载工具就是典型的多线程。一个下载任务进来，迅雷把文件平分成10份，然后开10个线程分别下载。这时主界面是一个单独的线程，并不会因为下载文件而卡死。而且主线程可以控制下属线程，比如某个线程下载缓慢甚至停止，主线程可以把它强行关掉并重启另外一个线程。     <br><br>另外就是一些程序的打印功能，比如记事本、Adobe Reader，打印的时候就只能打印，无法在主界面进行操作，而Word就有“后台打印”的功能，点了打印命令之后，还可以回到主界面进行修改、保存等操作。     <br><br> 另外多线程除了并行完成一些任务以外，还有生产者-消费者模式。比如Windows命令行下在某个硬盘根目录执行一个"dir/s | more"命令，前一条显示硬盘里的所有文件，要执行很久才能执行得完，后面那条命令会把前面命令的输出分屏显示出来。但是执行整条命令时，会立刻有显示，也就是说，前面一条命令输出满一页内容到缓冲区，more命令就把缓冲区封死了，等用户敲了一个键显示下一屏的时候，more命令把缓冲区的内容取出并清空，前面的命令才能输出下一屏到缓冲区。这样的多线程使得整条命令不用等待前面的命令全部执行完才能执行下一条命令。    <br><br><b>多线程和多进程的区别。</b>平常指的多进程是操作系统下同时运行多个进程，比如Word和Excel同时打开，并且可以并行地同时执行一些操作。这种多进程和多线程没什么好比较的。可以比较的是同一个程序里的多线程和多进程。    <br><br> 多线程因为在同一个进程里，所以可以共享内存和其他资源，比如迅雷里10个线程一齐下载一个文件，这个文件是由进程打开的，然后10个线程都可以往里写入东西。如果是10个进程就不行了，操作系统不允许一个文件由两个进程同时写入。另外，Chrome就是一个典型的多进程程序，里面每个标签页、扩展、插件都是单独的进程，各自独占资源，相互隔离，一个进程出错死掉只会影响一个页面或者插件，再也不会出现Flash插件出错崩溃导致整个浏览器崩溃的情况了。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="440897-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2011-11-04" target="_blank" href="https://www.zhihu.com/question/19901763/answer/13303608">编辑于 2011-11-04</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>4 条评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="439224" data-atoken="13299474" data-collapsed="0" data-created="1320285423" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-439224"></a>
+
+
+<div class="zm-votebar goog-scrollfloater">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">9</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/dccmx" data-tip="p$t$dccmx">
+<img src="./多线程有什么用？ - 知乎_files/a5670a740_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$dccmx" href="https://www.zhihu.com/people/dccmx">dccmx</a><span title="搞技术的" class="bio">，搞技术的</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="9">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$ou-xiao-wei-5" href="https://www.zhihu.com/people/ou-xiao-wei-5" class="zg-link" title="欧小威">欧小威</a>、</span><span class="user-block"><a data-tip="p$t$gong-cheng-si-88" href="https://www.zhihu.com/people/gong-cheng-si-88" class="zg-link" title="工程丝">工程丝</a>、</span><span class="user-block"><a data-tip="p$t$zhang-san-15-88" href="https://www.zhihu.com/people/zhang-san-15-88" class="zg-link" title="张三">张三</a></span>
+</span>
+
+
+<a href="javascript:;" class="more"> 等人赞同</a>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="dccmx" data-entry-url="/question/19901763/answer/13299474">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+多线程是用来将计算并行化的。举个最最最简单的例子，程序里面要干两件毫不相干的事情A和B，各费时10分钟，那单线程程序就会这样：A（）；B（）；等A完了再执行B，总共耗时20分钟。但如果将A和B用两个线程来做则如下：线程A：A（）；线程B：B（）；等待两个…
+
+<a href="https://www.zhihu.com/question/19901763/answer/13299474" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+多线程是用来将计算并行化的。<br>举个最最最简单的例子，程序里面要干两件毫不相干的事情A和B，各费时10分钟，那单线程程序就会这样：<blockquote>A（）；<br>B（）；</blockquote>等A完了再执行B，总共耗时20分钟。但如果将A和B用两个线程来做则如下：<blockquote>线程A：A（）；<br>线程B：B（）；<br>等待两个线程结束。</blockquote>如果两个线程被分配到不同的cpu上，则理论耗时共10分钟。<br>
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="439224-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link last_updated meta-item" data-tip="s$t$发布于 2011-11-03" target="_blank" href="https://www.zhihu.com/question/19901763/answer/13299474">编辑于 2011-11-03</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>6 条评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="12009652" data-atoken="41543195" data-collapsed="0" data-created="1425900466" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-12009652"></a>
+
+
+<div class="zm-votebar goog-scrollfloater">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">3</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/zhou-zhao-xiong" data-tip="p$t$zhou-zhao-xiong">
+<img src="./多线程有什么用？ - 知乎_files/08d76f7cd9159aa7463a291175d98018_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$zhou-zhao-xiong" href="https://www.zhihu.com/people/zhou-zhao-xiong">周兆熊</a><span title="软件工程师" class="bio">，软件工程师</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="3">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$yipialng" href="https://www.zhihu.com/people/yipialng" class="zg-link" title="行者">行者</a>、</span><span class="user-block"><a data-tip="p$t$zhao-wen-dao-57-9" href="https://www.zhihu.com/people/zhao-wen-dao-57-9" class="zg-link" title="朝闻道">朝闻道</a>、</span><span class="user-block"><a data-tip="p$t$guo-jia-66-80" href="https://www.zhihu.com/people/guo-jia-66-80" class="zg-link" title="郭嘉">郭嘉</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="周兆熊" data-entry-url="/question/19901763/answer/41543195">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+<strong>“单线程”程序</strong>要想理解“多线程”，那么就要先从“单线程”说起。大家都知道工厂“流水线”作业，里面的工序是一环扣一环的，只有前面的一道工序完成之后，才能够启动下一道工序。这其实和“单线程”的原理非常的相似。在“单线程”里面，程序的功能是顺序…
+
+<a href="https://www.zhihu.com/question/19901763/answer/41543195" class="toggle-expand">显示全部</a>
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+<p><strong>“单线程”程序</strong></p><p>要想理解“多线程”，那么就要先从“单线程”说起。</p><p>大家都知道工厂“流水线”作业，里面的工序是一环扣一环的，只有前面的一道工序完成之后，才能够启动下一道工序。这其实和“单线程”的原理非常的相似。</p><p>在“单线程”里面，程序的功能是顺序执行的，只有前面的流程都成功执行之后，后面的流程才能够被执行到。</p><p><strong>“多线程”程序</strong></p><p>“多线程”，顾名思义，就是多个“单线程”，每个线程独立地完成相关的功能。<br></p><p><strong>“多线程”的优点</strong></p><p>“多线程”在大型软件程序中有着很广泛的应用，其优点如下：</p><p>第一，将原来在一个大流程中实现的功能放到了多个小流程中，程序更加的简洁和易于阅读。</p><p>第二，将不同的功能放到不同的线程中，提高了程序的执行效率。</p><p>第三，“多线程”使得程序的模块化更强，有利于追踪程序执行过程和排查问题。</p><p><strong>总结</strong></p><p>“多线程”和“单线程”分别对应“并行”和“串行”，是软件开发人员必须要掌握的一种程序设计的方法。设计合理的“多线程”程序不仅逻辑清晰、易于阅读，而且程序的执行效率高，对于软件产品效率和质量的提升具有很重要的意义。</p><br><p>请参考：<a href="https://link.zhihu.com/?target=http%3A//www.zhouzhaoxiong.com/484.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">程序中的“多线程”<i class="icon-external"></i></a></p><p><a href="https://link.zhihu.com/?target=http%3A//www.zhouzhaoxiong.com/103.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">程序中的算法<i class="icon-external"></i></a></p>
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="12009652-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="https://www.zhihu.com/question/19901763/answer/41543195">发布于 2015-03-09</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="1020360" data-atoken="14747261" data-collapsed="0" data-created="1340895332" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-1020360"></a>
+
+
+<div class="zm-votebar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">1</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/M02E" data-tip="p$t$M02E">
+<img src="./多线程有什么用？ - 知乎_files/e38683416_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$M02E" href="https://www.zhihu.com/people/M02E">成晨</a><span title="这不是很有趣嘛" class="bio">，这不是很有趣嘛</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="1">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$dong-tian-le" href="https://www.zhihu.com/people/dong-tian-le" class="zg-link" title="董天乐">董天乐</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="成晨" data-entry-url="/question/19901763/answer/14747261">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+打个比方：我们寝室洗手台有2个水龙头，就是多线程。可以满足2个人刷牙。不然排队蛋疼。
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+打个比方：我们寝室洗手台有2个水龙头，就是多线程。可以满足2个人刷牙。不然排队蛋疼。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="1020360-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="https://www.zhihu.com/question/19901763/answer/14747261">发布于 2012-06-28</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>2 条评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="2101261" data-atoken="17415051" data-collapsed="0" data-created="1370656426" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-2101261"></a>
+
+
+<div class="zm-votebar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">1</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/twicave" data-tip="p$t$twicave">
+<img src="./多线程有什么用？ - 知乎_files/4944423e39d747159a89fbe3fe0f93a7_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$twicave" href="https://www.zhihu.com/people/twicave">冯旭辉</a><span title="软件工程师、技术文档写手" class="bio">，软件工程师、技术文档写手</span>
+</div>
+<div class="zm-item-vote-info " data-votecount="1">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$joeeeeoj" href="https://www.zhihu.com/people/joeeeeoj" class="zg-link" title="王飞鸣">王飞鸣</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="冯旭辉" data-entry-url="/question/19901763/answer/17415051">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+多线程最一般的应用是简化程序的写法。比如对于IO工作而言，如果底层的API仅提供了同步操作函数，这样一来，单线程的应用很难写，但是支持多线程后，完全可以把IO操作转入线程中执行，主线程仍然可以进行正常的消息循环。
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+多线程最一般的应用是简化程序的写法。<br>比如对于IO工作而言，如果底层的API仅提供了同步操作函数，这样一来，单线程的应用很难写，<br>但是支持多线程后，完全可以把IO操作转入线程中执行，主线程仍然可以进行正常的消息循环。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="2101261-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="https://www.zhihu.com/question/19901763/answer/17415051">发布于 2013-06-08</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>1 条评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="5351911" data-atoken="25146648" data-collapsed="0" data-created="1399031357" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-5351911"></a>
+
+
+<div class="zm-votebar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">2</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/qiao-la-jue-shi" data-tip="p$t$qiao-la-jue-shi">
+<img src="./多线程有什么用？ - 知乎_files/241670124cf19b809ddce8fa91b5bf7a_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$qiao-la-jue-shi" href="https://www.zhihu.com/people/qiao-la-jue-shi">乔拉爵士</a>
+</div>
+<div class="zm-item-vote-info " data-votecount="2">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$ge-cao-ji" href="https://www.zhihu.com/people/ge-cao-ji" class="zg-link" title="信风">信风</a>、</span><span class="user-block"><a data-tip="p$t$zhang-yichi-60" href="https://www.zhihu.com/people/zhang-yichi-60" class="zg-link" title="张一驰">张一驰</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="乔拉爵士" data-entry-url="/question/19901763/answer/25146648">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+充分利用现在的多核处理器，挖掘硬件上的潜力
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+充分利用现在的多核处理器，挖掘硬件上的潜力
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="5351911-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="https://www.zhihu.com/question/19901763/answer/25146648">发布于 2014-05-02</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="440655" data-atoken="13303023" data-collapsed="0" data-created="1320369390" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-440655"></a>
+
+
+<div class="zm-votebar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">0</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/minarcc" data-tip="p$t$minarcc">
+<img src="./多线程有什么用？ - 知乎_files/ef5a629e75b1ef849767f89c3580ba99_s.png" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$minarcc" href="https://www.zhihu.com/people/minarcc">minarcc</a><span title="大姨夫什么时候来？" class="bio">，大姨夫什么时候来？</span>
+</div>
+<div class="zm-item-vote-info empty" data-votecount="0">
+
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="minarcc" data-entry-url="/question/19901763/answer/13303023">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+想提高程序运行速度时，可以把几件事并行着做啊，于是就可以开多个线程，或者通过资源划分，或者是任务划分，从而提高运行效率
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+想提高程序运行速度时，可以把几件事并行着做啊，于是就可以开多个线程，或者通过资源划分，或者是任务划分，从而提高运行效率
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="440655-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="https://www.zhihu.com/question/19901763/answer/13303023">发布于 2011-11-04</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>添加评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div><div tabindex="-1" class="zm-item-answer  zm-item-expanded" itemscope="" itemtype="http://schema.org/Answer" data-aid="440813" data-atoken="13303400" data-collapsed="0" data-created="1320376100" data-deleted="0" data-helpful="1" data-isowner="0" data-copyable="1">
+<a class="zg-anchor-hidden" name="answer-440813"></a>
+
+
+<div class="zm-votebar">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">2</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div>
+
+
+<div class="answer-head">
+<div class="zm-item-answer-author-info">
+
+<a class="zm-item-link-avatar avatar-link" href="https://www.zhihu.com/people/vance" data-tip="p$t$vance">
+<img src="./多线程有什么用？ - 知乎_files/69dfe7d2e_s.jpg" class="zm-list-avatar avatar">
+</a>
+
+<a class="author-link" data-tip="p$t$vance" href="https://www.zhihu.com/people/vance">Vance</a><span title="www.kuxunlu.com" class="bio">，<a href="https://link.zhihu.com/?target=http%3A//www.kuxunlu.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://www.</span><span class="visible">kuxunlu.com</span><span class="invisible"></span><i class="icon-external"></i></a></span>
+</div>
+<div class="zm-item-vote-info " data-votecount="2">
+
+<span class="voters">
+<span class="user-block"><a data-tip="p$t$qiu-jia-wei-16" href="https://www.zhihu.com/people/qiu-jia-wei-16" class="zg-link" title="邱嘉伟">邱嘉伟</a>、</span><span class="user-block"><a data-tip="p$t$kun-li-77" href="https://www.zhihu.com/people/kun-li-77" class="zg-link" title="kun li">kun li</a></span>
+</span>
+
+
+<span>赞同</span>
+
+
+</div>
+</div>
+<div class="zm-item-rich-text js-collapse-body" data-resourceid="140761" data-action="/answer/content" data-author-name="Vance" data-entry-url="/question/19901763/answer/13303400">
+
+
+<div class="zh-summary summary clearfix" style="display:none;">
+
+举一个小例子。你用qq邮箱的中转站功能，上传一个文件，在文件传输的时候，你可以最小化上传窗口，去发送、查看邮件，这个就是典型的多线程例子。
+
+</div>
+
+
+<div class="zm-editable-content clearfix">
+举一个小例子。你用qq邮箱的中转站功能，上传一个文件，在文件传输的时候，你可以最小化上传窗口，去发送、查看邮件，这个就是典型的多线程例子。
+
+</div>
+
+</div>
+<a class="zg-anchor-hidden ac" name="440813-comment"></a>
+<div class="zm-item-meta zm-item-comment-el answer-actions clearfix">
+<div class="zm-meta-panel">
+
+<span class="answer-date-link-wrap">
+<a class="answer-date-link meta-item" target="_blank" href="https://www.zhihu.com/question/19901763/answer/13303400">发布于 2011-11-04</a>
+</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="addcomment" class=" meta-item toggle-comment">
+<i class="z-icon-comment"></i>3 条评论</a>
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="thanks" data-thanked="false"><i class="z-icon-thank"></i>感谢</a>
+
+
+
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide goog-inline-block goog-menu-button" name="share" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="z-icon-share"></i>分享</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+<a href="https://www.zhihu.com/question/19901763#" class="meta-item zu-autohide" name="favo">
+<i class="z-icon-collect"></i>收藏</a>
+
+
+
+
+<span class="zg-bull zu-autohide">•</span>
+
+<a href="https://www.zhihu.com/question/19901763#" name="nohelp" class="meta-item zu-autohide">没有帮助</a>
+
+<span class="zg-bull zu-autohide">•</span>
+<a href="https://www.zhihu.com/question/19901763#" name="report" class="meta-item zu-autohide goog-inline-block goog-menu-button" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption">举报</div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></a>
+
+
+
+<span class="zg-bull">•</span>
+
+<a href="https://www.zhihu.com/terms#sec-licence-1" target="_blank" class="meta-item copyright"> 作者保留权利 </a>
+
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div id="zh-question-collapsed-link" class="zu-question-collap-title" style="display:">
+<a href="javascript:;" name="expand" class="zg-link-gray" id="zh-question-collapsed-switcher">
+<span id="zh-question-collapsed-num">5</span> 个回答被折叠
+</a>
+（<a target="_blank" href="http://www.zhihu.com/question/20120168" class="zg-link-gray">为什么？</a>）
+</div>
+<div id="zh-question-collapsed-wrap" class="zh-question-answer-wrapper" style="display:none"></div>
+<a name="draft"></a>
+<div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
+<div class="zm-editable-tip zu-answer-form-disabled-wrap" style="display: none;"></div>
+<div class="zm-editable-content" style="display: none;"><a href="javascript:;" class="zu-edit-button" name="edit"><i class="zu-edit-button-icon"></i>修改</a></div><div class="zm-editable-editor-wrap" style=""><div class="zh-answer-form clearfix"><a href="https://www.zhihu.com/people/icestone" title="汪磊" class="zm-item-link-avatar" data-tip="p$t$icestone"><img src="./多线程有什么用？ - 知乎_files/e2c6cd1983ff666f0aa4b6b5c7f98418_s.jpg" class="zm-list-avatar"></a><div><div class="zu-answer-form-title"><a href="https://www.zhihu.com/people/icestone" title="汪磊" data-tip="p$t$icestone">汪磊</a><span>，玩命追求期待<a name="edit_bio" class="zu-edit-button" href="https://www.zhihu.com/question/19901763#"><i class="zu-edit-button-icon"></i>添加话题经验，提升回答可信度</a></span></div></div></div><div class="zm-editable-editor-outer"><div class="zm-editable-toolbar-container goog-scrollfloater"><div class="goog-toolbar goog-toolbar-horizontal" role="toolbar" tabindex="-1" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button" title="写作模式" role="button" id="toggleFullScreen" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-max" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="粗体 (ctrl+b)" role="button" aria-pressed="false" id="+bold" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-bold" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="斜体 (ctrl+i)" role="button" aria-pressed="false" id="+italic" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-italic" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="下划线 (ctrl+u)" role="button" aria-pressed="false" id="+underline" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-underline" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-toolbar-separator goog-toolbar-separator-disabled goog-inline-block" aria-disabled="true" role="separator" id=":2c" style="-webkit-user-select: none;">&nbsp;</div><div class="goog-inline-block goog-toolbar-button" title="引用内容" role="button" aria-pressed="false" id="+blockquote" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-blockquote" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="插入代码" role="button" aria-pressed="false" id="+code" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-code" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="有序列表" role="button" aria-pressed="false" id="+insertOrderedList" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-insertOrderedList" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="无序列表" role="button" aria-pressed="false" id="+insertUnorderedList" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-insertUnorderedList" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="插入公式" role="button" id="+equation" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-equation" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-toolbar-separator goog-toolbar-separator-disabled goog-inline-block" aria-disabled="true" role="separator" id=":2d" style="-webkit-user-select: none;">&nbsp;</div><div class="goog-inline-block goog-toolbar-button" title="插入图片" role="button" id="image" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-image" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-inline-block goog-toolbar-button" title="插入视频" role="button" id="video" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-video" style="-webkit-user-select: none;"></div></div></div></div><div class="goog-toolbar-separator goog-toolbar-separator-disabled goog-inline-block" aria-disabled="true" role="separator" id=":2e" style="-webkit-user-select: none;">&nbsp;</div><div class="goog-inline-block goog-toolbar-button" title="清除格式" role="button" id="+removeFormat" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-outer-box" style="-webkit-user-select: none;"><div class="goog-inline-block goog-toolbar-button-inner-box" style="-webkit-user-select: none;"><div class="tr-icon tr-removeFormat" style="-webkit-user-select: none;"></div></div></div></div><div class="tr-spinner spinner-gray" style="display: none;"></div></div></div><div class="zm-editable-editor-field-wrap"><div id="mock:24" class="zm-editable-editor-field-element editable" g_editable="true" role="textbox" contenteditable="true" style="font-style: italic;"><p><span style="font-style: normal;color: #999;">写回答…</span></p></div><div class="editable-dropzone"><div class="row"><div class="cell"><div>拖拽至此处上传</div></div></div></div></div><div class="mention-popup" style="display: none;"><div class="writing-bg"><input role="combobox" aria-autocomplete="list" autocomplete="off"></div><div class="tip">想用 @ 提到谁？</div></div></div><div class="zm-command clearfix"><label class="zg-left anno-box" style="-webkit-user-select: none;"><input name="anno-checkbox" type="checkbox" style="-webkit-user-select: none;"> 匿名 <span style="-webkit-user-select: none;">&nbsp;</span></label> <label class="zg-left copyright-box"><input name="copyright-checkbox" type="checkbox">未经许可，禁止转载<a href="https://www.zhihu.com/terms#sec-licence-6" target="_blank"><i class="zg-icon zg-icon-question-mark" style="margin-left: 5px;" id="copyright_question_mark" data-copyright-demo="true"></i></a></label> <span class=" zg-right"><a class="submit-button zg-btn-blue" name="save" href="javascript:">发布回答</a></span><div class="draft-controls zg-right "><span class="draft-saved-info" style="display: none;"><a class="draft-clear-button goog-inline-block" href="https://www.zhihu.com/question/19901763#" data-tip="s$b$删除草稿"><i class="zg-icon zg-icon-bin"></i><span class="hide-text">清除草稿</span></a><span class="draft-saved-time"></span></span></div></div></div>
+</div>
+<!-- 版权演示 -->
+
+<script type="text/x-template" id="copyright-demo-template">
+<article>
+
+<section>
+<p class="copyright-demo-title"> 这是你的回答正文 </p>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+</section>
+
+<section>
+<p class="copyright-demo-title"> 当其他人想复制你的一段回答 </p>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region1">
+<span class="copyright-ico-indicator" id="copyright-demo-indicator"></span>
+</div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region2"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region3"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region4"></div>
+<div class="copyright-demo-region"></div>
+</section>
+
+<section id="copyright-demo-frame3">
+<p class="copyright-demo-title"> 复制将受限，同时会弹出提醒 </p>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region"></div>
+<span class="copyright-ico-pointer copyright-demo-pointer"></span>
+</section>
+</article>
+</script>
+
+
+
+</div>
+</div>
+
+
+<div class="zu-main-sidebar">
+
+<div class="zm-side-section">
+<div class="zm-side-section-inner" id="zh-question-side-header-wrap">
+<button data-follow="q:m:button" class="follow-button zg-follow zg-btn-green" data-id="140761">关注问题</button>
+
+<div class="zg-btn-white goog-inline-block goog-menu-button" id="zh-question-operation-menu" role="button" aria-expanded="false" tabindex="0" aria-haspopup="true" style="-webkit-user-select: none;"><div class="goog-inline-block goog-menu-button-outer-box"><div class="goog-inline-block goog-menu-button-inner-box"><div class="goog-inline-block goog-menu-button-caption"><i class="zg-icon-dropdown-menu zg-icon"></i><b class="hide-text">设置</b></div><div class="goog-inline-block goog-menu-button-dropdown">&nbsp;</div></div></div></div>
+
+<div class="zh-question-followers-sidebar">
+<div class="zg-gray-normal">
+
+<a href="https://www.zhihu.com/question/19901763/followers"><strong>598</strong></a>
+人关注该问题
+
+</div>
+
+<div class="list zu-small-avatar-list zg-clear">
+
+<a title="李坦" data-tip="p$t$li-tan" class="zm-item-link-avatar" href="https://www.zhihu.com/people/li-tan">
+<img src="./多线程有什么用？ - 知乎_files/d8863cf6376a04c6e227bb3e714d62c5_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="沙吉泉" data-tip="p$t$shajiquan" class="zm-item-link-avatar" href="https://www.zhihu.com/people/shajiquan">
+<img src="./多线程有什么用？ - 知乎_files/04617817c0bcc2d06c6a5245d0d10ae3_s.png" class="zm-item-img-avatar">
+</a>
+
+<a title="众哲之师" data-tip="p$t$ceng-zhi-sheng" class="zm-item-link-avatar" href="https://www.zhihu.com/people/ceng-zhi-sheng">
+<img src="./多线程有什么用？ - 知乎_files/487d2871096f33dbb35d4bb6518b0681_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="秋之忧作" data-tip="p$t$Vc1991" class="zm-item-link-avatar" href="https://www.zhihu.com/people/Vc1991">
+<img src="./多线程有什么用？ - 知乎_files/6370552bc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="黄继新" data-tip="p$t$jixin" class="zm-item-link-avatar" href="https://www.zhihu.com/people/jixin">
+<img src="./多线程有什么用？ - 知乎_files/0626f4164009f291b26a79d96c6962c5_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="gamereleven" data-tip="p$t$fusheng-wang-94" class="zm-item-link-avatar" href="https://www.zhihu.com/people/fusheng-wang-94">
+<img src="./多线程有什么用？ - 知乎_files/ec6b59682_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="阳阳" data-tip="p$t$yang-yang-3-29-52" class="zm-item-link-avatar" href="https://www.zhihu.com/people/yang-yang-3-29-52">
+<img src="./多线程有什么用？ - 知乎_files/99899a190f1e8695c013d4982a898b43_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="工程丝" data-tip="p$t$gong-cheng-si-88" class="zm-item-link-avatar" href="https://www.zhihu.com/people/gong-cheng-si-88">
+<img src="./多线程有什么用？ - 知乎_files/c0e1eba0f0868e12805f4be59bee211f_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="Expln DHY" data-tip="p$t$explndhy" class="zm-item-link-avatar" href="https://www.zhihu.com/people/explndhy">
+<img src="./多线程有什么用？ - 知乎_files/da8e974dc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="舒米" data-tip="p$t$shu-mi-63" class="zm-item-link-avatar" href="https://www.zhihu.com/people/shu-mi-63">
+<img src="./多线程有什么用？ - 知乎_files/0e907f85e_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="Kurtcobis" data-tip="p$t$co-kurt" class="zm-item-link-avatar" href="https://www.zhihu.com/people/co-kurt">
+<img src="./多线程有什么用？ - 知乎_files/db6c09ed585d3085e62b66628297660e_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="祝鹏" data-tip="p$t$zhu-peng-57" class="zm-item-link-avatar" href="https://www.zhihu.com/people/zhu-peng-57">
+<img src="./多线程有什么用？ - 知乎_files/4506eeee0_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="Fity" data-tip="p$t$fity" class="zm-item-link-avatar" href="https://www.zhihu.com/people/fity">
+<img src="./多线程有什么用？ - 知乎_files/14bc42328_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="钱大朋" data-tip="p$t$qian-da-peng" class="zm-item-link-avatar" href="https://www.zhihu.com/people/qian-da-peng">
+<img src="./多线程有什么用？ - 知乎_files/d9d6138e38f88e9812f682854b0f9631_s.png" class="zm-item-img-avatar">
+</a>
+
+<a title="撒颗雷" data-tip="p$t$Sacre" class="zm-item-link-avatar" href="https://www.zhihu.com/people/Sacre">
+<img src="./多线程有什么用？ - 知乎_files/af7750081e0692dd13d0d7fdbb8567c2_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="李毅" data-tip="p$t$li-yi-40-83" class="zm-item-link-avatar" href="https://www.zhihu.com/people/li-yi-40-83">
+<img src="./多线程有什么用？ - 知乎_files/da8e974dc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="ryan" data-tip="p$t$ryan_ryan" class="zm-item-link-avatar" href="https://www.zhihu.com/people/ryan_ryan">
+<img src="./多线程有什么用？ - 知乎_files/da8e974dc_s.jpg" class="zm-item-img-avatar">
+</a>
+
+<a title="sunsj" data-tip="p$t$sunsj" class="zm-item-link-avatar" href="https://www.zhihu.com/people/sunsj">
+<img src="./多线程有什么用？ - 知乎_files/394ff8a95_s.jpg" class="zm-item-img-avatar">
+</a>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="shameimaru-section" data-track="https://sugar.zhihu.com/track?vs=1&amp;ai=167&amp;ut=e708d65bcea84ab88e9929a4be56acc4&amp;cg=1&amp;ts=1456840852.03&amp;si=c624c59ed4f3443d9069d1babc88870a&amp;lu=1026555&amp;hn=ad01&amp;pf=Windows&amp;az=3&amp;sg=ab895415f23eb8770fceba286bbfbe0a">
+<a class="shameimaru-link" href="https://sugar.zhihu.com/track?vs=1&amp;ai=167&amp;ut=e708d65bcea84ab88e9929a4be56acc4&amp;tu=http%3A//zhuanlan.zhihu.com/Weekly/20599857&amp;cg=1&amp;ts=1456840852.03&amp;si=c624c59ed4f3443d9069d1babc88870a&amp;lu=1026555&amp;hn=ad01&amp;at=click&amp;pf=Windows&amp;az=3&amp;sg=77e639e387f70bdda07280676d12252c" target="_blank" rel="nofollow">
+<img src="./多线程有什么用？ - 知乎_files/0bfb96812370440ebd2c3d8dc7734aa4_270x225.jpg" srcset="https://pic1.zhimg.com/0bfb96812370440ebd2c3d8dc7734aa4_540x450.jpg 2x" alt="人工智能内页（「科技」「计算机科学」）">
+</a>
+<a class="shameimaru-close z-ico-shameimaru-close" data-tip="s$b$不再显示" rel="nofollow"></a>
+
+<img class="shameimaru-pixel" src="./多线程有什么用？ - 知乎_files/track">
+
+</div>
+<div class="zm-side-section">
+<div class="zm-side-section-inner">
+<div id="zh-question-related-questions" class="zh-question-related-questions clearfix">
+
+<h3>相关问题</h3>
+<ul itemprop="relatedQuestion" itemscope="" itemtype="http://schema.org/ItemList">
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question"><a class="question_link" href="https://www.zhihu.com/question/22397613">线程崩溃是否会造成进程崩溃？</a> <span class="num">9 个回答</span><meta itemprop="followerCount" content="106"></li>
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question"><a class="question_link" href="https://www.zhihu.com/question/24047885">开发多线程的程序应该注意哪些问题？</a> <span class="num">9 个回答</span><meta itemprop="followerCount" content="316"></li>
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question"><a class="question_link" href="https://www.zhihu.com/question/20122137">epoll 或者 kqueue 的原理是什么？</a> <span class="num">13 个回答</span><meta itemprop="followerCount" content="1180"></li>
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question"><a class="question_link" href="https://www.zhihu.com/question/19599358">为什么很多人推荐 Ruby？</a> <span class="num">53 个回答</span><meta itemprop="followerCount" content="633"></li>
+
+<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Question"><a class="question_link" href="https://www.zhihu.com/question/20277860">想成为计算机技术高手，一定要懂汇编吗？</a> <span class="num">49 个回答</span><meta itemprop="followerCount" content="846"></li>
+
+</ul>
+</div>
+</div>
+</div>
+<div class="zm-side-section">
+<div class="zm-side-section-inner">
+<h3>问题状态</h3>
+<div class="zg-gray-normal">
+最近活动于 <span class="time">2016-02-28</span>
+<span class="zg-bull">•</span>
+<a href="https://www.zhihu.com/question/19901763/log">查看问题日志</a>
+</div>
+<div class="zg-gray-normal">
+被浏览 <strong>33636</strong> 次，相关话题关注者 <strong>80419</strong> 人
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div id="zh-footer" class="zh-footer">
+<div class="content zg-wrap clearfix">
+<ul>
+
+<li><a href="https://liukanshan.zhihu.com/" target="_blank">刘看山</a></li>
+
+<li><a href="https://www.zhihu.com/question/19581624" target="_blank">知乎指南</a></li>
+<li><a href="javascript:;" id="js-feedback-button">建议反馈</a></li>
+
+<li><a href="https://www.zhihu.com/app" target="_blank">移动应用</a></li>
+<li><a href="https://www.zhihu.com/careers">加入知乎</a></li>
+<li><a href="https://www.zhihu.com/terms" target="_blank">知乎协议</a></li>
+<li><a href="mailto:bd@zhihu.com">商务合作</a></li>
+
+</ul>
+
+<span class="copy">© 2016 知乎</span>
+
+</div>
+</div>
+
+<script type="text/json" class="json-inline" data-name="guiders2">{"exclusive-popover":{},"section":{},"editor":[]}</script>
+<script type="text/json" class="json-inline" data-name="current_user">["\u6c6a\u78ca","icestone","https:\/\/pic1.zhimg.com\/e2c6cd1983ff666f0aa4b6b5c7f98418_s.jpg","35cfd4457b34c94b9cbc3e71ea9fa14b","\u73a9\u547d\u8ffd\u6c42\u671f\u5f85",0,0,true,"ice@wedn.net","",0,true,false,false,"30981457182720"]</script>
+<script type="text/json" class="json-inline" data-name="user_status">[null,null]</script>
+<script type="text/json" class="json-inline" data-name="env">["zhihu.com","comet.zhihu.com",false,null]</script>
+<script type="text/json" class="json-inline" data-name="permissions">[]</script>
+
+
+<script type="text/json" class="json-inline" data-name="ga_vars">{"user_created":1372657880000,"now":1456840851000,"abtest_mask":"---------1--------------------","user_attr":[1,0,0,"-",1],"user_hash":"35cfd4457b34c94b9cbc3e71ea9fa14b"}</script>
+
+<script type="text/json" class="json-inline" data-name="ra-urls">{"CommentApp":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CommentApp.fb23fa39.js"}</script>
+
+<script type="text/json" class="json-inline" data-name="current_question">{"status":"normal","isLocked":0,"detailEditReasonRequired":true,"editPermission":false,"isAnon":0,"qid":140761,"urlToken":19901763,"showInvitePanel":false,"askAboutMember":0}</script>
+<script type="text/json" class="json-inline" data-name="current_question_owner">false</script>
+<script type="text/json" class="json-inline" data-name="draft">[]</script>
+<script type="text/json" class="json-inline" data-name="my_answer">{}</script>
+<script type="text/json" class="json-inline" data-name="current_question_bio">{"selected_bio":"headline","type":"HEADLINE","value":"\u73a9\u547d\u8ffd\u6c42\u671f\u5f85"}</script>
+
+<script type="text/json" class="json-inline" data-name="redirect_to">""</script>
+
+
+
+<script src="./多线程有什么用？ - 知乎_files/vendor.ff76fbae.js"></script>
+<script src="./多线程有什么用？ - 知乎_files/common.19ad44ac.js"></script>
+
+
+<script src="./多线程有什么用？ - 知乎_files/richtexteditor.a2f9cac5.js" async=""></script>
+<script src="./多线程有什么用？ - 知乎_files/page-main.e6b45192.js"></script>
+<meta name="entry" content="ZH.entrySQ" data-module-id="page-main">
+
+<script type="text/zscript" znonce="f9e4c2d9357f452a80dfbfb664513c67"></script>
+
+<input type="hidden" name="_xsrf" value="1c4fed765971e0b170b606e686885106">
+
+<div class="zh-backtotop" style="display:none"><a data-action="backtotop" data-tip="s$r$回到顶部" href="javascript:;" class="btn-backtotop btn-action"><div class="arrow"></div><div class="stick"></div></a></div><div id="zh-tooltip"></div><div id="copyright-demo-helper" style="display: none; position: absolute;"><p class="copyright-demo-helper-intro"> 勾选后，我们将限制其他用户的复制操作，并给予提醒 </p><p class="copyright-demo-helper-btn"> 查看演示 </p></div><div class="zm-votebar goog-scrollfloater goog-scrollfloater-floating" style="left: 471.5px; width: 38px; float: none; position: fixed; top: 44px;">
+<button class="up" aria-pressed="false" title="赞同">
+<i class="icon vote-arrow"></i>
+<span class="count">575</span>
+<span class="label sr-only">赞同</span>
+</button>
+<button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
+<i class="icon vote-arrow"></i>
+<span class="label sr-only">反对，不会显示你的姓名</span>
+</button>
+</div><div class="modal-dialog-bg" style="display: none; opacity: 0.5;"></div><div class="modal-dialog" tabindex="0" role="dialog" aria-labelledby=":25" style="display: none; width: 462px;"><div class="modal-dialog-title modal-dialog-title-draggable"><span class="modal-dialog-title-text" id=":25" role="heading">禁止转载演示</span><span class="modal-dialog-title-close" role="button" tabindex="0" aria-label="Close"></span></div><div class="modal-dialog-content"><div class="carousel copyright-demo"><div class="carousel-navigation-btn"><div class="carousel-left-btn copyright-ico-prev"> </div></div><div class="carousel-content"><section class="carousel-inner-content" style="display: block;">
+<p class="copyright-demo-title"> 这是你的回答正文 </p>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+<div class="copyright-demo-region"></div>
+</section><section class="carousel-inner-content">
+<p class="copyright-demo-title"> 当其他人想复制你的一段回答 </p>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region1">
+<span class="copyright-ico-indicator" id="copyright-demo-indicator"></span>
+</div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region2"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region3"></div>
+<div class="copyright-demo-region frame2-region" id="copyright-demo-region4"></div>
+<div class="copyright-demo-region"></div>
+</section><section id="copyright-demo-frame3" class="carousel-inner-content">
+<p class="copyright-demo-title"> 复制将受限，同时会弹出提醒 </p>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region copyright-demo-region-selected"></div>
+<div class="copyright-demo-region"></div>
+<span class="copyright-ico-pointer copyright-demo-pointer"></span>
+<div class="copyright-notification copyright-demo-noty"><div class="user-image-container"><img class="user-image" src="./多线程有什么用？ - 知乎_files/e2c6cd1983ff666f0aa4b6b5c7f98418_s.jpg"></div><div class="tooltip right noty-tooltip"><div class="tooltip-arrow arrow"> </div><div class="tooltip-inner inner"> 如需转载，请通过私信或评论联系我 </div></div></div></section><div class="carousel-navigation-dot-group"><div class="carousel-dot carousel-dot-selected"></div><div class="carousel-dot"></div><div class="carousel-dot"></div></div></div><div class="carousel-navigation-btn"><div class="carousel-right-btn copyright-ico-next"> </div></div></div></div><div class="modal-dialog-buttons" style="display: none;"></div></div><span tabindex="0" style="display: none; position: absolute;"></span><div style="display: none;"><div class="lang-select collapsed"><div class="title-button" style="-webkit-user-select: none;">选择语言</div><i class="zg-icon zg-icon-double-arrow"></i><div class="input-wrapper"><input class="filter-input zg-form-text-input" placeholder="搜索语言" role="combobox" aria-autocomplete="list"></div></div></div><div></div></body></html>

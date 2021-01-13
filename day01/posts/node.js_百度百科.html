@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://baike.baidu.com/view/3974030.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./node.js_百度百科_files/element.min.js"></script><script async="" src="./node.js_百度百科_files/monkey.min.js"></script><script async="" src="./node.js_百度百科_files/dp.min.js"></script><script charset="utf-8" async="" src="./node.js_百度百科_files/snippetcacher.php"></script><script type="text/javascript" async="" src="./node.js_百度百科_files/acom"></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="JavaScript是一种运行在浏览器的脚本，它简单，轻巧，易于编辑，这种脚本通常用于浏览器的前端编程，但是一位开发者Ryan有一天发现这种前端式的脚本语言可以运行在服务器上的时候，一场席卷全球的风暴就开始了。Node.js是一个基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于...">
+<title>node.js_百度百科</title>
+
+<meta name="keywords" content="node.js  百度百科 baike  发展史 特性 模块 安装 版本发布 集成开发环境 Node.js的应用方向 示例程序 HTTP 事务处理示例">
+<meta name="image" content="http://baike.bdimg.com/cms/static/baike.png">
+<script async="" src="./node.js_百度百科_files/alog.min.js"></script><script type="text/javascript">
+  void function(g,f,j,c,h,d,b){g.alogObjectName=h,g[h]=g[h]||function(){(g[h].q=g[h].q||[]).push(arguments)},g[h].l=g[h].l||+new Date,d=f.createElement(j),d.async=!0,d.src=c,b=f.getElementsByTagName(j)[0],b.parentNode.insertBefore(d,b)}(window,document,"script","http://img.baidu.com/hunter/alog/alog.min.js","alog");void function(){function c(){return;}window.PDC={mark:function(a,b){alog("speed.set",a,b||+new Date);alog.fire&&alog.fire("mark")},init:function(a){alog("speed.set","options",a)},view_start:c,tti:c,page_ready:c}}();void function(n){var o=!1;n.onerror=function(n,e,t,c){var i=!0;return!e&&/^script error/i.test(n)&&(o?i=!1:o=!0),i&&alog("exception.send","exception",{msg:n,js:e,ln:t,col:c}),!1},alog("exception.on","catch",function(n){alog("exception.send","exception",{msg:n.msg,js:n.path,ln:n.ln,method:n.method,flag:"catch"})})}(window);
+</script>
+<meta name="csrf-token" content="">
+
+<!--[if lte IE 9]>
+<script>
+    (function() {
+      var e = "abbr,article,aside,audio,canvas,datalist,details,dialog,eventsource,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video".split(","),
+        i = e.length;
+      while (i--) {
+        document.createElement(e[i]);
+      }
+    })();
+  </script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/wiki-lemma_7feaaab.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/wiki-common-base_b07c8d7.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/label_c55b575.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/praise_2120cd2.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/toolButtons_a2c470f.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/userInfo_9ba20c1.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/pageMask_ff9a193.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/wiki-lemma-module_36850e9.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/shCore_7fba49a.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/shCoreDefault_3f91dc3.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/mainContent_637f952.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/lemmaRelation_9f629f5.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/zhixin_1c34583.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/searchHeader_e786bfb.css"><link rel="stylesheet" type="text/css" href="./node.js_百度百科_files/sideShare_afe05e7.css"><script type="text/javascript">
+    alog('speed.set', 'ht', +new Date);
+</script><script type="text/javascript" src="./node.js_百度百科_files/lemmaReferenceTip_98e1259.js"></script><script src="./node.js_百度百科_files/share.js"></script><script type="text/javascript" src="./node.js_百度百科_files/nstip.js" id="nstip"></script><link rel="stylesheet" href="./node.js_百度百科_files/share_style0_16.css"><link rel="stylesheet" href="./node.js_百度百科_files/share_style0_32.css"></head>
+
+
+
+<body class="wiki-lemma normal"><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./node.js_百度百科_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+
+
+<div class="header-wrapper">
+<ul class="wgt-userbar"><li class="userbar_user" data-action="showUserMenu">
+<a href="javascript:;"><span>斯通摇滚吧1992</span><em class="cmn-inline-block cmn-icon cmn-icons cmn-icons_userbar-up"></em></a>
+</li>
+<li class="userbar_mall">
+<a href="http://baike.baidu.com/mall/" target="_blank"><em class="cmn-inline-block cmn-icon cmn-icons cmn-icons_userbar-shop"></em>商城</a>
+</li>
+<li class="userbar_message" data-action="showUserMsg">
+<a href="javascript:;"><em class="cmn-inline-block cmn-icon cmn-icons cmn-icons_userbar-message"></em><em class="cmn-icon cmn-icons cmn-icons_userbar-new userbar_message_new"></em>消息</a>
+</li>
+<li class="split">|</li>
+<li>
+<a href="http://www.baidu.com/">百度首页</a>
+</li></ul>
+<div class="header">
+<div class="layout">
+<div class="wgt-searchbar wgt-searchbar-main cmn-clearfix">
+<div class="logo-container">
+<a class="logo cmn-inline-block" title="到百科首页" href="http://baike.baidu.com/">
+<span class="cmn-baike-logo">
+<em class="cmn-icon cmn-icons cmn-icons_logo-bai"></em>
+<em class="cmn-icon cmn-icons cmn-icons_logo-du"></em>
+<em class="cmn-icon cmn-icons cmn-icons_logo-baike"></em>
+</span>
+</a>
+</div>
+<div class="search">
+<div class="nav">
+<a href="http://news.baidu.com/" data-href="http://news.baidu.com/ns?tn=news&amp;cl=2&amp;rn=20&amp;ct=1&amp;fr=bks0000&amp;ie=utf-8&amp;word=">新闻</a><a href="http://www.baidu.com/" data-href="http://www.baidu.com/s?ie=utf-8&amp;fr=bks0000&amp;wd=">网页</a><a href="http://tieba.baidu.com/" data-href="http://tieba.baidu.com/f?ie=utf-8&amp;fr=bks0000&amp;kw=">贴吧</a><a href="http://zhidao.baidu.com/" data-href="http://zhidao.baidu.com/search?pn=0&amp;&amp;rn=10&amp;lm=0&amp;fr=bks0000&amp;word=">知道</a><a href="http://music.baidu.com/" data-href="http://music.baidu.com/search?f=ms&amp;ct=134217728&amp;ie=utf-8&amp;rn=&amp;lm=-1&amp;pn=30fr=bks0000&amp;key=">音乐</a><a href="http://image.baidu.com/" data-href="http://image.baidu.com/search/index?tn=baiduimage&amp;ct=201326592&amp;lm=-1&amp;cl=2&amp;nc=1&amp;ie=utf-8&amp;word=">图片</a><a href="http://v.baidu.com/" data-href="http://v.baidu.com/v?ct=301989888&amp;rn=20&amp;pn=0&amp;db=0&amp;s=22&amp;ie=utf-8&amp;fr=bks0000&amp;word=">视频</a><a href="http://map.baidu.com/" data-href="http://map.baidu.com/m?ie=utf-8&amp;fr=bks0000&amp;word=">地图</a><a class="baike">百科</a><a href="http://wenku.baidu.com/" data-href="http://wenku.baidu.com/search?lm=0&amp;od=0&amp;ie=utf-8&amp;fr=bks0000&amp;word=">文库</a>
+</div>
+<div class="form">
+<form id="searchForm" action="http://baike.baidu.com/search/word" method="GET" target="_self">
+<input id="query" name="word" type="text" autocomplete="off" autocorrect="off" value="node.js"><button id="search" type="button">进入词条</button><button id="searchLemma" type="button">搜索词条</button><a class="help" href="http://baike.baidu.com/help" target="_blank">帮助</a>
+</form>
+<form id="searchLemmaForm" action="http://baike.baidu.com/search" method="GET" target="_self">
+<input id="searchLemmaQuery" name="word" type="hidden">
+<input name="pn" type="hidden" value="0">
+<input name="rn" type="hidden" value="0">
+<input name="enc" type="hidden" value="utf8">
+</form>
+<ul id="suggestion" class="suggestion">
+<div></div>
+<li class="extra">
+<span id="close">关闭</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="navbar-wrapper">
+<div class="wgt-navbar">
+<div class="navbar-bg">
+<div class="navbar-bg-top">
+<div class="navbar-content layout">
+<div class="navbar-content-box">
+<dl class="index ">
+<dt><a href="http://baike.baidu.com/">首页</a></dt>
+</dl>
+<dl class="cat ">
+<dt><a>分类</a></dt>
+<dd>
+<div><a href="http://baike.baidu.com/art" target="_blank" class="art">艺术</a></div>
+<div><a href="http://baike.baidu.com/science" target="_blank" class="technology">科技</a></div>
+<div><a href="http://baike.baidu.com/ziran" target="_blank">自然</a></div>
+<div><a href="http://baike.baidu.com/wenhua" target="_blank">文化</a></div>
+<div><a href="http://baike.baidu.com/dili" target="_blank">地理</a></div>
+<div><a href="http://baike.baidu.com/shenghuo" target="_blank">生活</a></div>
+<div><a href="http://baike.baidu.com/shehui" target="_blank">社会</a></div>
+<div><a href="http://baike.baidu.com/renwu" target="_blank">人物</a></div>
+<div><a href="http://baike.baidu.com/jingji" target="_blank">经济</a></div>
+<div><a href="http://baike.baidu.com/tiyu" target="_blank">体育</a></div>
+<div><a href="http://baike.baidu.com/lishi" target="_blank">历史</a></div>
+</dd>
+</dl>
+<dl class="special ">
+<dt><a>特色百科</a></dt>
+<dd>
+<div><a href="http://baike.baidu.com/calendar/" target="_blank">历史上的今天</a></div>
+<div><a href="http://baike.baidu.com/museum/" target="_blank">数字博物馆</a></div>
+<div><a href="http://baike.baidu.com/shiji/2015?fr=navbar" target="_blank">史记·2015</a></div>
+<div><a href="http://baike.baidu.com/city/" target="_blank">城市百科</a></div>
+<div><a href="http://baike.baidu.com/operation/worldwar2" target="_blank">二战百科</a></div>
+<div><a href="http://baike.baidu.com/feiyi?fr=dhlfeiyi" target="_blank">非遗百科</a></div>
+</dd>
+</dl>
+<dl class="user">
+<dt><a>用户</a></dt>
+<dd>
+<div><a href="http://baike.baidu.com/kedou/" target="_blank">蝌蚪团</a></div>
+<div><a href="http://baike.baidu.com/event/ranmeng/" target="_blank">燃梦计划</a></div>
+<div><a href="http://baike.baidu.com/task/" target="_blank">百科任务</a></div>
+<div><a href="http://baike.baidu.com/mall/" target="_blank">百科商城</a></div>
+</dd>
+</dl>
+<dl class="cooperation">
+<dt><a>权威合作</a></dt>
+<dd>
+<div><a href="http://baike.baidu.com/operation/cooperation#joint" target="_blank">合作模式</a></div>
+<div><a href="http://baike.baidu.com/operation/cooperation#issue" target="_blank">常见问题</a></div>
+<div><a href="http://baike.baidu.com/operation/cooperation#connection" target="_blank">联系方式</a></div>
+</dd>
+</dl>
+<dl class="mobile">
+<dt><a>手机百科</a></dt>
+<dd>
+<div><a href="http://baike.baidu.com/m#download" target="_blank">客户端</a></div>
+<div><a href="http://baike.baidu.com/m#wap" target="_blank">网页版</a></div>
+</dd>
+</dl>
+<div class="usercenter">
+<div><a href="http://baike.baidu.com/usercenter" target="_blank"><em class="cmn-icon cmn-icons cmn-icons_navbar-usercenter"></em>个人中心</a></div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="body-wrapper">
+<div class="before-content">
+</div>
+<div class="content-wrapper">
+<div class="content">
+<div class="main-content">
+<div class="top-tool">
+<a class="add-sub-icon" href="javascript:;" title="添加义项" nslog-type="50000101" style="display: inline-block;"></a>
+<a href="http://baike.baidu.com/divideload/node.js" title="拆分词条" target="_blank" class="split-icon" style="display:none;" nslog-type="50000104"></a>
+<div class="top-collect" nslog="area" nslog-type="50000102">
+<span class="collect-text">收藏</span>
+<div class="collect-tip">查看<a href="http://baike.baidu.com/uc/favolemma" target="_blank">我的收藏</a></div>
+</div>
+<a href="javascript:void(0);" class="top-vote" nslog-type="50000103">
+<span class="vote-count">1194</span>
+<span class="vote-tip">有用+1</span>
+<span class="voted-tip">已投票</span>
+</a>
+<div class="bdsharebuttonbox top-share bdshare-button-style0-32" data-tag="top-share" data-bd-bind="1456629329082">
+<a class="bds_more top-share-icon" data-cmd="more" nslog-type="9067">
+<span class="bds_count share-count" id="j-topShareCount" data-cmd="count" title="累计分享32次">748</span>
+</a>
+</div>
+</div>
+<div style="width:0;height:0;clear:both"></div><dl class="lemmaWgt-lemmaTitle lemmaWgt-lemmaTitle-">
+<dd class="lemmaWgt-lemmaTitle-title">
+<h1>node.js</h1>
+<a href="javascript:;" class="edit-lemma cmn-btn-hover-blue cmn-btn-28 j-edit-link" style="display: inline-block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+<a class="lock-lemma" target="_blank" href="http://baike.baidu.com/view/10812319.htm" title="锁定"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_lock-lemma"></em>锁定</a>
+</dd>
+</dl><div class="lemma-summary" label-module="lemmaSummary">
+<div class="para" label-module="para">JavaScript是一种运行在浏览器的脚本，它简单，轻巧，易于编辑，这种脚本通常用于浏览器的前端编程，但是一位开发者Ryan有一天发现这种前端式的脚本语言可以运行在服务器上的时候，一场席卷全球的风暴就开始了。</div><div class="para" label-module="para"><sup>[1]</sup><a class="sup-anchor" name="ref_[1]_3974030">&nbsp;</a>
+Node.js是一个基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于扩展的网络应用。Node.js 使用<a target="_blank" href="http://baike.baidu.com/view/536048.htm">事件驱动</a>， 非阻塞<a target="_blank" href="http://baike.baidu.com/subview/300881/11169495.htm">I/O</a> 模型而得以轻量和高效，非常适合在分布式设备上运行的数据密集型的实时应用。</div><div class="para" label-module="para">Node是一个Javascript运行环境(runtime)。实际上它是对Google V8引擎进行了封装。V8引 擎执行Javascript的速度非常快，性能非常好。Node对一些特殊用例进行了优化，提供了替代的API，使得V8在非浏览器环境下运行得更好。</div>
+</div>
+<div class="basic-info cmn-clearfix">
+<dl class="basicInfo-block basicInfo-left">
+<dt class="basicInfo-item name">外文名</dt>
+<dd class="basicInfo-item value">
+Node.js
+</dd>
+<dt class="basicInfo-item name">类&nbsp;&nbsp;&nbsp;&nbsp;别</dt>
+<dd class="basicInfo-item value">
+JavaScript工具
+</dd>
+</dl><dl class="basicInfo-block basicInfo-right">
+<dt class="basicInfo-item name">发布时间</dt>
+<dd class="basicInfo-item value">
+2009年5月
+</dd>
+<dt class="basicInfo-item name">开发者</dt>
+<dd class="basicInfo-item value">
+Ryan Dah
+</dd>
+</dl></div>
+<div class="lemmaWgt-lemmaCatalog">
+<div class="lemma-catalog">
+<h2 class="block-title">目录</h2>
+<div class="catalog-list column-3">
+<ol>
+<li class="level1">
+<span class="index">1</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#1">发展史</a></span>
+</li>
+<li class="level1">
+<span class="index">2</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#2">特性</a></span>
+</li>
+<li class="level1">
+<span class="index">3</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#3">模块</a></span>
+</li>
+<li class="level1">
+<span class="index">4</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#4">安装</a></span>
+</li>
+</ol><ol><li class="level1">
+<span class="index">5</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#5">版本发布</a></span>
+</li>
+<li class="level1">
+<span class="index">6</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#6">集成开发环境</a></span>
+</li>
+<li class="level1">
+<span class="index">7</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#7">Node.js的应用方向</a></span>
+</li>
+</ol><ol><li class="level1">
+<span class="index">8</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#8">示例程序</a></span>
+</li>
+<li class="level1">
+<span class="index">9</span>
+<span class="text"><a href="http://baike.baidu.com/view/3974030.htm#9">HTTP 事务处理示例</a></span>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="anchor-list">
+<a name="1" class="lemma-anchor para-title"></a>
+<a name="sub3974030_1" class="lemma-anchor "></a>
+<a name="发展史" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">发展史</span>
+<a class="edit-icon j-edit-link" data-edit-dl="1" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<ul class="custom_dot para-list list-paddingleft-1"><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">2009年2月，Ryan Dahl在<a target="_blank" href="http://baike.baidu.com/subview/1509/4904688.htm">博客</a>上宣布准备基于V8创建一个轻量级的<a target="_blank" href="http://baike.baidu.com/view/460250.htm">Web服务器</a>并提供一套库。</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">2009年5月，Ryan Dahl在GitHub上发布了最初版本的部分Node.js包，随后几个月里，有人开始使用Node.js开发应用。</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">2009年11月和2010年4月，两届JSConf大会都安排了Node.js的讲座。</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">2010年年底，Node.js获得<a target="_blank" href="http://baike.baidu.com/view/1316082.htm">云计算</a>服务商Joyent资助，创始人Ryan Dahl加入Joyent全职负责Node.js的发展。</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">2011年7月，Node.js在微软的支持下发布<a target="_blank" href="http://baike.baidu.com/view/4821.htm">Windows</a>版本。<sup>[2]</sup><a class="sup-anchor" name="ref_[2]_3974030">&nbsp;</a>
+</div>
+</li></ul><div class="anchor-list">
+<a name="2" class="lemma-anchor para-title"></a>
+<a name="sub3974030_2" class="lemma-anchor "></a>
+<a name="特性" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">特性</span>
+<a class="edit-icon j-edit-link" data-edit-dl="2" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<div class="para" label-module="para">V8引擎本身使用了一些最新的编译技术。这使得用Javascript这类<a target="_blank" href="http://baike.baidu.com/view/76320.htm">脚本语言</a>编写出来的代码运行速度获得了极大提升，又节省了开发成本。对性能的苛求是Node的一个关键因素。 Javascript是一个<a target="_blank" href="http://baike.baidu.com/view/536048.htm">事件驱动</a>语言，Node利用了这个优点，编写出可扩展性高的服务器。Node采用了一个称为“事件循环(event loop）”的架构，使得编写可扩展性高的服务器变得既容易又安全。提高服务器性能的技巧有多种多样。Node选择了一种既能提高性能，又能减低开发复杂度的架构。这是一个非常重要的特性。并发编程通常很复杂且布满地雷。Node绕过了这些，但仍提供很好的性能。</div>
+<div class="para" label-module="para">Node采用一系列“非阻塞”库来支持事件循环的方式。本质上就是为文件系统、数据库之类的资源提供接口。向文件系统发送一个请求时，无需等待硬盘（<a target="_blank" href="http://baike.baidu.com/view/1303626.htm">寻址</a>并检索文件），硬盘准备好的时候非阻塞接口会通知Node。该模型以可扩展的方式简化了对慢资源的访问， 直观，易懂。尤其是对于熟悉<a target="_blank" href="http://baike.baidu.com/view/3587213.htm">onmouseover</a>、onclick等<a target="_blank" href="http://baike.baidu.com/subview/14806/8904138.htm">DOM</a>事件的用户，更有一种似曾相识的感觉。</div>
+<div class="para" label-module="para">虽然让Javascript运行于服务器端不是Node的独特之处，但却是其一强大功能。不得不承认，浏览器环境限制了我们选择编程语言的自由。任何服务器与日益复杂的浏览器客户端应用程序间共享代码的愿望只能通过Javascript来实现。虽然还存在其他一些支持Javascript在服务器端 运行的平台，但因为上述特性，Node发展迅猛，成为事实上的平台。</div>
+<div class="para" label-module="para">在Node启动的很短时间内，社区就已经贡献了大量的扩展库（模块）。其中很多是连接数据库或是其他软件的驱动，但还有很多是凭他们的实力制作出来的非常有用的软件。</div>
+<div class="para" label-module="para">最后，不得不提到的是Node社区。虽然Node项目还非常年轻，但很少看到对一个项目如此狂热的社区。不管是新手，还是专家，大家都围绕着项目，使用并贡献自己的能力，致力于打造一个探索、支持、分享、听取建议的乐土。<sup>[3]</sup><a class="sup-anchor" name="ref_[3]_3974030">&nbsp;</a>
+</div>
+<div class="para" label-module="para"><b>Node.js的优点</b></div>
+<div class="para" label-module="para">nodejs作为一个新兴的后台语言，有很多吸引人的地方：</div>
+<div class="para" label-module="para">RESTful API</div>
+<div class="para" label-module="para">单线程</div>
+<div class="para" label-module="para">Node.js可以在不新增额外线程的情况下，依然可以对任务进行并行处理 —— Node.js是单线程的。它通过事件轮询（event loop）来实现并行操作，对此，我们应该要充分利用这一点 —— 尽可能的避免阻塞操作，取而代之，多使用非阻塞操作。</div>
+<div class="para" label-module="para">非阻塞IO</div>
+<div class="para" label-module="para">V8虚拟机</div>
+<div class="para" label-module="para">事件驱动<sup>[4]</sup><a class="sup-anchor" name="ref_[4]_3974030">&nbsp;</a>
+</div><div class="anchor-list">
+<a name="3" class="lemma-anchor para-title"></a>
+<a name="sub3974030_3" class="lemma-anchor "></a>
+<a name="模块" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">模块</span>
+<a class="edit-icon j-edit-link" data-edit-dl="3" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<div class="para" label-module="para">Node.js使用Module模块去划分不同的功能，以简化应用的开发。Modules模块有点象C++语言中的类库。每一个Node.js的类库都包含了十分丰富的各类函数，比如http模块就包含了和http功能相关的很多函数，可以帮助开发者很容易地对比如http,tcp/udp等进行操作，还可以很容易的创建http和tcp/udp的服务器。</div>
+<div class="para" label-module="para">要在程序中使用模块是十分方便的，只需要如下：</div>
+<div class="para" label-module="para">在这里，引入了http类库，并且对http类库的引用存放在http变量中了。这个时候，node.js会在我们应用中搜索是否存在node_modules的目录，并且搜索这个目录中是否存在http的模块。如果node.js找不到这个目录，则会到全局模块缓存中去寻找，用户可以通过相对或者绝对路径，指定模块的位置，比如：</div>
+<div class="para" label-module="para">var myModule = require('./myModule.js');</div>
+<div class="para" label-module="para">模块中包含了很多功能代码片断，在模块中的代码大部分都是私有的，意思是在模块中定义的函数方法和变量，都只能在同一个模块中被调用。当然，可以将某些方法和变量暴露到模块外，这个时候可以使用exports对象去实现。<sup>[2]</sup><a class="sup-anchor" name="ref_[2]_3974030">&nbsp;</a>
+</div><div class="anchor-list">
+<a name="4" class="lemma-anchor para-title"></a>
+<a name="sub3974030_4" class="lemma-anchor "></a>
+<a name="安装" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">安装</span>
+<a class="edit-icon j-edit-link" data-edit-dl="4" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<div class="para" label-module="para">Linux 下 Node.js的安装</div>
+<div class="para" label-module="para">下面介绍下Node.js的安装，首先在nodejs的网站上根据操作系统下载相关的安装包，对于ubuntu<sup>[5]</sup><a class="sup-anchor" name="ref_[5]_3974030">&nbsp;</a>
+(linux)下的安装，可以如下进行：</div>
+<div class="para" label-module="para">sudo apt-get update</div>
+<div class="para" label-module="para">sudo apt-get install node</div>
+<div class="para" label-module="para">或者：</div>
+<div class="para" label-module="para">sudo aptitude update</div>
+<div class="para" label-module="para">sudo aptitude install node</div>
+<div class="para" label-module="para">Node.js就会在sid库，可以将它们增加到sources来源列表中</div>
+<div class="para" label-module="para">sudo echo deb http://ftp.us.debian org/debian/ sid main &gt; /etc/apt/sources.list.d/sid.list</div>
+<div class="para" label-module="para">但要注意的是，在完成安装后，需要移走/etc/apt/sources.list.d/sid.list。<sup>[2]</sup><a class="sup-anchor" name="ref_[2]_3974030">&nbsp;</a>
+</div>
+<div class="para" label-module="para">windows 下</div>
+<div class="para" label-module="para">官网现已提供 安装包和编译器，版本:v0.12.7 和相应的API 文档（English）</div><div class="anchor-list">
+<a name="5" class="lemma-anchor para-title"></a>
+<a name="sub3974030_5" class="lemma-anchor "></a>
+<a name="版本发布" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">版本发布</span>
+<a class="edit-icon j-edit-link" data-edit-dl="5" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<div class="para" label-module="para">2013年09月30日，Node.js 0.10.20 发布。</div>
+<div class="para" label-module="para">改进处：</div>
+<ul class="custom_dot para-list list-paddingleft-1"><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">tls: 修复偶尔发生的挂起和部分显示 (Fedor Indutny) - 修复 "npm ERR! cb() never called!"</div>
+</li></ul><div class="para" label-module="para">2013年09月24日，Node.js 0.10.19 发布。</div>
+<div class="para" label-module="para">改进处：</div>
+<ul class="custom_dot para-list list-paddingleft-1"><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">uv: 升级至 v0.10.17</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">npm: 升级至 1.3.11</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">readline: 从控制字符开始处理输入 (Eric Schrock)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">configure: 新增 mips-float-abi (soft, hard) 选项 (Andrei Sedoi)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">stream: 对象模式改为允许否值 (isaacs)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">tls: 阻止读取返回冗余的值 (Nathan Rajlich)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">tls: NPN 协议改为连接到本地 (Fedor Indutny)</div>
+</li></ul><div class="para" label-module="para">2013年09月04日，Node.js 0.10.18 发布。</div>
+<div class="para" label-module="para">改进处：</div>
+<ul class="custom_dot para-list list-paddingleft-1"><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">uv: 升级至 v0.10.15</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">stream: 不阻塞 unset _events 属性 (isaacs)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">stream: 传递的 'buffer' 用可解码的方式进行编码 (isaacs)</div>
+</li></ul><div class="para" label-module="para">2013年08月21日，Node.js 0.10.17 发布。</div>
+<div class="para" label-module="para">改进处：</div>
+<ul class="custom_dot para-list list-paddingleft-1"><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">uv: 升级至 v0.10.14</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">http_parser: 不接收 PUN/GEM 方法作为 PUT/GET (Chris Dickinson)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">tls: 修复当读取的 ssl 被销毁时的声明 (Fedor Indutny)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">stream: 当监听器被移除时抛出 'error' (isaacs)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">dgram: 修复错误的 send() 的参数的声明 (Ben Noordhuis)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">readline: 在退出终端原始模式前暂停 stdin (Daniel Chatfield)</div>
+</li></ul><div class="para" label-module="para">2013年08月16日，Node.js 0.10.16 发布。</div>
+<div class="para" label-module="para">改进处：</div>
+<ul class="custom_dot para-list list-paddingleft-1"><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">v8: 修复 CVE-2013-2882 的后门</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">npm: 升级至 1.3.8</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">crypto: 修复 assert() 的十六进制数据输入 (Ben Noordhuis)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">crypto: 修复 randomBytes() 错误路径的内存泄漏 (Ben Noordhuis)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">events: 修复内存泄漏，不暴露事件名称 (Ben Noordhuis)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">http: 正确处理 hex/base64 编码 (isaacs)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">http: 提升 res.write(buf) 性能 (Ben Noordhuis)</div>
+</li><li class="list-dot list-dot-paddingleft"><div class="para" label-module="para">stream: 修复双管道错误显示 (Eran Hammer)</div>
+</li></ul><div class="anchor-list">
+<a name="6" class="lemma-anchor para-title"></a>
+<a name="sub3974030_6" class="lemma-anchor "></a>
+<a name="集成开发环境" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">集成开发环境</span>
+<a class="edit-icon j-edit-link" data-edit-dl="6" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<div class="para" label-module="para">具备书写javascript的IDE均可.普通的记事本也可以进行开发.</div><div class="anchor-list">
+<a name="7" class="lemma-anchor para-title"></a>
+<a name="sub3974030_7" class="lemma-anchor "></a>
+<a name="Node.js的应用方向" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">Node.js的应用方向</span>
+<a class="edit-icon j-edit-link" data-edit-dl="7" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<div class="para" label-module="para">在几年的时间里，Node.JS逐渐发展成一个成熟的开发平台，吸引了许多开发者。有许多大型高流量网站都采用Node.JS进行开发，此外，开发人员还可以使用它来开发一些快速移动<a target="_blank" href="http://baike.baidu.com/subview/3912/15992867.htm">Web</a>框架。</div>
+<div class="para" label-module="para">除了Web应用外，NodeJS也被应用在许多方面，本文盘点了NodeJS在其它方面所开发的十大令人神奇的项目，这些项目涉及到应用程序监控、媒体流、远程控制、桌面和移动应用等等。<sup>[6]</sup><a class="sup-anchor" name="ref_[6]_3974030">&nbsp;</a>
+</div><div class="anchor-list">
+<a name="8" class="lemma-anchor para-title"></a>
+<a name="sub3974030_8" class="lemma-anchor "></a>
+<a name="示例程序" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">示例程序</span>
+<a class="edit-icon j-edit-link" data-edit-dl="8" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<div class="para" label-module="para">任何一套标准都由一个著名的程序开始：Hello World ！在Node中，Http是首要的。Node为创建http服务器作了优化，所以你在网上看到的大部分示例和库都是集中在web上(http框架、模板库等）。以下做了一个nodejs的Hello World 演示<sup>[7]</sup><a class="sup-anchor" name="ref_[7]_3974030">&nbsp;</a>
+：</div>
+<div><div id="highlighter_513504" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="http://baike.baidu.com/view/3974030.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code>&nbsp;<code class="js plain">http&nbsp;=&nbsp;require(</code><code class="js string">'http'</code><code class="js plain">);</code></div><div class="line number2 index1 alt1"><code class="js plain">server&nbsp;=&nbsp;http.createServer(</code><code class="js keyword">function</code>&nbsp;<code class="js plain">(req,&nbsp;res)&nbsp;{</code></div><div class="line number3 index2 alt2"><code class="js plain">res.writeHeader(200,&nbsp;{</code><code class="js string">"Content-Type"</code><code class="js plain">:&nbsp;</code><code class="js string">"text/plain"</code><code class="js plain">});</code></div><div class="line number4 index3 alt1"><code class="js plain">res.end(</code><code class="js string">"Hello&nbsp;World\n"</code><code class="js plain">);</code></div><div class="line number5 index4 alt2"><code class="js plain">});</code></div><div class="line number6 index5 alt1"><code class="js plain">server.listen(8000);</code></div><div class="line number7 index6 alt2"><code class="js plain">console.log(</code><code class="js string">"httpd&nbsp;start&nbsp;@8000"</code><code class="js plain">);</code></div></div></td></tr></tbody></table></div></div><div class="anchor-list">
+<a name="9" class="lemma-anchor para-title"></a>
+<a name="sub3974030_9" class="lemma-anchor "></a>
+<a name="HTTP 事务处理示例" class="lemma-anchor "></a>
+</div><h2 class="para-title level-2">
+<span class="title-text">HTTP 事务处理示例</span>
+<a class="edit-icon j-edit-link" data-edit-dl="9" href="javascript:;" style="display: block;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_edit-lemma"></em>编辑</a>
+</h2>
+<div class="para" label-module="para">本示例意图向读者传递 Node.js 关于 HTTP 处理过程的详实概念。在不考虑编程语言和环境的情况下，我们假设您已经知晓通常情况下 HTTP 请求是如何工作的，并且对 Node.js 的 EventEmitters 和 Streams 也已知晓。如果您对他们并不熟悉，通过 API 文档可以快速查阅。</div>
+<div class="para" label-module="para">创建服务</div>
+<div class="para" label-module="para">Node 的网络应用都需要先创建一个网络服务对象，这里我们通过 createServer 来实现。</div>
+<div><div id="highlighter_45108" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="http://baike.baidu.com/view/3974030.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp plain">var&nbsp;http&nbsp;=&nbsp;require(</code><code class="cpp string">'http'</code><code class="cpp plain">);</code></div><div class="line number2 index1 alt1"><code class="cpp plain">var&nbsp;server&nbsp;=&nbsp;http.createServer(function(request,&nbsp;response)&nbsp;{&nbsp;&nbsp;&nbsp;</code></div><div class="line number3 index2 alt2"><code class="cpp comments">//&nbsp;handle&nbsp;your&nbsp;requset&nbsp;</code></div><div class="line number4 index3 alt1"><code class="cpp plain">});</code></div></div></td></tr></tbody></table></div></div><div class="para" label-module="para">传入 createServer 的 function 在每次 HTTP 请求时都将被调用执行，因此这个 function 也被称为请求的处理者。事实上通过 createServer 返回的 Server 对象是一个 EventEmitter，我们需要做的仅仅是在这里保存这个 server 对象，并在之后对其添加监听器。</div>
+<div><div id="highlighter_445875" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="http://baike.baidu.com/view/3974030.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp plain">var&nbsp;http&nbsp;=&nbsp;require(</code><code class="cpp string">'http'</code><code class="cpp plain">);</code></div><div class="line number2 index1 alt1"><code class="cpp plain">var&nbsp;server&nbsp;=&nbsp;http.createServer();&nbsp;</code></div><div class="line number3 index2 alt2"><code class="cpp plain">server.on(</code><code class="cpp string">'request'</code><code class="cpp plain">,&nbsp;function(request,&nbsp;response)&nbsp;{</code></div><div class="line number4 index3 alt1"><code class="cpp comments">//&nbsp;handle&nbsp;your&nbsp;requset&nbsp;</code></div><div class="line number5 index4 alt2"><code class="cpp plain">});</code></div></div></td></tr></tbody></table></div></div><div class="para" label-module="para">当 HTTP 请求这个服务时，node 调用请求处理者 function 并传入一些用于处理事务相关的对象：request 和 response。我们可以非常方便的获得者两个对象。</div>
+<div><div id="highlighter_757671" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="http://baike.baidu.com/view/3974030.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp plain">var&nbsp;http&nbsp;=&nbsp;require(</code><code class="cpp string">'http'</code><code class="cpp plain">);</code></div><div class="line number2 index1 alt1"><code class="cpp plain">var&nbsp;server&nbsp;=&nbsp;http.createServer();&nbsp;</code></div><div class="line number3 index2 alt2"><code class="cpp plain">server.on(</code><code class="cpp string">'request'</code><code class="cpp plain">,&nbsp;function(request,&nbsp;response)&nbsp;{</code></div><div class="line number4 index3 alt1"><code class="cpp comments">//&nbsp;handle&nbsp;your&nbsp;requset&nbsp;</code></div><div class="line number5 index4 alt2"><code class="cpp plain">}).listen(8080);&nbsp;</code></div></div></td></tr></tbody></table></div></div><div class="para" label-module="para">为了对实际的请求提供服务，在 server 对象上需要调用 listen 方法。绝大多数情况你需要传入 listen 你想要服务监听的端口号，这里也存在很多其他的可选方案，参见 API reference。</div>
+<dl class="lemma-reference collapse nslog-area log-set-param" data-nslog-type="2" log-set-param="ext_reference">
+<dt class="reference-title">参考资料<em class="toggle"></em></dt>
+<dd class="reference-list-wrap">
+<ul class="reference-list">
+<li class="reference-item " id="reference-[1]-3974030-wrap">
+<span class="index">1.</span>
+<a class="gotop anchor" name="refIndex_1_3974030" id="refIndex_1_3974030" title="向上跳转" href="http://baike.baidu.com/view/3974030.htm#ref_[1]_3974030">&nbsp;&nbsp;</a>
+<a rel="nofollow" href="http://baike.baidu.com/redirect/e5798KzQiN7m649Df1mH-irugj5v9ebxnOuE4sdYwl7xOYMSLHClKFfSzvPrPmHpS_EvsSXmHKdcreJjAURCmw" target="_blank" class="text">Node.js Wiki<span class="linkout">&nbsp;</span></a>
+<span class="site">．维基百科</span><span>[引用日期2014-01-9]</span></li><li class="reference-item " id="reference-[2]-3974030-wrap">
+<span class="index">2.</span>
+<a class="gotop anchor" name="refIndex_2_3974030" id="refIndex_2_3974030" title="向上跳转" href="http://baike.baidu.com/view/3974030.htm#ref_[2]_3974030">&nbsp;&nbsp;</a>
+<a rel="nofollow" href="http://baike.baidu.com/redirect/c348guvSQQM5Wku8h8nTFEJXv8T1RaKImX67c3eh5XVc4LEJjl3lqzvmKIBPW7cIPEXItbkqUn-DUawC_6lJAMxJjOrq4sXj2aWSag" target="_blank" class="text">前端页面开发之Node.js初学者指南<span class="linkout">&nbsp;</span></a>
+<span class="site">．linux公社网</span><span>[引用日期2012-09-12]</span></li><li class="reference-item " id="reference-[3]-3974030-wrap">
+<span class="index">3.</span>
+<a class="gotop anchor" name="refIndex_3_3974030" id="refIndex_3_3974030" title="向上跳转" href="http://baike.baidu.com/view/3974030.htm#ref_[3]_3974030">&nbsp;&nbsp;</a>
+<a rel="nofollow" href="http://baike.baidu.com/redirect/9fa0HM99AaOtqw-JKQ_cW0W_xapAP4yOm2aRGwALjMPV9mGeevpXDHWgyrW4bAlNBLztShwgBECliaukuEtTuGa7oJu_cuinkzBmdpGF" target="_blank" class="text">开源软件PK：Hadoop、Apache谁与争锋?  Node是一个Javascript运行环境<span class="linkout">&nbsp;</span></a>
+<span class="site">．.linux公社网</span><span>[引用日期2012-09-12]</span></li><li class="reference-item " id="reference-[4]-3974030-wrap">
+<span class="index">4.</span>
+<a class="gotop anchor" name="refIndex_4_3974030" id="refIndex_4_3974030" title="向上跳转" href="http://baike.baidu.com/view/3974030.htm#ref_[4]_3974030">&nbsp;&nbsp;</a>
+<a rel="nofollow" href="http://baike.baidu.com/redirect/69a7X07Hs5VmPxe_ZhH1CUKEL1e3KHzrX-MEFaBkO4tGsZo8I4Rwr-dT67NEb9xYuV37_TDGXhMBnYKKqbRF4bTdCqNGmCUyN_YzHLmsnreunVBUEJ8gW-yT44o" target="_blank" class="text">Node.js教程<span class="linkout">&nbsp;</span></a>
+<span class="site">．天涯草博客</span><span>．2013-3-15</span><span>[引用日期2013-03-16]</span></li><li class="reference-item " id="reference-[5]-3974030-wrap">
+<span class="index">5.</span>
+<a class="gotop anchor" name="refIndex_5_3974030" id="refIndex_5_3974030" title="向上跳转" href="http://baike.baidu.com/view/3974030.htm#ref_[5]_3974030">&nbsp;&nbsp;</a>
+<a rel="nofollow" href="http://baike.baidu.com/redirect/915a2zDRZ81j2Lo1DsLcWJMDxXLaQPhCJAvEOgEC0VsaUfRo2gd8wzsHwZVbyzaaedwjuCkleEpbCWy3WVUqWcJ91fXQae1mHCTM76U" target="_blank" class="text">node.js 安装指南<span class="linkout">&nbsp;</span></a>
+<span class="site">．github</span><span>[引用日期2012-09-18]</span></li><li class="reference-item " id="reference-[6]-3974030-wrap">
+<span class="index">6.</span>
+<a class="gotop anchor" name="refIndex_6_3974030" id="refIndex_6_3974030" title="向上跳转" href="http://baike.baidu.com/view/3974030.htm#ref_[6]_3974030">&nbsp;&nbsp;</a>
+<a rel="nofollow" href="http://baike.baidu.com/redirect/3f56LsXaHbRzMMWu2UvXkRl2f7q4qNThLzxnf0THR1uEAf5i_cjBRMxGXJOdc3uyHJ2DQu46zmNfSZRknLFeYfcVT1mC3YArfPTolxd_" target="_blank" class="text">NodeJS无所不能：细数十个令人惊讶的NodeJS开源项目<span class="linkout">&nbsp;</span></a>
+<span class="site">．TechTarget</span><span>[引用日期2015-10-31]</span></li><li class="reference-item " id="reference-[7]-3974030-wrap">
+<span class="index">7.</span>
+<a class="gotop anchor" name="refIndex_7_3974030" id="refIndex_7_3974030" title="向上跳转" href="http://baike.baidu.com/view/3974030.htm#ref_[7]_3974030">&nbsp;&nbsp;</a>
+<a rel="nofollow" href="http://baike.baidu.com/redirect/2dea6nG3o0MwQjrXwVkcEVObdNpZbzeKHv_qAAjdDjWDZErua-dTfdHNPCkJBRVOGHu2eY6Rl1ixjb3747Tt-ZH5ffqPFkwE" target="_blank" class="text">服务器端的JavaScript脚本新秀：Node.js<span class="linkout">&nbsp;</span></a>
+<span class="site">．HighSea的小站</span><span>．2013-05-08</span><span>[引用日期2013-05-16]</span></li></ul>
+</dd>
+</dl>
+<div id="open-tag">
+<div class="open-tag-title">词条标签：</div>
+<dd id="open-tag-item">
+<span class="taglist">
+通信技术
+</span>
+，<span class="taglist">
+计算机学
+</span>
+</dd>
+<div class="open-tag-collapse" id="open-tag-collapse" style="display: none;"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="side-content">
+<div class="summary-pic">
+<a href="http://baike.baidu.com/pic/node.js/7567977/0/42a98226cffc1e17fcdb30594890f603738de976?fr=lemma&amp;ct=single" target="_blank">
+<img src="./node.js_百度百科_files/42a98226cffc1e17fcdb30594890f603738de976.jpg">
+<button class="picAlbumBtn"><em></em><span>图集</span></button>
+<div>node.js图册</div>
+</a>
+</div>
+<div class="lemmaWgt-promotion-vbaike" style="display: block;">
+<div class="promotion_title">V百科<a href="http://baike.baidu.com/vbaike#gallary" target="_blank">往期回顾</a></div>
+<div class="promotion_viewport">
+<dl style="position: absolute; width: 536px; height: 152px; left: 0px;"><dd class="wgt_carousel_aniUnit" style="float: left;">
+<a href="http://click.hm.baidu.com/clk?da77e3769c1f3157f6837f2c93041be3" target="_blank" title="" nslog-type="10002202" nslog-params="{&quot;adId&quot;:&quot;388&quot;, &quot;adTitle&quot;:&quot;老友记&quot;, &quot;adPos&quot;: 1}">
+<img src="./node.js_百度百科_files/0b46f21fbe096b6350c6f23b0b338744eaf8acfa.jpg">
+</a>
+</dd></dl>
+<div class="promotion_viewport_pager wgt_horPager">
+<span class="pTagBox">
+<a href="javascript:;" class="pTag prev" p-index="2"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_arrow-left"></em></a>
+<a href="javascript:;" class="pTag next" p-index="4"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_arrow-right"></em></a>
+</span>
+</div>
+</div>
+</div><div class="lemmaWgt-promotion-rightPreciseAd" data-lemmaid="7567977" data-lemmatitle="node.js"></div><div class="lemmaWgt-sideRecommend" style="display: block;">
+<a name="zhixinWrap" class="qnAnchor"></a>
+<div class="zhixin-box" id="zhixinWrap" data-source="recsys" data-newlemmaid="7567977"><div class="zhixin-group js-group" data-datatype="async">
+<h6 class="js-cardTitle">
+<span>其他人还看</span>
+</h6>
+<div class="zhixin-fixBtn js-fixBtn">
+<div class="openFix" title="若推荐内容有误，请点击纠错进行反馈">纠错</div>
+<div class="closeFix">关闭纠错</div>
+</div>
+<div class="zhixin-list">
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/subview/3385614/9338180.htm&quot;,&quot;targetId&quot;:&quot;2878066&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/subview/3385614/9338180.htm" target="_blank">
+<img src="./node.js_百度百科_files/cefc1e178a82b9013d127d7e728da9773812efc4.jpg" alt="mongodb">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/subview/3385614/9338180.htm" target="_blank" title="mongodb">mongodb</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="2878066">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/view/16168.htm&quot;,&quot;targetId&quot;:&quot;321142&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/view/16168.htm" target="_blank">
+<img src="./node.js_百度百科_files/91ef76c6a7efce1b1e30f4f2ae51f3deb48f65ea.jpg" alt="javascript">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/view/16168.htm" target="_blank" title="javascript">javascript</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="321142">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/view/21087.htm&quot;,&quot;targetId&quot;:&quot;407313&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/view/21087.htm" target="_blank">
+<img src="./node.js_百度百科_files/0eb30f2442a7d9331abfc6f3ad4bd11373f0011e.jpg" alt="Python">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/view/21087.htm" target="_blank" title="Python">Python</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="407313">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/subview/1489977/10459781.htm&quot;,&quot;targetId&quot;:&quot;8301528&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/subview/1489977/10459781.htm" target="_blank">
+<img src="./node.js_百度百科_files/3bf33a87e950352ae6ac2b355743fbf2b2118b39.jpg" alt="Bootstrap">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/subview/1489977/10459781.htm" target="_blank" title="Bootstrap">Bootstrap</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="8301528">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/view/536048.htm&quot;,&quot;targetId&quot;:&quot;9597519&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/view/536048.htm" target="_blank">
+<img src="./node.js_百度百科_files/cityzhixinemptyimg_1a62423.png" alt="事件驱动">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/view/536048.htm" target="_blank" title="事件驱动">事件驱动</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="9597519">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/view/1020297.htm&quot;,&quot;targetId&quot;:&quot;5385065&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/view/1020297.htm" target="_blank">
+<img src="./node.js_百度百科_files/37d12f2eb9389b507400922b8735e5dde6116ecf.jpg" alt="jQuery">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/view/1020297.htm" target="_blank" title="jQuery">jQuery</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="5385065">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/subview/99/5828265.htm&quot;,&quot;targetId&quot;:&quot;9337&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/subview/99/5828265.htm" target="_blank">
+<img src="./node.js_百度百科_files/2f738bd4b31c870168f8cf9f257f9e2f0708ff79.jpg" alt="PHP">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/subview/99/5828265.htm" target="_blank" title="PHP">PHP</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="9337">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/view/4595959.htm&quot;,&quot;targetId&quot;:&quot;6549233&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/view/4595959.htm" target="_blank">
+<img src="./node.js_百度百科_files/aec379310a55b319139cb67141a98226cffc1748.jpg" alt="Redis">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/view/4595959.htm" target="_blank" title="Redis">Redis</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="6549233">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+<div class="zhixin-item" nslog="area" nslog-type="10000101" nslog-params="{&quot;source&quot;:&quot;recsys&quot;,&quot;url&quot;:&quot;http://baike.baidu.com/view/951383.htm&quot;,&quot;targetId&quot;:&quot;4234903&quot;}">
+<div class="portraitbox">
+<a href="http://baike.baidu.com/view/951383.htm" target="_blank">
+<img src="./node.js_百度百科_files/728da9773912b31b7096bff48418367adbb4e171.jpg" alt="html5">
+</a>
+</div>
+<p class="item-title js-name"><a href="http://baike.baidu.com/view/951383.htm" target="_blank" title="html5">html5</a></p>
+<div class="zhixinErrorBox js-fixBox hidden" data-lemma-id="4234903">
+<a class="submit-trigger" href="javascript:;">有错误</a>
+<span class="js-text hidden">已反馈</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<form id="zhixinErrorForm" class="hidden" action="http://f3.baidu.com/index.php/feedback/zx/baikeJC" target="zhixinSubErr" method="post">
+<input class="js-url" name="fb_html_url" type="hidden">
+<input class="js-query" name="fb_query" type="hidden">
+<input class="js-title" name="fb_card_title" type="hidden">
+<input class="js-content" name="fb_content" type="hidden">
+<input class="js-souceId" name="fb_source_id" type="hidden">
+</form>
+<iframe id="zhixinSubErr" name="zhixinSubErr" style="display:none" frameborder="0" src="./node.js_百度百科_files/saved_resource.html"></iframe>
+</div><div class="lemmaWgt-promotion-slide" style="display: block;">
+<div class="promotion_viewport">
+<dl style="position: absolute; width: 540px; height: 260px; left: 0px;"><dd class="wgt_carousel_aniUnit" style="float: left;">
+<a href="http://baike.baidu.com/art" target="_blank" title="" nslog-type="10002202" nslog-params="{&quot;adId&quot;:&quot;39&quot;, &quot;adTitle&quot;:&quot;常规-艺术百科&quot;, &quot;adPos&quot;: 2}">
+<img src="./node.js_百度百科_files/yishubaike0225.jpg">
+</a>
+</dd></dl>
+<div class="promotion_viewport_pager wgt_horPager"><span class="pTagBox">
+<a href="javascript:;" class="pTag prev" p-index="2"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_arrow-left"></em></a><span><a href="javascript:;" class="dot pTag" p-index="1"><em class="cmn-icon cmn-icons cmn-icons_userbar-new"></em></a><a href="javascript:;" class="dot pTag" p-index="2"><em class="cmn-icon cmn-icons cmn-icons_userbar-new"></em></a><a href="javascript:;" class="dot pTag cur"><em class="cmn-icon cmn-icons cmn-icons_userbar-new"></em></a></span><a href="javascript:;" class="pTag next" p-index="3"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_arrow-right"></em></a>
+</span></div>
+</div>
+</div><div class="lemmaWgt-promotion-rightBigAd">
+</div><dl class="side-box lemma-statistics">
+<dt class="title">词条统计</dt>
+<dd class="description">
+<ul>
+<li>浏览次数：<span id="j-lemmaStatistics-pv">936971</span>次</li>
+<li>编辑次数：75次<a href="http://baike.baidu.com/historylist/node.js/7567977" class="nslog:1021" target="_blank">历史版本</a></li>
+<li>最近更新：<span class="j-modified-time" style="">2016-01-15</span></li>
+<li>创建者：<a class="show-userCard" data-uid="16696416" title="查看此用户资料" target="_blank" href="http://www.baidu.com/p/hanguofeng" nslog-type="1022">hanguofeng</a></li>
+</ul>
+</dd>
+</dl>
+<div class="side-box" id="pro-contributors">
+<dl>
+<dt class="title">词条贡献榜</dt>
+<dd id="contri-div">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="topuser f12">
+<tbody><tr><td colspan="3" class="contri-type"><b>突出贡献者：</b></td></tr>
+<tr>
+<td width="22">
+<a target="_blank" href="http://baike.baidu.com/kedou" title="百科蝌蚪团" class="kedou-new"><img src="./node.js_百度百科_files/icon-newKedou_11dab04.png"></a>
+</td>
+<th width="150"><a title="查看此用户资料" class="usercard show-userCard" data-uid="634707031" username="冷威龙" target="_blank" href="http://www.baidu.com/p/%E5%86%B7%E5%A8%81%E9%BE%99?from=wk">冷威龙</a></th>
+<td align="right">
+<a target="_blank" href="http://baike.baidu.com/view/12878522.htm"><img align="absmiddle" alt="初级优质" title="初级优质" src="./node.js_百度百科_files/hq_4762f47.png" width="13" height="18"></a>
+</td>
+</tr>
+<tr><td style="border-bottom: 1px dashed #ccc;height:7px;" colspan="3"></td></tr>
+<tr><td style="height: 7px;" colspan="3"></td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+<div class="side-catalog" style="visibility: hidden; bottom: 10px;">
+<div class="side-bar">
+<em class="circle start"></em>
+<em class="circle end"></em>
+</div>
+<div class="catalog-scroller">
+<dl class="catalog-list">
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">1</span>
+<a href="http://baike.baidu.com/view/3974030.htm#1" class="title-link" nslog-type="1026">发展史</a>
+</span>
+</dt>
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">2</span>
+<a href="http://baike.baidu.com/view/3974030.htm#2" class="title-link" nslog-type="1026">特性</a>
+</span>
+</dt>
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">3</span>
+<a href="http://baike.baidu.com/view/3974030.htm#3" class="title-link" nslog-type="1026">模块</a>
+</span>
+</dt>
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">4</span>
+<a href="http://baike.baidu.com/view/3974030.htm#4" class="title-link" nslog-type="1026">安装</a>
+</span>
+</dt>
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">5</span>
+<a href="http://baike.baidu.com/view/3974030.htm#5" class="title-link" nslog-type="1026">版本发布</a>
+</span>
+</dt>
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">6</span>
+<a href="http://baike.baidu.com/view/3974030.htm#6" class="title-link" nslog-type="1026">集成开发环境</a>
+</span>
+</dt>
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">7</span>
+<a href="http://baike.baidu.com/view/3974030.htm#7" class="title-link" nslog-type="1026">Node.js的应用方向</a>
+</span>
+</dt>
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">8</span>
+<a href="http://baike.baidu.com/view/3974030.htm#8" class="title-link" nslog-type="1026">示例程序</a>
+</span>
+</dt>
+<dt class="catalog-title level1">
+<em class="pointer"></em>
+<span class="text">
+<span class="title-index">9</span>
+<a href="http://baike.baidu.com/view/3974030.htm#9" class="title-link" nslog-type="1026">HTTP 事务处理示例</a>
+</span>
+</dt>
+<a class="arrow" href="javascript:void(0);" style="top: 31px;"></a>
+</dl>
+</div>
+<div class="right-wrap">
+<a class="go-up disable" href="javascript:void(0);"></a>
+<a class="go-down disable" href="javascript:void(0);"></a>
+</div>
+<div class="bottom-wrap">
+<a class="toggle-button" href="javascript:void(0);"></a>
+<a class="gotop-button" href="javascript:void(0);"></a>
+</div>
+</div>
+<div class="unionAd_fromPs side-box" id="unionAd_fromPs">
+<script type="BAIDU_HH" runed="true">
+    {
+        type : 'pageembed',
+        di   : 'u2140330',
+        rsi0 : 270,
+        rsi1 : 175
+    }
+    </script><iframe src="./node.js_百度百科_files/home.html" style="width:270px;height:175px;background-color:transparent" align="center,center" marginwidth="0" marginheight="0" class="BAIDU_SS_HHIFRAME" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+</div>
+<div id="side_box_fengchao" class="fengchao side-box" nslog="area" nslog-type="10000902" style="display: block;"><style>.ec-ui-tip{margin-left:5px;}.c-icon{background:url(http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/img/ns-credit/icons.png) no-repeat 0 0;_background-image:url(http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/img/ns-credit/icons.gif);}.c-frame{margin-bottom:18px;}.c-offset{padding-left:10px;}.c-gray{color:#666;}.c-gap-top-small{margin-top:5px;}.c-gap-top{margin-top:10px;}.c-gap-bottom-small{margin-bottom:5px;}.c-gap-bottom{margin-bottom:10px;}.c-gap-left{margin-left:12px;}.c-gap-left-small{margin-left:6px;}.c-gap-right{margin-right:12px;}.c-gap-right-small{margin-right:6px;}.c-gap-icon-right-small{margin-right:5px;}.c-gap-icon-right{margin-right:10px;}.c-gap-icon-left-small{margin-left:5px;}.c-gap-icon-left{margin-left:10px;}.c-container{width:538px;font-size:13px;line-height:1.54;word-wrap:break-word;word-break:break-all;}.c-container .c-container{width:auto;}.c-container table{border-collapse:collapse;border-spacing:0;}.c-container td{font-size:13px;line-height:1.54;}.c-default{font-size:13px;line-height:1.54;word-wrap:break-word;word-break:break-all;}.c-container .t,.c-default .t{line-height:1.54;}.c-default .t{margin-bottom:0;}.cr-content{width:259px;font-size:13px;line-height:1.54;color:#333;}.cr-content table{border-collapse:collapse;border-spacing:0;}.cr-content td{font-size:13px;line-height:1.54;vertical-align:top;}.cr-offset{padding-left:17px;}.container_l .cr-content{width:351px;}.container_l .cr-content-narrow{width:259px;}.cr-title{font-size:14px;line-height:1.29;font-weight:bold;}.cr-title-sub{float:right;font-size:13px;font-weight:normal;}.c-row{*zoom:1;}.c-row:after{display:block;height:0;content:"";clear:both;visibility:hidden;}.c-span2{width:29px;}.c-span3{width:52px;}.c-span4{width:75px;}.c-span5{width:98px;}.c-span6{width:121px;}.c-span7{width:144px;}.c-span8{width:167px;}.c-span9{width:190px;}.c-span10{width:213px;}.c-span11{width:236px;}.c-span12{width:259px;}.c-span13{width:282px;}.c-span14{width:305px;}.c-span15{width:328px;}.c-span16{width:351px;}.c-span17{width:374px;}.c-span18{width:397px;}.c-span19{width:420px;}.c-span20{width:443px;}.c-span21{width:466px;}.c-span22{width:489px;}.c-span23{width:512px;}.c-span24{width:535px;}.c-span2,.c-span3,.c-span4,.c-span5,.c-span6,.c-span7,.c-span8,.c-span9,.c-span10,.c-span11,.c-span12,.c-span13,.c-span14,.c-span15,.c-span16,.c-span17,.c-span18,.c-span19,.c-span20,.c-span21,.c-span22,.c-span23,.c-span24{float:left;_display:inline;margin-right:17px;list-style:none;}.c-span-last{margin-right:0;}.c-span-last-s{margin-right:0;}.container_l .c-span-last-s{margin-right:17px;}.cr-content-narrow .c-span-last-s{margin-right:0;}.c-border{width:518px;padding:9px;border:1px solid #e3e3e3;border-bottom-color:#e0e0e0;border-right-color:#ececec;box-shadow:1px 2px 1px rgba(0,0,0,0.072);-webkit-box-shadow:1px 2px 1px rgba(0,0,0,0.072);-moz-box-shadow:1px 2px 1px rgba(0,0,0,0.072);-o-box-shadow:1px 2px 1px rgba(0,0,0,0.072);}.c-border .c-gap-left{margin-left:10px;}.c-border .c-gap-left-small{margin-left:5px;}.c-border .c-gap-right{margin-right:10px;}.c-border .c-gap-right-small{margin-right:5px;}.c-border .c-border{width:auto;padding:0;border:none;box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none;}.c-border .c-span2{width:34px;}.c-border .c-span3{width:56px;}.c-border .c-span4{width:78px;}.c-border .c-span5{width:100px;}.c-border .c-span6{width:122px;}.c-border .c-span7{width:144px;}.c-border .c-span8{width:166px;}.c-border .c-span9{width:188px;}.c-border .c-span10{width:210px;}.c-border .c-span11{width:232px;}.c-border .c-span12{width:254px;}.c-border .c-span13{width:276px;}.c-border .c-span14{width:298px;}.c-border .c-span15{width:320px;}.c-border .c-span16{width:342px;}.c-border .c-span17{width:364px;}.c-border .c-span18{width:386px;}.c-border .c-span19{width:408px;}.c-border .c-span20{width:430px;}.c-border .c-span21{width:452px;}.c-border .c-span22{width:474px;}.c-border .c-span23{width:496px;}.c-border .c-span24{width:518px;}.c-border .c-span2,.c-border .c-span3,.c-border .c-span4,.c-border .c-span5,.c-border .c-span6,.c-border .c-span7,.c-border .c-span8,.c-border .c-span9,.c-border .c-span10,.c-border .c-span11,.c-border .c-span12,.c-border .c-span13,.c-border .c-span14,.c-border .c-span15,.c-border .c-span16,.c-border .c-span17,.c-border .c-span18,.c-border .c-span19,.c-border .c-span20,.c-border .c-span21,.c-border .c-span22,.c-border .c-span23,.c-border .c-span24{margin-right:10px;}.c-border .c-span-last{margin-right:0;}.c-border .c-span-last-s{margin-right:0;}.c-border .container_l .c-span-last-s{margin-right:10px;}.c-loading{display:block;width:50px;height:50px;background:url(http://www.baidu.com/aladdin/img/tools/loading.gif) no-repeat 0 0;}.c-vline{display:inline-block;margin:0 3px;border-left:1px solid #ddd;width:0;height:12px;_vertical-align:middle;_overflow:hidden;}.c-icon{display:inline-block;width:14px;height:14px;vertical-align:text-bottom;font-style:normal;overflow:hidden;}.c-icon-unfold,.c-icon-fold,.c-icon-chevron-unfold,.c-icon-chevron-fold{width:12px;height:12px;}.c-icon-star,.c-icon-star-gray{width:60px;}.c-icon-qa-empty,.c-icon-safeguard,.c-icon-register-empty,.c-icon-zan,.c-icon-location,.c-icon-warning,.c-icon-doc,.c-icon-xls,.c-icon-ppt,.c-icon-pdf,.c-icon-txt,.c-icon-play-black,.c-icon-gift,.c-icon-baidu-share,.c-icon-bear,.c-icon-sfda,.c-icon-bear-border,.c-icon-location-blue,.c-icon-hotAirBall,.c-icon-moon,.c-icon-streetMap,.c-icon-mv{width:16px;height:16px;}.c-icon-bear-circle,.c-icon-warning-circle,.c-icon-warning-triangle{width:18px;height:18px;}.c-icon-tieba,.c-icon-zhidao,.c-icon-bear-p,.c-icon-bear-pn{width:24px;height:24px;}.c-icon-ball-blue,.c-icon-ball-red{width:38px;height:38px;}.c-icon-unfold:hover,.c-icon-fold:hover,.c-icon-chevron-unfold:hover,.c-icon-chevron-fold:hover,.c-icon-download:hover,.c-icon-lyric:hover,.c-icon-v:hover,.c-icon-hui:hover,.c-icon-bao:hover,.c-icon-person:hover,.c-icon-high-v:hover,.c-icon-phone:hover,.c-icon-nuo:hover,.c-icon-med:hover,.c-icon-air:hover,.c-icon-share2:hover,.c-icon-v1:hover,.c-icon-v2:hover,.c-icon-v3:hover{border-color:#388bff;}.c-icon-unfold:active,.c-icon-fold:active,.c-icon-chevron-unfold:active,.c-icon-chevron-fold:active,.c-icon-download:active,.c-icon-lyric:active,.c-icon-v:active,.c-icon-hui:active,.c-icon-bao:active,.c-icon-person:active,.c-icon-high-v:active,.c-icon-phone:active,.c-icon-nuo:active,.c-icon-med:active,.c-icon-air:active,.c-icon-share2:active,.c-icon-v1:active,.c-icon-v2:active,.c-icon-v3:active{border-color:#a2a6ab;background-color:#f0f0f0;box-shadow:inset 1px 1px 1px #c7c7c7;-webkit-box-shadow:inset 1px 1px 1px #c7c7c7;-moz-box-shadow:inset 1px 1px 1px #c7c7c7;-o-box-shadow:inset 1px 1px 1px #c7c7c7;}.c-icon-unfold,.c-icon-fold,.c-icon-chevron-unfold,.c-icon-chevron-fold,.c-icon-download,.c-icon-lyric{border:1px solid #d8d8d8;cursor:pointer;}.c-icon-v,.c-icon-hui,.c-icon-bao,.c-icon-person,.c-icon-high-v,.c-icon-phone,.c-icon-nuo,.c-icon-med,.c-icon-air,.c-icon-share2,.c-icon-v1,.c-icon-v2,.c-icon-v3{border:1px solid #d8d8d8;cursor:pointer;border-color:transparent;_border-color:#ff6347;_filter:chroma(color=#ff6347);}.c-icon-v1,.c-icon-v2,.c-icon-v3,.c-icon-v1-noborder,.c-icon-v2-noborder,.c-icon-v3-noborder,.c-icon-v1-noborder-disable,.c-icon-v2-noborder-disable,.c-icon-v3-noborder-disable{width:19px;}.c-icon-download,.c-icon-lyric{width:16px;height:16px;}.c-icon-play-circle,.c-icon-stop-circle{width:18px;height:18px;}.c-icon-play-circle-middle,.c-icon-stop-circle-middle{width:24px;height:24px;}.c-icon-play-black-large,.c-icon-stop-black-large{width:38px;height:38px;}.c-icon-flag{background-position:0 -144px;}.c-icon-bus{background-position:-24px -144px;}.c-icon-calendar{background-position:-48px -144px;}.c-icon-street{background-position:-72px -144px;}.c-icon-map{background-position:-96px -144px;}.c-icon-bag{background-position:-120px -144px;}.c-icon-money{background-position:-144px -144px;}.c-icon-game{background-position:-168px -144px;}.c-icon-user{background-position:-192px -144px;}.c-icon-globe{background-position:-216px -144px;}.c-icon-lock{background-position:-240px -144px;}.c-icon-plane{background-position:-264px -144px;}.c-icon-list{background-position:-288px -144px;}.c-icon-star-gray{background-position:-312px -144px;}.c-icon-circle-gray{background-position:-384px -144px;}.c-icon-triangle-down{background-position:-408px -144px;}.c-icon-triangle-up{background-position:-432px -144px;}.c-icon-triangle-up-empty{background-position:-456px -144px;}.c-icon-sort-gray{background-position:-480px -144px;}.c-icon-sort-up{background-position:-504px -144px;}.c-icon-sort-down{background-position:-528px -144px;}.c-icon-down-gray{background-position:-552px -144px;}.c-icon-up-gray{background-position:-576px -144px;}.c-icon-download-noborder{background-position:-600px -144px;}.c-icon-lyric-noborder{background-position:-624px -144px;}.c-icon-download-white{background-position:-648px -144px;}.c-icon-close{background-position:-672px -144px;}.c-icon-fail{background-position:-696px -144px;}.c-icon-success{background-position:-720px -144px;}.c-icon-triangle-down-g{background-position:-744px -144px;}.c-icon-fullscreen{background-position:0 -168px;}.c-icon-safe{background-position:-24px -168px;}.c-icon-exchange{background-position:-48px -168px;}.c-icon-chevron-bottom{background-position:-72px -168px;}.c-icon-chevron-top{background-position:-96px -168px;}.c-icon-unfold{background-position:-120px -168px;}.c-icon-fold{background-position:-144px -168px;}.c-icon-chevron-unfold{background-position:-168px -168px;}.c-icon-qa{background-position:-192px -168px;}.c-icon-register{background-position:-216px -168px;}.c-icon-star{background-position:-240px -168px;}.c-icon-star-gray{position:relative;}.c-icon-star-gray .c-icon-star{position:absolute;top:0;left:0;}.c-icon-play-blue{background-position:-312px -168px;}.c-icon-pic{width:16px;background-position:-336px -168px;}.c-icon-chevron-fold{background-position:-360px -168px;}.c-icon-video{width:18px;background-position:-384px -168px;}.c-icon-circle-blue{background-position:-408px -168px;}.c-icon-circle-yellow{background-position:-432px -168px;}.c-icon-play-white{background-position:-456px -168px;}.c-icon-triangle-down-blue{background-position:-480px -168px;}.c-icon-chevron-unfold2{background-position:-504px -168px;}.c-icon-right{background-position:-528px -168px;}.c-icon-right-empty{background-position:-552px -168px;}.c-icon-new-corner{width:15px;background-position:-576px -168px;}.c-icon-horn{background-position:-600px -168px;}.c-icon-right-large{width:18px;background-position:-624px -168px;}.c-icon-wrong-large{background-position:-648px -168px;}.c-icon-circle-blue-s{background-position:-672px -168px;}.c-icon-play-gray{background-position:-696px -168px;}.c-icon-up{background-position:-720px -168px;}.c-icon-down{background-position:-744px -168px;}.c-icon-stable{background-position:-768px -168px;}.c-icon-calendar-blue{background-position:-792px -168px;}.c-icon-triangle-down-blue2{background-position:-816px -168px;}.c-icon-triangle-up-blue2{background-position:-840px -168px;}.c-icon-down-blue{background-position:-864px -168px;}.c-icon-up-blue{background-position:-888px -168px;}.c-icon-ting{background-position:-912px -168px;}.c-icon-v,.c-icon-v-noborder{background-position:0 -192px;}.c-icon-hui{background-position:-24px -192px;}.c-icon-bao{background-position:-48px -192px;}.c-icon-phone{background-position:-72px -192px;}.c-icon-qa-empty{background-position:-96px -192px;}.c-icon-safeguard{background-position:-120px -192px;}.c-icon-register-empty{background-position:-144px -192px;}.c-icon-zan{background-position:-168px -192px;}.c-icon-location{background-position:-240px -192px;}.c-icon-warning{background-position:-264px -192px;}.c-icon-doc{background-position:-288px -192px;}.c-icon-xls{background-position:-312px -192px;}.c-icon-ppt{background-position:-336px -192px;}.c-icon-pdf{background-position:-360px -192px;}.c-icon-txt{background-position:-384px -192px;}.c-icon-play-black{background-position:-408px -192px;}.c-icon-play-black:hover{background-position:-432px -192px;}.c-icon-gift{background-position:-456px -192px;}.c-icon-baidu-share{background-position:-480px -192px;}.c-icon-bear{background-position:-504px -192px;}.c-icon-sfda{width:31px;background-position:-528px -192px;}.c-icon-bear-border{background-position:-576px -192px;}.c-icon-person,.c-icon-person-noborder{background-position:-600px -192px;}.c-icon-location-blue{background-position:-624px -192px;}.c-icon-hotAirBall{background-position:-648px -192px;}.c-icon-moon{background-position:-672px -192px;}.c-icon-streetMap{background-position:-696px -192px;}.c-icon-high-v,.c-icon-high-v-noborder{background-position:-720px -192px;}.c-icon-nuo{background-position:-744px -192px;}.c-icon-mv{background-position:-768px -192px;}.c-icon-med{background-position:-816px -192px;}.c-icon-air{background-position:-840px -192px;}.c-icon-share2{background-position:-864px -192px;}.c-icon-v1,.c-icon-v1-noborder{background-position:-888px -192px;}.c-icon-v2,.c-icon-v2-noborder{background-position:-912px -192px;}.c-icon-v3,.c-icon-v3-noborder{background-position:-936px -192px;}.c-icon-v1-noborder-disable{background-position:-960px -192px;}.c-icon-v2-noborder-disable{background-position:-984px -192px;}.c-icon-v3-noborder-disable{background-position:-1008px -192px;}.c-icon-bear-circle{background-position:0 -216px;}.c-icon-warning-circle{background-position:-24px -216px;}.c-icon-warning-triangle{width:24px;background-position:-48px -216px;}.c-icon-ball-red{background-position:0 -240px;}.c-icon-ball-blue{background-position:-48px -240px;}.c-icon-tieba{background-position:0 -288px;}.c-icon-zhidao{background-position:-48px -288px;}.c-icon-bear-p{background-position:-96px -288px;}.c-icon-bear-pn{background-position:-144px -288px;}.c-icon-download{background-position:0 -336px;}.c-icon-lyric{background-position:-24px -336px;}.c-icon-play-circle{background-position:-48px -336px;}.c-icon-play-circle:hover{background-position:-72px -336px;}.c-icon-stop-circle{background-position:-96px -336px;}.c-icon-stop-circle:hover{background-position:-120px -336px;}.c-icon-play-circle-middle{background-position:0 -360px;}.c-icon-play-circle-middle:hover{background-position:-48px -360px;}.c-icon-stop-circle-middle{background-position:-96px -360px;}.c-icon-stop-circle-middle:hover{background-position:-144px -360px;}.c-icon-play-black-large{background-position:0 -408px;}.c-icon-play-black-large:hover{background-position:-48px -408px;}.c-icon-stop-black-large{background-position:-96px -408px;}.c-icon-stop-black-large:hover{background-position:-144px -408px;}.c-text{display:inline-block;padding:2px;text-align:center;vertical-align:text-bottom;font-size:12px;line-height:100%;font-style:normal;color:#fff;overflow:hidden;}a.c-text{text-decoration:none;}.c-text-new{background-color:#f13f40;}.c-text-info{padding-left:0;padding-right:0;font-weight:bold;color:#2b99ff;*vertical-align:baseline;_position:relative;_top:2px;}.c-text-info b{_position:relative;_top:-1px;}.c-text-info span{padding:0 2px;font-weight:normal;}.c-text-important{background-color:#1cb7fd;}.c-text-public{background-color:#2b99ff;}.c-text-warning{background-color:#ff830f;}.c-text-prompt{background-color:#f5c537;}.c-text-danger{background-color:#f13f40;}.c-text-safe{background-color:#52c277;}.c-text-empty{padding-top:1px;padding-bottom:1px;border:1px solid #d8d8d8;cursor:pointer;color:#23b9fd;background-color:#fff;}.c-text-empty:hover{border-color:#388bff;}.c-text-empty:active{border-color:#a2a6ab;background-color:#f0f0f0;box-shadow:inset 1px 1px 1px #c7c7c7;-webkit-box-shadow:inset 1px 1px 1px #c7c7c7;-moz-box-shadow:inset 1px 1px 1px #c7c7c7;-o-box-shadow:inset 1px 1px 1px #c7c7c7;}.c-text-mult{padding-left:5px;padding-right:5px;}.c-container .vd_newest_main{width:auto;}.c-customicon{display:inline-block;width:16px;height:16px;vertical-align:text-bottom;font-style:normal;overflow:hidden;}.c-tip-icon i{display:inline-block;cursor:pointer;}.c-tip-con{position:absolute;z-index:1;top:22px;left:-35px;background:#fff;border:1px solid #dcdcdc;border:1px solid rgba(0,0,0,0.2);-webkit-transition:opacity .218s;transition:opacity .218s;-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);box-shadow:0 2px 4px rgba(0,0,0,0.2);padding:5px 0 5px 0;display:none;font-size:12px;line-height:20px;}.c-tip-arrow{width:0;height:0;font-size:0;line-height:0;display:block;position:absolute;top:-16px;}.c-tip-arrow em,.c-tip-arrow ins{width:0;height:0;font-size:0;line-height:0;display:block;position:absolute;border:8px solid #000;border-style:dashed dashed solid dashed;}.c-tip-arrow em{border-color:transparent transparent #d8d8d8 transparent;}.c-tip-arrow ins{border-color:transparent transparent #fff transparent;top:2px;}.c-tip-con h3{font-size:12px;}.c-tip-con .c-tip-title{margin:0 10px;display:inline-block;width:239px;}.c-tip-con .c-tip-info{color:#666;margin:0 10px 1px 10px;width:239px;}.c-tip-con .c-tip-cer{width:354px;color:#666;margin:0 10px 1px 10px;}.c-tip-con .c-tip-cer ul{margin:0;padding:0;list-style:none;}.c-tip-con .c-tip-title{width:auto;_width:354px;}.c-tip-con .c-tip-item-i{padding:3px 0 3px 20px;line-height:14px;}.c-tip-con .c-tip-item-i .c-tip-item-icon{margin-left:-20px;}.c-tip-con .c-tip-menu ul{width:74px;}.c-tip-con .c-tip-menu ul{text-align:center;}.c-tip-con .c-tip-menu li a{display:block;text-decoration:none;cursor:pointer;background-color:#fff;padding:3px 0;color:#0000d0;}.c-tip-con .c-tip-menu li a:hover{display:block;background-color:#ebebeb;}.c-tip-con .c-tip-notice{width:239px;padding:0 10px;}.c-tip-con .c-tip-notice .c-tip-notice-succ{color:#4cbd37;}.c-tip-con .c-tip-notice .c-tip-notice-fail{color:#f13f40;}.c-tip-con .c-tip-notice .c-tip-item-succ{color:#444;}.c-tip-con .c-tip-notice .c-tip-item-fail{color:#aaa;}.c-tip-con .c-tip-notice .c-tip-item-faila{color:#aaa;}.c-tip-close{right:10px;position:absolute;cursor:pointer;}.c-tools{display:inline;}.c-tools-share{width:239px;padding:0 10px;}.icp_info{color:#666;margin-top:2px;font-size:13px;}.icon-gw,.icon-unsafe-icon{background:#2c99ff;vertical-align:text-bottom;*vertical-align:baseline;height:16px;padding-top:0;padding-bottom:0;padding-left:6px;padding-right:6px;line-height:16px;_padding-top:2px;_height:14px;_line-height:14px;font-size:12px;font-family:simsun;margin-left:10px;overflow:hidden;display:inline-block;-moz-border-radius:1px;-webkit-border-radius:1px;border-radius:1px;color:#fff;}a.icon-gw{color:#fff;background:#2196ff;text-decoration:none;cursor:pointer;}a.icon-gw:hover{background:#1e87ef;}a.icon-gw:active{height:15px;_height:13px;line-height:15px;_line-height:13px;padding-left:5px;background:#1c80d9;border-left:1px solid #145997;border-top:1px solid #145997;}.icon-unsafe-icon{background:#e54d4b;}#con-at{margin-bottom:15px;}#con-ar{margin-bottom:40px;}#con-at .result-op{margin-bottom:15px;font-size:13px;line-height:1.52em;}#con-ar .result-op{margin-bottom:28px;font-size:13px;line-height:1.52em;}#content_left .result-op,#content_left .result{margin-bottom:14px;border-collapse:collapse;}#content_left .c-border .result-op,#content_left .c-border .result{margin-bottom:25px;}#content_left .c-border .result-op:last-child,#content_left .c-border .result:last-child{margin-bottom:12px;}#content_left .result .f,#content_left .result-op .f{padding:0;}.subLink_factory{border-collapse:collapse;}.subLink_factory td{padding:0;}.subLink_factory td.middle,.subLink_factory td.last{color:#666;}.subLink_factory td a{text-decoration:underline;}.subLink_factory td.rightTd{text-align:right;}.subLink_factory_right{width:100%;}.subLink_factory_left td{padding-right:26px;}.subLink_factory_left td.last{padding:0;}.subLink_factory_left td.first{padding-right:75px;}.subLink_factory_right td{width:90px;}.subLink_factory_right td.first{width:auto;}.general_image_pic{margin-top:2px;}.general_image_pic a{background:#fff no-repeat center center;text-decoration:none;display:block;overflow:hidden;text-align:center;}.c-icon-v1,.c-icon-v2,.c-icon-v3{border:1px solid #d8d8d8;cursor:pointer;border-color:transparent;_border-color:#ff6347;_filter:chroma(color=#ff6347);}.c-icon-v1:active,.c-icon-v2:active,.c-icon-v3:active{border-color:#a2a6ab;background-color:#f0f0f0;box-shadow:inset 1px 1px 1px #c7c7c7;-webkit-box-shadow:inset 1px 1px 1px #c7c7c7;-moz-box-shadow:inset 1px 1px 1px #c7c7c7;-o-box-shadow:inset 1px 1px 1px #c7c7c7;}.c-icon-v1:hover,.c-icon-v2:hover,.c-icon-v3:hover{border-color:#388bff;}@-moz-document url-prefix(){.result,.f{width:538px;}}.opui-honourCard{font-size:12px;color:#666;line-height:1.5em;width:354px;}.opui-honourCard-score{width:60px;padding:4px 2px 4px 2px;text-align:center;float:left;}.opui-honourCard-score em{width:63px;display:block;font-size:37px;line-height:37px;color:#8e8d8d;font-family:arial;font-style:normal;}.opui-honourCard-info{background:#f5f5f5;overflow:hidden;zoom:1;}.opui-honourCard-title a{*font-family:Microsoft YaHei;}.opui-honourCard-title a i{position:relative;left:-65px;*left:-68px;}.opui-honourCard ol{list-style:none;margin:0;padding:0;float:left;_padding-top:5px;}.opui-honourCard li{height:20px;line-height:20px;padding-left:20px;_vertical-align:bottom;}.opui-honourCard li i{vertical-align:middle;_vertical-align:bottom;}.opui-honourCard-selected{color:#2b2a2a;font-weight:bold;background:url(http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/img/ns-credit/honourCard.png) no-repeat 3px 5px;*background-position:3px 2px;}</style><div id="ec_im_container" style="word-wrap:break-word;word-break:break-all;"><div style="font-size:12px;text-align:right;margin-bottom:15px;"><font color="#666666">推广链接</font></div><div style="cursor:pointer;"><a href="http://www.baidu.com/baidu.php?url=W00K00ja7ave_Cmlw5yWf-kwxl7LkRS79Si0qBJHQn-MzmxHkyzPfha7qqTnoykDXWI9Iw8RDALxTB8jbngCs5OT6BtIUMXhJu5eDIUE_NTnRakuBYbMXh2r79jSeHlpRWVB6H6.7b_inlyX7rKOblUNKJHfC51u3ljndKPLxKfYt_U_DY2yQvTyjo6CpXgih4SjikjW9l32AM-9uY3vglCh5be6BC8u8RL_EeRt85R_nYQZHvU8rwf.U1Yk0ZDqUhqbuiRzwyG10ZfqUhqbuiRzwyG10A-V5Hc1P6KM5g93nfKdpHY0TA-b5HD0mv-b5Hn4n0KVIjYknjDL0AVG5H00TMfqn1Dv0ANGujY3nj00mhbqn0KVm1Y3nHR1rj61P0KkTA-b5H00TyPGujYs0ZFMIA7M5H00ULu_5HcLnHDVnNtzP1TsQH7xnWT4PBYk0AdGujYs0A-kIjYs0A7B5HKxn0K-ThTqn0KsTjYs0A4vTjYsQW0snj0snj0s0AdYTjYs0AwbUL0qn0KzpWYs0AuY5H00TA6qn0KET1Ys0AFL5H00UMfqn0K1XWY0IZN15HnLn16YPWD1nHbzPW0YP10LPWT0ThNkIjYkPjRvPWc4n1csnWD10ZPGujYznhDkn1K-nHmdPhD3m19B0A7W5HD0XMfqn0KBUjYs0APzm1YYPjRvnf" target="_blank" style="line-height:18px;"><font style="font-size:14px;">AmazeUI,更懂中国程序猿开..</font></a><br><a href="http://www.baidu.com/baidu.php?url=W00K00ja7ave_Cmlw5yWf-kwxl7LkRS79Si0qBJHQn-MzmxHkyzPfha7qqTnoykDXWI9Iw8RDALxTB8jbngCs5OT6BtIUMXhJu5eDIUE_NTnRakuBYbMXh2r79jSeHlpRWVB6H6.7b_inlyX7rKOblUNKJHfC51u3ljndKPLxKfYt_U_DY2yQvTyjo6CpXgih4SjikjW9l32AM-9uY3vglCh5be6BC8u8RL_EeRt85R_nYQZHvU8rwf.U1Yk0ZDqUhqbuiRzwyG10ZfqUhqbuiRzwyG10A-V5Hc1P6KM5g93nfKdpHY0TA-b5HD0mv-b5Hn4n0KVIjYknjDL0AVG5H00TMfqn1Dv0ANGujY3nj00mhbqn0KVm1Y3nHR1rj61P0KkTA-b5H00TyPGujYs0ZFMIA7M5H00ULu_5HcLnHDVnNtzP1TsQH7xnWT4PBYk0AdGujYs0A-kIjYs0A7B5HKxn0K-ThTqn0KsTjYs0A4vTjYsQW0snj0snj0s0AdYTjYs0AwbUL0qn0KzpWYs0AuY5H00TA6qn0KET1Ys0AFL5H00UMfqn0K1XWY0IZN15HnLn16YPWD1nHbzPW0YP10LPWT0ThNkIjYkPjRvPWc4n1csnWD10ZPGujYznhDkn1K-nHmdPhD3m19B0A7W5HD0XMfqn0KBUjYs0APzm1YYPjRvnf" target="_blank" style="font-size:13px;line-height:18px;text-decoration:none;color:#ffffff;"><font color="#000000">AmazeUI,更懂中国程序猿开源Html5前端框架,全面提升兼容性,更适..</font><br><font color="#008000" style="margin-right:8px;">www.amazeui.org</font></a><a style="cursor:pointer;text-decoration:none;" href="http://trust.baidu.com/vcard/personal/index?key=370753230dd0272dYT647c5f5596201MA4gy8D0MMacw9j7e7bb372fe&amp;mt=1451469152&amp;url=W00K00ja7ave_Cmlw5yWf-kwxl7LkRS79Si0qBJHQn-MzmxHkyzPfha7qqTnoykDXWI9Iw8RDALxTB8jbngCs5OT6BtIUMXhJu5eDIUE_NTnRakuBYbMXh2r79jSeHlpRWVB6H6.7b_inlyX7rKOblUNKJHfC51u3ljndKPLxKfYt_U_DY2yQvTyjo6CpXgih4SjikjW9l32AM-9uY3vglCh5be6BC8u8RL_EeRt85R_nYQZHvU8rwf.U1Yk0ZDqUhqbuiRzwyG10ZfqUhqbuiRzwyG10A-V5Hc1P6KM5g93nfKdpHY0TA-b5HD0mv-b5Hn4n0KVIjYknjDL0AVG5H00TMfqn1Dv0ANGujY3nj00mhbqn0KVm1Y3nHR1rj61P0KkTA-b5H00TyPGujYs0ZFMIA7M5H00ULu_5HcLnHDVnNtzP1TsQH7xnWT4PBYk0AdGujYs0A-kIjYs0A7B5HKxn0K-ThTqn0KsTjYs0A4vTjYsQW0snj0snj0s0AdYTjYs0AwbUL0qn0KzpWYs0AuY5H00TA6qn0KET1Ys0AFL5H00UMfqn0K1XWY0IZN15HnLn16YPWD1nHbzPW0YP10LPWT0ThNkIjYkPjRvPWc4n1csnWD10ZPGujYznhDkn1K-nHmdPhD3m19B0A7W5HD0XMfqn0KBUjYs0APzm1YYPjRvnf&amp;dataTime=49" target="_blank"><i data-renzheng="{title: &#39;陈本峰：&#39;,favorite: {fm: &#39;&#39;,rsvMt: &#39;&#39;,p1: &#39;&#39;,url: &#39;http://i.baidu.com/myfavorite/set?url=W00K00ja7ave_Cmlw5yWf-kwxl7LkRS79Si0qBJHQn-MzmxHkyzPfha7qqTnoykDXWI9Iw8RDALxTB8jbngCs5OT6BtIUMXhJu5eDIUE_NTnRakuBYbMXh2r79jSeHlpRWVB6H6.7b_inlyX7rKOblUNKJHfC51u3ljndKPLxKfYt_U_DY2yQvTyjo6CpXgih4SjikjW9l32AM-9uY3vglCh5be6BC8u8RL_EeRt85R_nYQZHvU8rwf.U1Yk0ZDqUhqbuiRzwyG10ZfqUhqbuiRzwyG10A-V5Hc1P6KM5g93nfKdpHY0TA-b5HD0mv-b5Hn4n0KVIjYknjDL0AVG5H00TMfqn1Dv0ANGujY3nj00mhbqn0KVm1Y3nHR1rj61P0KkTA-b5H00TyPGujYs0ZFMIA7M5H00ULu_5HcLnHDVnNtzP1TsQH7xnWT4PBYk0AdGujYs0A-kIjYs0A7B5HKxn0K-ThTqn0KsTjYs0A4vTjYsQW0snj0snj0s0AdYTjYs0AwbUL0qn0KzpWYs0AuY5H00TA6qn0KET1Ys0AFL5H00UMfqn0K1XWY0IZN15HnLn16YPWD1nHbzPW0YP10LPWT0ThNkIjYkPjRvPWc4n1csnWD10ZPGujYznhDkn1K-nHmdPhD3m19B0A7W5HD0XMfqn0KBUjYs0APzm1YYPjRvnf&#39;},appraise: {fm: &#39;&#39;,rsvMt: &#39;&#39;,p1: &#39;&#39;,url: &#39;http://trust.baidu.com/womc/comt/?url=W00K00ja7ave_Cmlw5yWf-kwxl7LkRS79Si0qBJHQn-MzmxHkyzPfha7qqTnoykDXWI9Iw8RDALxTB8jbngCs5OT6BtIUMXhJu5eDIUE_NTnRakuBYbMXh2r79jSeHlpRWVB6H6.7b_inlyX7rKOblUNKJHfC51u3ljndKPLxKfYt_U_DY2yQvTyjo6CpXgih4SjikjW9l32AM-9uY3vglCh5be6BC8u8RL_EeRt85R_nYQZHvU8rwf.U1Yk0ZDqUhqbuiRzwyG10ZfqUhqbuiRzwyG10A-V5Hc1P6KM5g93nfKdpHY0TA-b5HD0mv-b5Hn4n0KVIjYknjDL0AVG5H00TMfqn1Dv0ANGujY3nj00mhbqn0KVm1Y3nHR1rj61P0KkTA-b5H00TyPGujYs0ZFMIA7M5H00ULu_5HcLnHDVnNtzP1TsQH7xnWT4PBYk0AdGujYs0A-kIjYs0A7B5HKxn0K-ThTqn0KsTjYs0A4vTjYsQW0snj0snj0s0AdYTjYs0AwbUL0qn0KzpWYs0AuY5H00TA6qn0KET1Ys0AFL5H00UMfqn0K1XWY0IZN15HnLn16YPWD1nHbzPW0YP10LPWT0ThNkIjYkPjRvPWc4n1csnWD10ZPGujYznhDkn1K-nHmdPhD3m19B0A7W5HD0XMfqn0KBUjYs0APzm1YYPjRvnf&#39;},report: {fm: &#39;&#39;,rsvMt: &#39;&#39;,p1: &#39;&#39;,url: &#39;http://baozhang.baidu.com/guarantee/accu/?url=W00K00ja7ave_Cmlw5yWf-kwxl7LkRS79Si0qBJHQn-MzmxHkyzPfha7qqTnoykDXWI9Iw8RDALxTB8jbngCs5OT6BtIUMXhJu5eDIUE_NTnRakuBYbMXh2r79jSeHlpRWVB6H6.7b_inlyX7rKOblUNKJHfC51u3ljndKPLxKfYt_U_DY2yQvTyjo6CpXgih4SjikjW9l32AM-9uY3vglCh5be6BC8u8RL_EeRt85R_nYQZHvU8rwf.U1Yk0ZDqUhqbuiRzwyG10ZfqUhqbuiRzwyG10A-V5Hc1P6KM5g93nfKdpHY0TA-b5HD0mv-b5Hn4n0KVIjYknjDL0AVG5H00TMfqn1Dv0ANGujY3nj00mhbqn0KVm1Y3nHR1rj61P0KkTA-b5H00TyPGujYs0ZFMIA7M5H00ULu_5HcLnHDVnNtzP1TsQH7xnWT4PBYk0AdGujYs0A-kIjYs0A7B5HKxn0K-ThTqn0KsTjYs0A4vTjYsQW0snj0snj0s0AdYTjYs0AwbUL0qn0KzpWYs0AuY5H00TA6qn0KET1Ys0AFL5H00UMfqn0K1XWY0IZN15HnLn16YPWD1nHbzPW0YP10LPWT0ThNkIjYkPjRvPWc4n1csnWD10ZPGujYznhDkn1K-nHmdPhD3m19B0A7W5HD0XMfqn0KBUjYs0APzm1YYPjRvnf&#39;},personal: {a: {fm: &#39;&#39;,rsvMt: &#39;1017&#39;,p1:&#39;&#39;,url: &#39;http://trust.baidu.com/vcard/personal/index?key=370753230dd0272dYT647c5f5596201MA4gy8D0MMacw9j7e7bb372fe&amp;mt=1451469152&amp;url=W00K00ja7ave_Cmlw5yWf-kwxl7LkRS79Si0qBJHQn-MzmxHkyzPfha7qqTnoykDXWI9Iw8RDALxTB8jbngCs5OT6BtIUMXhJu5eDIUE_NTnRakuBYbMXh2r79jSeHlpRWVB6H6.7b_inlyX7rKOblUNKJHfC51u3ljndKPLxKfYt_U_DY2yQvTyjo6CpXgih4SjikjW9l32AM-9uY3vglCh5be6BC8u8RL_EeRt85R_nYQZHvU8rwf.U1Yk0ZDqUhqbuiRzwyG10ZfqUhqbuiRzwyG10A-V5Hc1P6KM5g93nfKdpHY0TA-b5HD0mv-b5Hn4n0KVIjYknjDL0AVG5H00TMfqn1Dv0ANGujY3nj00mhbqn0KVm1Y3nHR1rj61P0KkTA-b5H00TyPGujYs0ZFMIA7M5H00ULu_5HcLnHDVnNtzP1TsQH7xnWT4PBYk0AdGujYs0A-kIjYs0A7B5HKxn0K-ThTqn0KsTjYs0A4vTjYsQW0snj0snj0s0AdYTjYs0AwbUL0qn0KzpWYs0AuY5H00TA6qn0KET1Ys0AFL5H00UMfqn0K1XWY0IZN15HnLn16YPWD1nHbzPW0YP10LPWT0ThNkIjYkPjRvPWc4n1csnWD10ZPGujYznhDkn1K-nHmdPhD3m19B0A7W5HD0XMfqn0KBUjYs0APzm1YYPjRvnf&amp;dataTime=49&#39;}, img: &#39;http://trust.baidu.com/vcard/img/plogo.gif&#39;, text: &#39;&#39;,credit: &#39;5&#39;}}" class="c-icon icon-personal c-icon-person efc-cert vtip-inited" data-tip-limite="true" data-tooltips="bc"></i>
+</a></div><br><br></div><script>(function(){function c(){var e={statistics:{identity:{url:"http://trustrcv.baidu.com/v.php",query:{tag:"vshenfenhover"}}}};window.__nsTip__.init(e)}if(window.__nsTip__){c()}else{function b(j){var g=false;var f=document.getElementsByTagName("script");for(var h=0,e=f.length;h<e;h++){if(f[h].getAttribute("id")===j){g=true;break}}return g}function a(i,f,h){if(!b(i)){var g=document.getElementsByTagName("head")[0]||document.body;var e=document.createElement("script");e.setAttribute("type","text/javascript");e.setAttribute("src",f);e.setAttribute("id",i);if(h!=null){e.onload=e.onreadystatechange=function(){if(e.ready){return false}if(!e.readyState||e.readyState=="loaded"||e.readyState=="complete"){e.ready=true;h()}}}g.appendChild(e)}}var d="http://s1.bdstatic.com/r/www/cache/biz/ecom/common/api/v-nstip/20151117/nstip.js";a("nstip",d,c)}})();</script></div>
+<div id="side_box_unionAd" class="unionAd side-box">
+<p>推广链接</p>
+<div class="union-content"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="after-content">
+<div class="fc-guess-like" id="fc_guess_like" style="display: block;">
+<h6>猜你喜欢</h6>
+<div>
+<ul class="cmn-clearfix"><li><a href="https://www.baidu.com/s?wd=node.js%C5%E0%D1%B5&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=0" target="_blank">node.js培训</a></li>
+<li><a href="https://www.baidu.com/s?wd=mac%CA%D5%B7%D1vpn&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">mac收费vpn</a></li>
+<li><a href="https://www.baidu.com/s?wd=html5%C1%E3%BB%F9%B4%A1%D1%A7%CF%B0&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">html5零基础学习</a></li>
+<li><a href="https://www.baidu.com/s?wd=html5%D1%A7%CF%B0%CA%E9&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">html5学习书</a></li>
+<li><a href="https://www.baidu.com/s?wd=%BD%F1%C8%D5+%CD%B7%CC%F5%CA%C2%BC%FE%CD%F8%D5%BE&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">今日 头条事件网站</a></li>
+<li><a href="https://www.baidu.com/s?wd=html5+%D1%A7%CF%B0%C2%B7%CF%DF&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">html5 学习路线</a></li>
+<li><a href="https://www.baidu.com/s?wd=html5%CF%EC%D3%A6%CA%BD%CD%F8%D5%BE%D6%C6%D7%F7&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">html5响应式网站制作</a></li>
+<li><a href="https://www.baidu.com/s?wd=%B8%DF%D6%D0%CA%FD%D1%A7%BA%AF%CA%FD%B8%A8%B5%BC&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">高中数学函数辅导</a></li>
+<li><a href="https://www.baidu.com/s?wd=html5+%CA%D6%BB%FA+%CD%F8%D5%BE&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">html5 手机 网站</a></li>
+<li><a href="https://www.baidu.com/s?wd=iphone%D6%FA%CA%D6+mac&amp;tn=SE_baikepcxf02_fcetbk02&amp;lqsource=2" target="_blank">iphone助手 mac</a></li>
+</ul>
+</div>
+</div>
+<div class="bottom-promotion" id="bottom-promotion">
+<div id="BOTTOM_PRO_AD"><iframe id="iframe1120393_0" onload="BAIDU_SSP_cacheRequest(&#39;8a35b71504f1ee41&#39;, this);" src="./node.js_百度百科_files/acom.html" width="960" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div>
+</div></div>
+</div>
+
+<div class="wgt-footer-main">
+<div class="content">
+<dl class="fresh">
+<dt><em class="cmn-icon cmn-icons cmn-icons_footer-fresh"></em>新手上路</dt>
+<dd>
+<div><a target="_blank" href="http://baike.baidu.com/usercenter/tasks#guide">成长任务</a></div>
+<div><a target="_blank" href="http://baike.baidu.com/help#main01">编辑入门</a></div>
+<div><a target="_blank" href="http://baike.baidu.com/help#main06">编辑规则</a></div>
+<div><a target="_blank" href="http://baike.baidu.com/help#main05">百科术语</a></div>
+</dd>
+</dl>
+<dl class="question">
+<dt><em class="cmn-icon cmn-icons cmn-icons_footer-question"></em>我有疑问</dt>
+<dd>
+<div><a target="_blank" href="http://baike.baidu.com/user/question">常见问题</a></div>
+<div><a target="_blank" href="http://ikefu.baidu.com/baidubaike/chat.html" nslog-type="10000003">我要提问</a></div>
+<div><a target="_blank" href="http://tieba.baidu.com/f?ie=utf-8&amp;fr=bks0000&amp;kw=%E7%99%BE%E5%BA%A6%E7%99%BE%E7%A7%91">参加讨论</a></div>
+<div><a target="_blank" href="http://baike.baidu.com/feedback">意见反馈</a></div>
+</dd>
+</dl>
+<dl class="suggestion">
+<dt><em class="cmn-icon cmn-icons cmn-icons_footer-suggestion"></em>投诉建议</dt>
+<dd>
+<div><a target="_blank" href="http://tousu.baidu.com/baike/add?word=node.js&amp;&amp;submit_link=http%3A%2F%2Fbaike.baidu.com%2Fview%2F3974030.htm#1">举报不良信息</a></div>
+<div><a target="_blank" href="http://tousu.baidu.com/baike/add?word=node.js&amp;&amp;submit_link=http%3A%2F%2Fbaike.baidu.com%2Fview%2F3974030.htm#2">未通过词条申诉</a></div>
+<div><a target="_blank" href="http://tousu.baidu.com/baike/add?word=node.js&amp;&amp;submit_link=http%3A%2F%2Fbaike.baidu.com%2Fview%2F3974030.htm#4">投诉侵权信息</a></div>
+<div><a target="_blank" href="http://tousu.baidu.com/baike/add?word=node.js&amp;&amp;submit_link=http%3A%2F%2Fbaike.baidu.com%2Fview%2F3974030.htm#3">封禁查询与解封</a></div>
+</dd>
+</dl>
+</div>
+<div class="copyright">©2016Baidu&nbsp;<a href="http://www.baidu.com/duty/" target="_blank">使用百度前必读</a>&nbsp;|&nbsp;<a href="http://help.baidu.com/question?prod_en=baike&amp;class=159&amp;id=1047" target="_blank">百科协议</a>&nbsp;|&nbsp;<a href="http://baike.baidu.com/operation/cooperation" target="_blank">百度百科合作平台</a></div>
+</div>
+
+<div class="lemmaWgt-searchHeader" style="display: none; opacity: 0;">
+<div class="layout">
+<div class="logo-container">
+<a class="logo cmn-inline-block" title="到百科首页" href="http://baike.baidu.com/">
+<span class="cmn-baike-logo">
+<em class="cmn-icon cmn-icons cmn-icons_logo-bai"></em>
+<em class="cmn-icon cmn-icons cmn-icons_logo-du"></em>
+<em class="cmn-icon cmn-icons cmn-icons_logo-baike"></em>
+</span>
+</a>
+</div>
+<div class="search">
+<div class="form">
+<form id="searchForm" action="http://baike.baidu.com/search/word" method="GET" target="_self">
+<input id="query" name="word" type="text" autocomplete="off" autocorrect="off" value="node.js"><a id="search" href="javascript:;"><em class="cmn-icon wiki-lemma-icons wiki-lemma-icons_search"></em></a>
+</form>
+<ul id="suggestion" class="suggestion" style="display: none;">
+<div></div>
+<li class="extra">
+<span id="close">关闭</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="tool-buttons">
+<a class="toolButtons-edit button j-edit-link" href="javascript:;" nslog-type="10010001"></a>
+<a class="toolButtons-collect button" href="javascript:;" nslog-type="10010002"></a>
+<a class="toolButtons-vote button" href="javascript:;" nslog-type="10010003"></a>
+</div>
+<div class="user-info">
+<a class="user-link unlogin" href="http://baike.baidu.com/usercenter" target="_blank">斯通摇滚吧1992</a>
+</div>
+</div></div>
+<div class="bdsharebuttonbox side-share bdshare-button-style0-32" data-tag="side-share" data-bd-bind="1456629329085">
+<span class="title">分享</span>
+<a class="bds_qzone" data-cmd="qzone" href="javascript:void(0);" nslog-type="9068" title="分享到QQ空间"></a>
+<a class="bds_tsina" data-cmd="tsina" href="javascript:void(0);" nslog-type="9068" title="分享到新浪微博"></a>
+<a class="bds_tqq" data-cmd="tqq" href="javascript:void(0);" nslog-type="9068" title="分享到腾讯微博"></a>
+<a class="bds_more" data-cmd="more" href="javascript:void(0);" nslog-type="9068"></a>
+</div>
+
+<script type="text/javascript" src="./node.js_百度百科_files/wiki-common_sync_js_0_556fe8d.js"></script>
+<script type="text/javascript">require.resourceMap({"res":{"wiki-lemma:widget/lemma_content/mainContent/lemmaRelation/lemmaInsert.js":{"url":"http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/lemmaRelation/lemmaInsert_17d225d.js","pkg":"wiki-lemma:p5","deps":["wiki-common:widget/component/nslog/nslog.js"]},"wiki-lemma:widget/lemma_content/mainContent/lemmaRelation/tangram.js":{"url":"http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/lemmaRelation/tangram_67429c3.js","pkg":"wiki-lemma:p5"},"wiki-lemma:widget/lemma_content/mainContent/lemmaReference/lemmaReferenceTip/lemmaReferenceTip.js":{"url":"http://baike.bdimg.com/static/wiki-lemma/widget/lemma_content/mainContent/lemmaReference/lemmaReferenceTip/lemmaReferenceTip_98e1259.js","deps":["wiki-common:widget/lib/jquery/jquery.js"]}},"pkg":{"wiki-lemma:p5":{"url":"http://baike.bdimg.com/static/wiki-lemma/pkg/wiki-lemma-module-lemmaRelation_49e0809.js"}}});</script><script type="text/javascript" src="./node.js_百度百科_files/wiki-common_sync_js_1_b0a1b22.js"></script>
+<script type="text/javascript" src="./node.js_百度百科_files/wiki-common_sync_js_2_7a24e62.js"></script>
+<script type="text/javascript" src="./node.js_百度百科_files/wiki-common_sync_js_5_62d9343.js"></script>
+<script type="text/javascript" src="./node.js_百度百科_files/wiki-lemma_0531396.js"></script>
+<script type="text/javascript" src="./node.js_百度百科_files/XRegExp_3e3f85b.js"></script>
+<script type="text/javascript" src="./node.js_百度百科_files/shCore_e2d4316.js"></script>
+<script type="text/javascript" src="./node.js_百度百科_files/shBrushJScript_db5a222.js"></script>
+<script type="text/javascript" src="./node.js_百度百科_files/shBrushCpp_7f8b885.js"></script>
+<script type="text/javascript" src="./node.js_百度百科_files/zhixin_d2befc8.js"></script>
+<script type="text/javascript">!function(){  var $ = require('wiki-common:widget/lib/jquery/jquery.js'),
+    userbar = require('wiki-common:widget/component/userbar/userbar.js');
+    
+  $(function() {
+    userbar.buildUserbar($('.wgt-userbar'), null);
+  });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js'),
+      initSearchbar = require('wiki-common:widget/component/searchbar/searchbar.js');  
+    initSearchbar($('.wgt-searchbar-main'));
+  }();
+!function(){  var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+
+  var timer = '';
+
+  $('.wgt-navbar').on('mouseenter', 'dl', function() {
+  clearTimeout(timer);
+  timer = setTimeout(function() {
+  $('.wgt-navbar').addClass('wgt-navbar-hover');
+}, 300);
+}).on('mouseleave', function() {
+clearTimeout(timer);
+$('.wgt-navbar').removeClass('wgt-navbar-hover');
+}).on('click', 'a', function() {
+clearTimeout(timer);
+$('.wgt-navbar').removeClass('wgt-navbar-hover');
+});
+}();
+!function(){            var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+            var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+            // 展现策略
+            rightCheck.editView('7567977', function(res) {
+                if (!res.errno) {
+                    if (res.data.edit) {
+                        $('.lemmaWgt-lemmaTitle .add-subLemma').css('display', 'inline-block');
+                        $('.top-tool .add-sub-icon').css('display', 'inline-block');
+                    }
+                } else {
+                    if ('1') {
+                        $('.lemmaWgt-lemmaTitle .add-subLemma').css('display', 'inline-block');
+                        $('.top-tool .add-sub-icon').css('display', 'inline-block');
+                    }
+                }
+            }); 
+
+            require('wiki-lemma:widget/basicElement/addSub/addSub.js')({
+                lemmaId: '7567977',
+                lemmaTitle: 'node.js',
+                lemmaDesc: '',
+                versionId: '101640521',
+                subLemmaId: '3974030'
+            });
+        }();
+!function(){        var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+        var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+        // 展现策略
+        rightCheck.editView('7567977', function(res) {
+            if (!res.errno) {
+                if (res.data.divide) {
+                    $('.top-tool .split-icon').css('display', 'block');
+                }
+            }
+        });
+    }();
+!function(){	require.async("wiki-lemma:widget/basicElement/collect/collect.js",function(collect){
+		collect({
+            newLemmaId:"7567977",
+			lemmaId:"3974030",
+			subLemmaId:"3974030"
+		});
+	});
+}();
+!function(){	require.async("wiki-lemma:widget/basicElement/vote/vote.js",function(vote){
+		vote({
+			lemmaId:"3974030",
+            subLemmaId:"3974030"
+		});
+	});
+}();
+!function(){	!!window.BKShare && window.BKShare.regist({
+		"tag" : "top-share",
+		"bdSize" : 32,
+		"bdMini":1
+	});
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.lemmaWgt-lemmaTitle .edit-lemma').css('display', 'inline-block');
+            } else {
+                $('.lemmaWgt-lemmaTitle .lock-lemma').show();
+            }
+        } else {
+            if ('1') {
+                $('.lemmaWgt-lemmaTitle .edit-lemma').css('display', 'inline-block');
+            } else {
+                $('.lemmaWgt-lemmaTitle .lock-lemma').show();
+            }
+        }
+    });
+}();
+!function(){	require('wiki-lemma:widget/lemma_content/mainContent/basicInfo/basicInfo.js')();
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+    // 展现策略
+    rightCheck.editView('7567977', function(res) {
+        if (!res.errno) {
+            if (res.data.edit) {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        } else {
+            if ('1') {
+                $('.para-title .edit-icon').css('display', 'block');
+            }
+        }
+    });
+}();
+!function(){        SyntaxHighlighter.all();
+    }();
+!function(){		require.async(["wiki-lemma:widget/lemma_content/mainContent/lemmaReference/lemmaReference.js", "wiki-lemma:widget/lemma_content/mainContent/lemmaReference/lemmaReferenceTip/lemmaReferenceTip.js"],function(Reference,ReferenceTip){
+			new Reference({
+				subLemmaId:"3974030"
+			});
+			new ReferenceTip({
+				subLemmaId:"3974030"
+			});
+		});
+	}();
+!function(){        require.async("wiki-common:widget/lib/jquery/jquery.js",function($){
+            function openTagToggle(node) {
+                if ($(node).hasClass("collapse")) {
+                    $(node).removeClass("collapse");
+                    $("#open-tag").css("height", '22px');
+                } else {
+                    $(node).addClass("collapse");
+                    $("#open-tag").css("height", $("#open-tag-item").css("height"));
+                }
+            }
+            if (parseInt($("#open-tag-item").css("height")) <= 30) {
+                $('#open-tag-collapse').hide();
+            }
+            $("#open-tag-collapse").on("click", function () {
+                openTagToggle($("#open-tag")[0]);
+            });
+        });
+    }();
+!function(){        require('wiki-lemma:widget/lemma_content/configModule/zhixin/zhixin.js')(
+            7567977,
+            'node.js'
+        );
+    }();
+!function(){    require.async("wiki-lemma:widget/lemma_content/mainContent/lemmaStatistics/lemmaStatistics.js",function(init){
+        init({
+            newLemmaIdEnc:"eca9aca437720c4ed52788df"
+        });
+    });
+}();
+!function(){    var userCard = require('wiki-common:widget/component/userCard/userCard.js');
+    userCard({
+        host: '#pro-contributors .show-userCard',
+        left: -26
+    });    
+}();
+!function(){	require.async("wiki-lemma:widget/lemma_content/mainContent/sideCatalog/sideCatalog.js",function(SideCatalog){
+		new SideCatalog();
+	});
+}();
+!function(){        require.async(['wiki-lemma:widget/promotion/unionAdFromPs/unionAdFromPs.js'], function (init) {
+            init();
+        });
+    }();
+!function(){    require.async(["wiki-lemma:widget/promotion/fengchao/fengchao.js", "wiki-lemma:widget/promotion/unionAd/unionAd.js"], function (init, unionAd) {
+        init({
+            newLemmaId: "7567977",
+            lemmaTitle: "node.js",
+            encodeLemmaTitle: "node.js",
+            noPcAd: 0
+        }, {
+            errFn: unionAd,
+            dom: $('#side_box_unionAd')
+        });
+    });
+}();
+!function(){    require.async('wiki-lemma:widget/promotion/guessLike/guessLike.js', function (app) {
+        app.init({
+            lemmaTitle: 'node.js'
+        });
+    });
+}();
+!function(){        require.async('wiki-lemma:widget/promotion/bottomAd/bottomAd.js', function (init) {
+            init('BOTTOM_PRO_AD');
+        });
+    }();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var Dialog = require("wiki-common:widget/ui/dialog/dialog.js");
+    var userLogin = require('wiki-common:widget/component/userLogin/userLogin.js');
+    var unameFiller = require('wiki-common:widget/component/unameFiller/unameFiller.js');
+    var rightCheck = require('wiki-lemma:widget/tools/rightCheck/rightCheck.js');
+
+
+    var editUrl = '/edit/' + encodeURIComponent('node.js') + '/' + '7567977';
+
+    function gotoEdit(url, isMidNight) {
+        if (isMidNight) {
+            Dialog.alert({
+                title: '编辑提示',
+                subMsg: '晚23:00至次日8:00，因审核系统例行维护，您提交的版本可能需要较长时间才能通过，望您谅解。',
+                onConfirm: function() {
+                    window.location.href = url;
+                }
+            });
+        } else {
+            window.location.href = url;
+        }    
+    }
+
+    $(document.body).on('click', '.j-edit-link', function() {
+        var dl = $(this).attr('data-edit-dl');
+        if (dl) {
+            var url = editUrl + '?dl=' + dl;
+        } else {
+            var url = editUrl;
+        }
+
+        rightCheck.preeditCheck('7567977', 'node.js', '', '101640521', function(res) {
+            if (res.errno) {
+                switch (res.errno) {
+                    case 100001:
+                        userLogin.showLoginPop();
+                        break;
+                    case 100006: 
+                        unameFiller.show();
+                        break;
+                    case 100005:
+                        alert('对不起，您目前被封禁');
+                        break;
+                    case 110001:
+                        alert('对不起，该词条被锁定');
+                        break;
+                    case 110007:
+                        alert('对不起，消歧页无法编辑');
+                        break;
+                    case 110005:
+                        Dialog.alert({
+                            title: '编辑提示',
+                            mainMsg: '对不起，您暂时没有权限编辑该词条。',
+                            subMsg: '<p>您好，该词条内容已较丰富，现仅对百科等级达到<b>四级</b>且通过率达到<b>85%</b>的科友开放编辑。</p><p>当您通过努力达到以上要求，就可以参与编辑该词条了。</p><p><img src="http://img.baidu.com/img/baike/usercenter/growuptask/star.gif" class="star" />参加<a target="_blank" href="/usercenter#guide">成长任务</a>，更快掌握百科编辑技巧，加速升级！</p>'
+                        });
+                        break;
+                    case 110008:
+                        Dialog.alert({
+                            title: '编辑提示',
+                            mainMsg: '对不起，您暂时没有权限编辑该词条。',
+                            subMsg: '<p>您好，该词条内容已较丰富，现仅对百科等级达到<b>六级</b>且通过率达到<b>85%</b>的科友开放编辑。</p><p>当您通过努力达到以上要求，就可以参与编辑该词条了。</p><p><img src="http://img.baidu.com/img/baike/usercenter/growuptask/star.gif" class="star" />参加<a target="_blank" href="/usercenter#guide">成长任务</a>，更快掌握百科编辑技巧，加速升级！</p>'
+                        });
+                        break;
+                    case 470001:
+                        alert('系统错误，请刷新重试');
+                        break;
+                }
+            } else {
+                if (!res.data.right.noAudit) {
+                    Dialog.alert({
+                        title: '编辑提示',
+                        subMsg: '很抱歉，该词条有其他用户编辑的版本正在提交，您暂时无法编辑。<br/>百科建议您晚些时候再编辑该词条，或者尝试编辑其他的词条。'
+                    });
+                    return;
+                }
+                gotoEdit(url, res.data.notice.isMidNight);
+            }
+        });
+    });
+}();
+!function(){    require.async("wiki-lemma:widget/tools/searchHeader/toolButtons/toolButtons.js",function(init){
+        init({
+            newLemmaId:"7567977",
+            lemmaId:"3974030",
+            subLemmaId:"3974030"
+        });
+    });
+}();
+!function(){    require('wiki-lemma:widget/tools/searchHeader/toolButtons/userInfo.js')();
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js'),
+      animation = require('wiki-common:widget/util/animation.js'),
+      initSearchbar = require('wiki-common:widget/component/searchbar/searchbar.js');
+
+    var isFadeIn = false,
+        isFadeOut = false;
+
+    var fadeInAni, fadeOutAni;
+
+    $(window).on('scroll', function(e) {
+        var scrollTop = $(this).scrollTop();
+
+        if (scrollTop > 200 && !isFadeIn && $('.lemmaWgt-searchHeader').css('display') == 'none') {
+            fadeOutAni && fadeOutAni.stop();
+            fadeInAni = animation({
+                duration: 200,
+                easing: 'linear',
+                onStart: function() {
+                    isFadeOut = false;
+                    isFadeIn = true;
+                    $('.lemmaWgt-searchHeader').css('display', 'block');
+                },
+                onStep: function(progress) {
+                    $('.lemmaWgt-searchHeader').css('opacity', progress)
+                },
+                onComplete: function(progress) {
+                    isFadeIn = false;
+                }
+            });
+        } else if (scrollTop <= 200 && !isFadeOut && $('.lemmaWgt-searchHeader').css('display') == 'block') {
+            fadeInAni && fadeInAni.stop();
+            fadeOutAni = animation({
+                duration: 300,
+                easing: 'linear',
+                onStart: function() {
+                    $('.lemmaWgt-searchHeader #suggestion').hide();
+                    isFadeIn = false;
+                    isFadeOut = true;
+                },
+                onStep: function(progress) {
+                    $('.lemmaWgt-searchHeader').css('opacity', 1 - progress);
+                },
+                onComplete: function(progress) {
+                    isFadeOut = false;
+                    $('.lemmaWgt-searchHeader').css('display', 'none');
+                }
+            });
+        }
+    });
+
+    initSearchbar($('.lemmaWgt-searchHeader'));
+}();
+!function(){	!!window.BKShare && window.BKShare.regist({
+		"tag" : "side-share",
+		"bdSize" : 32,
+		"bdMini":1,
+		"bdPopupOffsetLeft":-72
+	});
+}();
+!function(){    var $ = require('wiki-common:widget/lib/jquery/jquery.js');
+    var nslog = require("wiki-common:widget/component/nslog/nslog.js");
+    var testElem = require('wiki-common:widget/component/testElem/testElem.js');
+
+    require.async("wiki-lemma:widget/tools/lazyLoad/lazyLoad.js", function(LazyLoad) {
+        new LazyLoad();
+    });
+
+    require.async(['wiki-common:widget/component/nslog/nslog.js', 'wiki-common:widget/lib/jquery/jquery.js'], function(nslog, $) {
+        nslog().setGlobal({
+            lemmaId: "3974030",
+            newLemmaId: "7567977",
+            subLemmaId: "3974030",
+            lemmaTitle: "node.js"
+        });
+        
+        // 词条页 pv
+        nslog(9322);
+
+        // 链接点击 pv
+        var lemmaPageRegExp = new RegExp(/\/subview\/\d+|\/view\/\d+|\/item\//i); 
+        $('body').on('mousedown', 'a', function() {
+            var href = $(this).attr('href');
+            if (href && href.indexOf('/') >= 0 && href.indexOf('#') !== 0) {
+                // 链接点击 pv
+                nslog(10000001);
+                if (lemmaPageRegExp.test(href)) {
+                    // 词条页链接点击 pv
+                    nslog(10000002);
+                }
+            }
+        });
+
+        /****** 词条页站内流转需求统计 start ******/
+        (function () {
+            // 各种统计配置
+            var circulationLinkCfg = {
+                innerLink: [ // 内链
+                    '.para',
+                    '.lemmaWgt-baseInfo-simple-largeMovie',
+                    '.lemmaWgt-baseInfo-simple-largeStar',
+                    '.basic-info .basicInfo-block',
+                    '.lemma-summary',
+                    '.lemmaWgt-lemmaSummary',
+                    '.view-tip-panel',
+                    '.horizontal-module',
+                    '.lemmaWgt-roleIntroduction',
+                    '.dramaSeries .dramaSerialList',
+                    '.module-music',
+                    '.table-view',
+                    '[log-set-param="table_view"]',
+                    '.list-module',
+                    '.cell-module',
+                    '.baseBox .dl-baseinfo', // 配置后台字段
+                    '.pvBtn-box .leadPVBtnWrapper',
+                    '.drama-actor',
+                    '#staffList',
+                    '.starMovieAndTvplay',
+                    '.main_tab:not(.main_tab-defaultTab)' // 除去词条tab外的tab
+                ],
+                relationTable: '.rs-container-foot', // 关系表 
+                peopleRelation: '.star-info-block.relations, .lemmaWgt-focusAndRelation', // 人物关系（明星+普通）
+                moduleActors: '.featureBaseInfo .actors, .lemmaWgt-majorActors', // 主要演员、嘉宾、主持人
+                moduleWorks: '.featureBaseInfo .works, .large-feature .works', // 代表作品
+                moduleQuarterly: '.featureBaseInfo .po_quarterly, .mian_quarterly', // 分季介绍
+                rankStar: '.rank-list.stars-rank', // 明星榜
+                rankDrama: '.drama-rank-list', // 电视剧榜
+                specialTopic: '.special-topic', // 专题模块
+                modDetailTable: '#modDetailTable', // 关系表出图
+                chuizhitu: '.chuizhitu', // 垂直化模块
+                polysemantList: '.polysemantList-wrapper' // 义项切换
+            };
+            /****** 连接统计 ******/
+            function clickNslogFn() {
+                for (var k in circulationLinkCfg) {
+                    if (k === 'innerLink') {
+                        // 词条内链到词条页
+                        var tempArr = circulationLinkCfg[k];
+                        for (var i = 0, l = tempArr.length; i < l; i++) {
+                            tempArr[i] += ' a';
+                        }
+                        var sSelector = tempArr.join(', ');
+
+                        $('body').on('mousedown', sSelector, {key: k},function(e) {
+                            var key = e.data.key;
+                            var href = $(this).attr('href');
+                            var tar = $(this).attr('target') || '';
+                            if (href && href.indexOf('/') >= 0 && href.indexOf('#') !== 0 
+                            && tar === '_blank' && lemmaPageRegExp.test(href)) {
+                                // 词条页普通内链点击 pv
+                                nslog(10000004, null ,{division: key});
+                            }
+                        });
+                    } else {
+                        // 模块到词条页链接
+                        $(circulationLinkCfg[k]).on('mousedown', 'a', {key: k}, function (e) {
+                            var key = e.data.key;
+                            var href = $(this).attr('href');
+                            if (href && href.indexOf('#') !== 0 && lemmaPageRegExp.test(href)) {
+                                // 词条页配置模块链接点击 pv
+                                nslog(10000004, null, {division: key});
+                            }
+                        });
+                    }
+                }
+            }
+            // 发起统计请求
+            clickNslogFn();
+            
+            /****** 各模块展现量pv ******/
+            function checkModuleIsShow() {
+                var result = [];
+                for (var k in circulationLinkCfg) {
+                    if (k !== 'innerLink' && k !== 'relationTable') {
+                        !!$(circulationLinkCfg[k]).html() && result.push(k);
+                    }
+                }
+                if (result.length > 0) {
+                    nslog(10000005, null, {showModules: result.join(',')});
+                }
+            }
+            checkModuleIsShow();
+
+        })();
+        /****** 词条页站内流转需求统计 end ******/
+
+    });
+
+    // 广告接入 wikiad 统一加载
+    // log 词条页广告被拦截情况（此处 log 请求行为）
+    nslog(70000101, window.location.href, {
+        api: 'lemma-ad',
+        action: 'request'
+    });    
+    $.ajax({
+        type: 'GET',
+        url: '/api/wikiad/getsquirrels',
+        data: {
+            lemmaId: 7567977
+        },
+        cache: false,
+        dataType: 'JSON',
+        success: function (res) {
+            // log 词条页广告被拦截情况（此处 log 请求成功）
+            nslog(70000101, window.location.href, {
+                api: 'lemma-ad',
+                action: 'success'
+            });
+
+            if (!res.errno) {
+                if (res.data[5]) {
+                    require.async(['wiki-lemma:widget/promotion/rightPreciseAd/rightPreciseAd.js'], function(rightPreciseAd) {
+                        rightPreciseAd(res.data[5]);
+                        nslog(10002201, location.href, {
+                            adId: res.data[5][0].adId,
+                            adTitle: res.data[5][0].name,
+                            adPos: 5
+                        });
+                    });
+                } else if (res.data[1]) {
+                    require.async(['wiki-lemma:widget/promotion/vbaike/vbaike.js'], function(vbaike) {
+                        vbaike(res.data[1]);
+                        for(var i in res.data[1]) {
+                            nslog(10002201, location.href, {
+                                adId: res.data[1][i].adId,
+                                adTitle: res.data[1][i].name,
+                                adPos: 1
+                            });
+                        }
+                    });
+                }
+                if (res.data[9]) {
+                    require.async(['wiki-lemma:widget/promotion/rightBigAd/rightBigAd.js'], function(rightBigAd) {
+                        rightBigAd(res.data[9]);
+                            nslog(10002201, location.href, {
+                                adId: res.data[9][0].adId,
+                                adTitle: res.data[9][0].name,
+                                adPos: 9
+                            });  
+                    });
+                } else if(res.data[2]) {
+                    require.async(['wiki-lemma:widget/promotion/slide/slide.js'], function(slide) {
+                        slide(res.data[2]);
+                        for(var i in res.data[2]) {
+                            nslog(10002201, location.href, {
+                                adId: res.data[2][i].adId,
+                                adTitle: res.data[2][i].name,
+                                adPos: 2
+                            });
+                        }
+                    });
+                }
+                if (res.data[3]) {
+                    require.async(['wiki-lemma:widget/promotion/topAd/topAd.js'], function(topAd) {
+                        topAd(res.data[3]);
+                        nslog(10002201, location.href, {
+                            adId: res.data[3][0].adId,
+                            adTitle: res.data[3][0].name,
+                            adPos: 3
+                        });
+                    });
+                }
+                if (res.data[4]) {
+                    require.async(['wiki-lemma:widget/promotion/rightAd/rightAd.js'], function(rightAd) {
+                        rightAd(res.data[4]);
+                        nslog(10002201, location.href, {
+                            adId: res.data[4][0].adId,
+                            adTitle: res.data[4][0].name,
+                            adPos: 4
+                        });
+                    });
+                }
+            } else {
+                return;
+            }
+
+            setTimeout(function () {
+                var elemArr = {};
+                res.data[1] && res.data[1].length > 0 && (elemArr['lemma-vbaike-ad'] = $('.lemmaWgt-promotion-vbaike .promotion_viewport a:eq(0) img').get(0));
+                res.data[2] && res.data[2].length > 0 && (elemArr['lemma-slide-ad'] = $('.lemmaWgt-promotion-slide .promotion_viewport a:eq(0) img').get(0));
+                res.data[3] && res.data[3].length > 0 && (elemArr['lemma-navbar-ad'] = {
+                    node: $('.header [nslog-type="10002202"]').get(0),
+                    validations: {
+                        'noBackgroundImage': function() {
+                            return $('.header [nslog-type="10002202"]').css('background-image').indexOf(res.data[3][0].picUrl) < 0
+                        }
+                    }
+                });
+                res.data[4] && res.data[4].length > 0 && (elemArr['lemma-side-ad'] = {
+                    node: $('.right-ad img').get(0),
+                    validations: {
+                        'noBackgroundImage': function() {
+                            return $('.right-ad img').attr('src').indexOf(res.data[4][0].picUrl) < 0
+                        }
+                    }                    
+                });
+
+                testElem.log(elemArr, 70000102);
+            }, 1000);            
+        },
+        error: function () {
+            // log 词条页广告被拦截情况（此处 log 请求失败）
+            nslog(70000101, window.location.href, {
+                api: 'lemma-ad',
+                action: 'error'
+            });
+        }
+    });
+
+    // 设置分享内容
+    window.BKShare.setCommon({
+        bdText: '【node.js_百度百科】JavaScript是一种运行在浏览器的脚本，它简单，轻巧，易于编辑，这种脚本通常用于浏览器的前端编程，但是一位开发者Ryan有一天发现这种前端式的脚本语言可以运行在服务器上的时候，一场席卷全球的风暴就开始了。Node.js是一个基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于.....（分享自@百度百科）',
+        bdDesc: '',
+        bdUrl: 'http:\/\/baike.baidu.com\/subview\/3974030\/3974030.htm',
+        bdPic: ''
+    });
+
+    // 底部投诉带入当前页面 url
+    var map = [1, 2, 4, 3];
+    $('.wgt-footer-main .suggestion').find('a').each(function(i) {
+        $(this).attr('href', 'http://tousu.baidu.com/baike/add?word=node.js' + '&&submit_link=' + encodeURIComponent(window.location.href) + '#' + map[i]);
+    });
+}();
+!function(){      require('wiki-common:widget/component/psLink/psLink.js');
+    }();</script><div class="wgt_overlay" style="opacity: 0; position: fixed;"></div><dl class="wgt_dialog modal add-sub-dialog" style="display: none;">
+<dt>添加义项描述<a href="http://baike.baidu.com/view/10811633.htm" target="_blank">义项命名规则</a></dt>
+<dd class="close dialog-btn" title="关闭" btn-key="close"><em class="cmn-icon cmn-icons cmn-icons_close"></em></dd>
+<dd class="con no-icon no-sub-msg">
+<div class="add-sub">                        <div class="content-inner">                            <div class="tip">您需要给原有的义项和新增加的义项都写一个“义项描述”，让读者能分清楚同名的两个事物。</div>                            <div class="example">                                <div class="example-tit">示例</div>                                <div class="example-show">                                    <ul>                                        <li class="show-li clearfix"><div class="tit">词条名</div><div class="content">环太平洋</div></li>                                        <li class="show-li clearfix"><div class="tit">原有义项描述</div><div class="content">地理区域</div></li>                                        <li class="show-li clearfix"><div class="tit">新增义项描述</div><div class="content">2013年美国科幻电影</div></li>                                    </ul>                                </div>                            </div>                            <form action="http://baike.baidu.com/createsub/node.js" method="get">                                <div class="form-item name-lemma clearfix"><label for="">词条名</label><input type="text" value="node.js" disabled="disabled"></div>                                <div class="form-item clearfix"><label for="">原有义项描述(不大于20字)</label><input type="text" value="" name="ori_desc"></div>                                <div class="form-item clearfix"><label for="">新增义项描述(不大于20字)</label><input type="text" value="" name="desc"></div>                                <div class="form-item form-notice"><strong>[注意]</strong>如果原义项中已经罗列了多个义项的内容，那么建议您不要直接添加义项，而是<a href="http://tieba.baidu.com/p/4152042379" target="_blank">报告未拆分多义词。</a></div>                                <div class="add-sub-main-footer"><input type="submit" class="add-sub-main-button add-sub-main-accept" value="确定"><span class="add-sub-main-button add-sub-main-cancel">取消</span></div>                            </form>                        </div>                    </div>
+</dd>
+</dl>
+<script type="text/javascript">
+  var Hunter = window.Hunter || {};
+  Hunter.userConfig = Hunter.userConfig || [];
+  </script>
+<script type="text/javascript" src="./node.js_百度百科_files/baike.js" defer=""></script><script type="text/javascript">
+  // DOM Ready时，统计用户可操作时间。
+  alog('speed.set', 'drt', +new Date);
+
+  // 配置 PD 监控。
+  window.alogObjectConfig = {
+    product: '103',
+    page: '103_1',
+    monkey_page: '',
+    speed_page: '',
+    speed: {
+      sample: '0.008'
+    },
+    monkey: {
+      sample: '1',
+      hid: '1533'
+    },
+    exception: { 
+      sample: '0.004'
+    },
+    feature: {
+      sample: '0.004'
+    },
+    csp: {
+      sample: '0.008',
+      'default-src': [
+        {match: '*.baidu.com,*.bdimg.com,localhost', target: 'Accept'},
+        {match: '*', target: 'Accept,Warn'}
+      ]
+    }
+  };
+
+  void function(a,b,c,d,e,f){function g(b){a.attachEvent?a.attachEvent("onload",b,!1):a.addEventListener&&a.addEventListener("load",b)}function h(a,c,d){d=d||15;var e=new Date;e.setTime((new Date).getTime()+1e3*d),b.cookie=a+"="+escape(c)+";path=/;expires="+e.toGMTString()}function i(a){var c=b.cookie.match(new RegExp("(^| )"+a+"=([^;]*)(;|$)"));return null!=c?unescape(c[2]):null}function j(){var a=i("PMS_JT");if(a){h("PMS_JT","",-1);try{a=a.match(/{["']s["']:(\d+),["']r["']:["']([\s\S]+)["']}/),a=a&&a[1]&&a[2]?{s:parseInt(a[1]),r:a[2]}:{}}catch(c){a={}}a.r&&b.referrer.replace(/#.*/,"")!=a.r||alog("speed.set","wt",a.s)}}if(a.alogObjectConfig){var k=a.alogObjectConfig.sample,l=a.alogObjectConfig.rand;if("https:"===a.location.protocol){if(d="https://gss2.bdstatic.com/70cFsjip0QIZ8tyhnq"+d,!k||!l)return}else d="http://img.baidu.com"+d;k&&l&&l>k||(g(function(){alog("speed.set","lt",+new Date),e=b.createElement(c),e.async=!0,e.src=d+"?v="+~(new Date/864e5),f=b.getElementsByTagName(c)[0],f.parentNode.insertBefore(e,f)}),j())}}(window,document,"script","/hunter/alog/dp.min.js");
+</script>
+<div class="reference-tip"><table><tbody><tr><td class="content"></td><td class="title" valign="middle">参考资料</td></tr></tbody></table><em class="triangle-bg"></em><em class="triangle-border"></em></div><div class="wgt_bubble wgt-bubble-userMenu" style="display: none;"><ul>
+<li class="top"><a href="http://baike.baidu.com/usercenter" target="_blank">我的百科</a></li>
+<li><a href="http://baike.baidu.com/usercenter/tasks#mine" target="_blank">我的任务</a></li>
+<li><a href="http://baike.baidu.com/usercenter/lemmas" target="_blank">我的词条</a></li>
+<li><a href="http://passport.baidu.com/center" target="_blank">账号设置</a></li>
+<li class="bottom logout"><a data-action="logout" href="javascript:;">退出</a></li>
+</ul><em class="tail"></em></div><div class="wgt_bubble wgt-bubble-userMsg" style="display: none;"><ul>
+<li class="top"><a href="http://baike.baidu.com/messages" target="_blank"><span class="userMsgType">通知</span></a></li><li class="bottom"><a href="http://msg.baidu.com/" target="_blank"><span class="userMsgType">私信</span></a></li>
+</ul><em class="tail"></em></div><div id="c-tips-container" class="c-tips-container"></div></body></html>
