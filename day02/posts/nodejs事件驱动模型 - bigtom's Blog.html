@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!-- saved from url=(0104)http://www.chenminhua.com/web/%E5%9C%A8nodejs%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/v4.js" charset="utf-8" id="UYScript"></script><script async="" src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/analytics.js"></script><script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/saved_resource" charset="utf-8" id="uyan_script"></script><script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/ca-pub-3557776493079475.js"></script><script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/id.php" charset="utf-8"></script>
+    <meta property="wb:webmaster" content="f2d06fcc0d0e8765">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="nodejs事件驱动模型 - bigtom&#39;s Blog - bigtom(chenmh@Shanghaitech.edu.cn)">
+    <title>
+        nodejs事件驱动模型 - bigtom's Blog
+    </title>
+    <!-- Bootstrap Core CSS -->
+    <link href="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/blog.css" rel="stylesheet">
+    <link rel="stylesheet" href="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/pygments.css">
+    <script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/hm.js"></script><script type="text/javascript" src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/MathJax.js">
+    </script>
+    <script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/jquery-1.11.0.js">
+    </script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/bootstrap.min.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?52ade1c6df2c4ff5e987b9dc7c7b7fad";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">
+              Toggle navigation
+            </span>
+                    <span class="icon-bar">
+            </span>
+                    <span class="icon-bar">
+            </span>
+                    <span class="icon-bar">
+            </span>
+                </button>
+                <a class="navbar-brand" href="http://www.chenminhua.com/index.html">
+            bigtom's Blog
+          </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                          <ul class="nav navbar-nav">
+            <li>
+              <a href="http://www.chenminhua.com/categories.html">
+                分 类
+              </a>
+            </li>
+            
+            <li>
+              <a href="http://www.chenminhua.com/archives.html">
+                归 档
+              </a>
+            </li>
+           
+            <li>
+              <a href="http://www.chenminhua.com/about.html">
+                关 于
+              </a>
+            </li>
+          </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+                <!-- Blog Post -->
+<!-- Title -->
+<h2>
+  nodejs事件驱动模型
+  <div class="post-date"><a href="https://github.com/https://github.com/chenminhua/https://github.com/chenminhua.github.com/edit/master/_posts/2015-07-05-%E5%9C%A8nodejs%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B.md" target="_blank">纠错</a>&nbsp;&nbsp;
+	<span class="glyphicon glyphicon-time"></span>
+	05 Jul 2015
+  </div>
+</h2>
+<!-- Author -->
+<hr>
+<p>nodejs事件驱动模型为其提供了可扩展性和性能，它不同于大部分web服务器采用的传统线程模型。</p>
+
+<p>#nodejs事件模式
+nodejs应用程序在一个<strong>单线程的事件驱动模型</strong>中运行。虽然node.js在后台实现了一个线程池来工作，但它不是多线程。</p>
+
+<p>###比较事件回调和线程模型
+在传统的线程网络模型中，请求进入一个web服务器，并被分配给一个可用的线程。对这个请求的处理工作就一直在这个进程上进行，直到请求完成并发出响应。</p>
+
+<p>nodejs不是在各个线程为每个请求执行所有工作，反之，它把工作添加到一个事件队列。然后有一个单独的线程运行一个事件循环把工作取出来。</p>
+
+<p>###在nodejs中阻塞I/O
+除非你遇到在I/O上阻塞的函数的问题，否则这个事件模型还是不错的。阻塞I/O停止当前线程的执行并等待一个回应，直到收到回应才能继续。
+阻塞I/O的一些例子有：</p>
+
+<ul>
+  <li>读取文件</li>
+  <li>查询数据库</li>
+  <li>请求套接字</li>
+  <li>访问远程服务</li>
+</ul>
+
+<p>nodejs使用事件回调来避免对阻塞I/O的等待。因此，执行阻塞I/O的任何请求都在后台不同的线程中执行。
+nodejs在后台实现进程池。<strong>当该块的I/O从事件队列中检索一个事件时，nodejs从线程池中获取一个线程，并在那里执行功能而不是主事件循环线程执行功能</strong>
+这可以防止阻塞I/O阻碍事件队列中的其余事件。</p>
+
+<p><strong>在被阻塞的线程上执行的函数仍然可以把事件添加到要进行处理的事件队列中。例如，一个数据库查询调用通常通过回调函数来解析结果，
+并可能会在发送一个响应之前在事件队列上调度其他工作</strong></p>
+
+<p>#将工作添加到事件队列
+要利用事件模型的可扩展性和性能，你要确保把工作分解成可以作为一系列的回调来执行的块。</p>
+
+<p>在nodejs应用程序中，你可以使用下列方法之一传递回调函数来在事件队列中调度工作：</p>
+
+<ul>
+  <li>对阻塞I/O库调用之一做出调用，如写入文件或连接到一个数据库。</li>
+  <li>对内置的事件，如http.request或server.connection添加一个事件监听器。</li>
+  <li>创建自己的事件发生器并对它们添加自定义到监听器。</li>
+  <li>使用process.nextTick选项来调度在事件循环的下一次循环中被提取出的工作。</li>
+  <li>使用定时器来调度在特定的时间数量或每隔一段时间后要做的工作。</li>
+</ul>
+
+<p>###实现定时器
+nodejs和javascript的一个有用的功能是将代码的执行延迟一段时间。这对于你不想总是运行的清理和更新工作非常有用。</p>
+
+<p>在nodejs中你可以实现3种类型的定时器：<strong>超时时间，时间间隔，即时定时器</strong></p>
+
+<p>#####用超时时间来延迟工作。
+创建超时定时器使用nodejs中内置的setTimeout(callback, delayMilliSeconds,[args])方法。
+当你调用setTimeout()时，回调函数在延时结束后才调用callback函数。例如setTimeout(myfunc,1000);</p>
+
+<p>setTimeout()函数返回一个定时器对象的ID,你可以在delayMilliSeconds到期前的任何时候把这个ID传递给clearTimeout(timeoutId)来取消超时时间函数。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">simpleTimeout</span><span class="p">(</span><span class="nx">consoleTimer</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">timeEnd</span><span class="p">(</span><span class="nx">consoleTimer</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s2">"twosecond"</span><span class="p">);</span>
+<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">simpleTimeout</span><span class="p">,</span><span class="mi">2000</span><span class="p">,</span><span class="s2">"twosecond"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s2">"onesecond"</span><span class="p">);</span>
+<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">simpleTimeout</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="s2">"onesecond"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s2">"fivesecond"</span><span class="p">);</span>
+<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">simpleTimeout</span><span class="p">,</span><span class="mi">5000</span><span class="p">,</span><span class="s2">"fivesecond"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s2">"50millisecond"</span><span class="p">);</span>
+<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">simpleTimeout</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="s2">"50millisecond"</span><span class="p">);</span></code></pre></figure>
+
+<p>输出结果为
+<code class="highlighter-rouge">
+50millisecond: 53ms
+onesecond: 1005ms
+twosecond: 2006ms
+fivesecond: 5005ms
+</code></p>
+
+<p>#####用时间间隔执行定期工作
+你可以使用nodejs内置的setInterval(callback,delayMilliSeconds,[args])方法来创建时间间隔计时器。
+例如，语句setInterval(myfunc,1000)每秒执行一次myfunc()</p>
+
+<p>setInterval()函数返回一个定时器对象的id,我们也可以在间隔到期前把这个id传递给clearInterval(intervalId)来取消超时时间函数。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">z</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">displayValues</span><span class="p">(){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"x=%d; y=%d; z=%d"</span><span class="p">,</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">z</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">updatex</span><span class="p">(){</span>
+	<span class="nx">x</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">updatey</span><span class="p">(){</span>
+	<span class="nx">y</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">updatez</span><span class="p">(){</span>
+	<span class="nx">z</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="nx">displayValues</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">setInterval</span><span class="p">(</span><span class="nx">updatex</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+<span class="nx">setInterval</span><span class="p">(</span><span class="nx">updatey</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="nx">setInterval</span><span class="p">(</span><span class="nx">updatez</span><span class="p">,</span> <span class="mi">2000</span><span class="p">);</span></code></pre></figure>
+
+<p>结果为
+<code class="highlighter-rouge">
+x=3; y=1; z=1
+x=7; y=3; z=2
+x=11; y=5; z=3
+x=15; y=7; z=4
+x=19; y=9; z=5
+x=23; y=11; z=6
+x=27; y=13; z=7
+x=31; y=15; z=8
+x=35; y=17; z=9
+x=39; y=19; z=10
+x=43; y=21; z=11
+x=47; y=23; z=12
+x=51; y=25; z=13
+x=55; y=27; z=14
+x=59; y=29; z=15
+.....
+</code></p>
+
+
+<br>
+<div style="margin-top:10px;margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="http://www.chenminhua.com/web/%E5%9C%A8nodejs%E4%B8%AD%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AEIO.html">
+      nojs之IO
+    </a>
+  </span>
+   
+  
+  <span class="prev">
+    下篇：
+    <a href="http://www.chenminhua.com/web/apache_php4mac.html">
+      apache_mysql_php4mac
+    </a>
+  </span>
+  
+</div>
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+    <!-- UY BEGIN -->
+  <div id="uyan_frame">
+  <iframe id="uyan_ifr_8319719" scrolling="no" frameborder="0" src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/saved_resource.html" style="height: 597px; display: block !important; width: 100% !important; border: 0px none !important; overflow: hidden !important;"></iframe></div>
+  <script type="text/javascript" src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/uyan.js">
+  </script><script type="text/javascript" src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/plugin.client.js" charset="utf-8"></script>
+  <!-- UY END --> 
+</div>
+
+            </div>
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>
+              站内搜索
+            </h4>             <form action="https://google3.azurewebsites.net/search" method="get">
+              <div class="input-group">
+                <input type="text" name="q" class="form-control">
+				<input type="hidden" name="ie" value="UTF-8">
+				<input type="hidden" name="sitesearch" value="">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                    <span class="glyphicon glyphicon-search">
+                    </span>
+                  </button>
+                </span>
+              </div>
+            </form>
+                    <!-- /.input-group -->
+                </div>
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>
+              分 类
+            </h4>
+                    <div class="row">
+                                      <div class="col-lg-6">
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#无聊世界的乐趣">
+                      无聊世界的乐趣
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#无聊世界的正经事">
+                      无聊世界的正经事
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#headlights">
+                      headlights
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#python">
+                      python
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#编程语言">
+                      编程语言
+                    </a>
+                  </li>                  
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#web">
+                      Web开发
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#algorithm">
+                      algorithm
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#machine_learning">
+                      machine_learning
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#data_structure">
+                      data_structure
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.chenminhua.com/categories.html#linux">
+                      linux
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- Blog Links Well -->
+                <div class="well">
+                    <h4>
+              相关链接
+            </h4>             <ul class="list-unstyled">
+             
+              <li>
+                <a href="https://github.com/chenminhua">
+                  my GitHub
+                </a>
+              </li>   
+              <li>
+                <a href="http://www.stackoverflow.com/">
+                  Stack Overflow
+                </a>
+              </li>
+            </ul>
+
+                </div>
+                <!-- Side Widget Well -->
+                <div class="well">
+                                <script async="" src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/adsbygoogle.js">
+            </script>
+            <!-- ArticleRa -->
+            <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-3557776493079475" data-ad-slot="3861947889" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/saved_resource(2).html"></iframe></ins></ins></ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        <hr>
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                                <p align="center">
+				Copyright © , hosted on <a href="https://github.com/">GitHub</a>, powered by Jekyll, designed by <a href="https://github.com/panxw">panxw</a>. <a href="https://github.com/https://github.com/chenminhua/https://github.com/chenminhua.github.com">[source]</a>
+				<br>
+				 <a href="http://www.chenminhua.com/atom.xml">[Feed]</a>
+            </p>
+
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div style="display:none;"><script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/stat.php" language="JavaScript"></script><script src="./nodejs事件驱动模型 - bigtom&#39;s Blog_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=5868355" target="_blank" title="站长统计">站长统计</a></div>
+            <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72073731-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+        </footer>
+    </div>
+
+    <!-- /.container -->
+
+
+</body></html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0061)https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN" class="dj_webkit dj_chrome dj_contentbox"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>被误解的 Node.js</title>
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="https://www.ibm.com/favicon.ico">
+<meta name="DC.Rights" content="© Copyright IBM Corporation 2012">
+<meta name="Keywords" content="Node.js, JavaScript, 事件驱动, tttwaca">
+<meta name="DC.Date" scheme="iso8601" content="2012-01-31">
+<meta name="Source" content="v17 delivery:developerWorks">
+<meta name="Security" content="Public">
+<meta name="Abstract" content="如果经常浏览各大技术网站，那么你会发现自己很难错过 Node.js，程序员们兴奋地说：JavaScript 也可以开发服务器端的程序了！没错，Node.js 的确为我们提供了这种便利，前台后台都用同一种语言实现。但这种兴奋，却极易掩盖 Node.js 另外一个重要的特性：基于事件驱动的编程模型。而后者，才真正使得 Node.js 成为开发高并发大型网络应用的关键。本文详细介绍了 Node.js 的核心，即基于事件驱动的编程模型，并与传统的单线程和多线程编程模型进行对比。文章最后提供了一个完整的 Web 应用，帮助您理解 Node.js 的编程方式。">
+<meta name="Description" content="如果经常浏览各大技术网站，那么你会发现自己很难错过 Node.js，程序员们兴奋地说：JavaScript 也可以开发服务器端的程序了！没错，Node.js 的确为我们提供了这种便利，前台后台都用同一种语言实现。但这种兴奋，却极易掩盖 Node.js 另外一个重要的特性：基于事件驱动的编程模型。而后者，才真正使得 Node.js 成为开发高并发大型网络应用的关键。本文详细介绍了 Node.js 的核心，即基于事件驱动的编程模型，并与传统的单线程和多线程编程模型进行对比。文章最后提供了一个完整的 Web 应用，帮助您理解 Node.js 的编程方式。">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2012-01-31">
+<meta name="Owner" content="developerWorks/China/IBM">
+<meta name="DC.Language" scheme="rfc1766" content="zh-CN">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.Country" content="CN">
+<meta name="Robots" content="index,follow">
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316">
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="TTA00">
+<meta name="dW.ContentArea" content="5">
+<meta name="dW.Topic" content="61,107,62">
+
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" content="SOFDCDEVCN">
+
+<link rel="canonical" href="http://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/index.html">
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link href="./被误解的 Node.js_files/www.css" rel="stylesheet" title="www" type="text/css">
+<link href="./被误解的 Node.js_files/cnzh.css" rel="stylesheet" title="www" type="text/css">
+<!-- Masthead/footer -->
+<link href="./被误解的 Node.js_files/dw-mfN2015-01.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./被误解的 Node.js_files/dw-article-6.css" rel="stylesheet" title="www" type="text/css">
+<link href="./被误解的 Node.js_files/dw-common-features.css" rel="stylesheet" title="www" type="text/css">
+<link href="./被误解的 Node.js_files/dw-local-site-v17-N2014-05.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+        <link href="./被误解的 Node.js_files/dw-bluemix-regbar.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/eluminate.js" id="tealium_cormetrics1245"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/eluminate.js" id="tealium_cormetrics1239"></script><script src="./被误解的 Node.js_files/utag.js" type="text/javascript" async=""></script><script type="text/javascript" src="./被误解的 Node.js_files/www.js">//</script><script type="text/javascript" src="./被误解的 Node.js_files/eluminate(1).js"></script>
+<script type="text/javascript" src="./被误解的 Node.js_files/dw-www-v2.js">//</script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/Dialog.xd.js"></script>   
+<script type="text/javascript">dojo.addOnLoad(function(){var dw_lang="zh_CN";var dw_source="dwchina";var dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-2];if(dw_content=="library"){dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-1];dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-3]+"-"+dw_content.substring(0,dw_content.indexOf(".html"))}var lnkID="article-rbar-bmix-home-regbar";dojo.attr(dojo.query(".dw-regbar-btn")[0],"id",lnkID);var lnkHref=dojo.attr(dojo.byId(lnkID),"href")+"?lang="+dw_lang+"&ca="+dw_source+"-_-bluemix-_-"+dw_content+"-_-regbar-article";dojo.attr(dojo.byId(lnkID),"href",lnkHref);var rbstate=dojo.cookie("dwspck");if(rbstate==undefined)rbstate=0;rbstate=Number(rbstate);if(rbstate>=2)rbstate=0;if(rbstate==1){dojo.destroy("dw-regbar");return}var dwRegbarShow=dojo.animateProperty({node:"dw-regbar",duration:1000,delay:1000,properties:{opacity:{start:0,end:1},top:0}});var ibmTopSlideDown=dojo.animateProperty({node:"ibm-top",duration:1000,delay:1000,properties:{marginTop:{start:0,end:42}}});dwRegbarShow.play();ibmTopSlideDown.play();dwHideRegbar=function(){var dwRegbarHide=dojo.animateProperty({node:"dw-regbar",duration:1000,delay:0,properties:{opacity:{start:1,end:0},top:-100}});var ibmTopSlideUp=dojo.animateProperty({node:"ibm-top",duration:1000,delay:0,properties:{marginTop:{start:42,end:0}}});dwRegbarHide.play();ibmTopSlideUp.play();setTimeout(function(){dojo.destroy("dw-regbar")},1000);dojo.cookie("dwspck","1",{expires:3650,path:"/",domain:".ibm.com"})};});</script><script type="text/javascript">
+//  ibmweb.config.set({ sbs: { enabled: false }});
+</script>
+<script type="text/javascript">dojo.addOnLoad(function(){var dw_lang="zh_CN";var dw_source="dwchina";var dw_register="注册免费的 Bluemix 试用版";var dw_connect="连接 Bluemix 开发者";var dw_vp="在 IBM Bluemix 云平台上开发并部署您的下一个应用。";var dw_cta="开始您的试用";var dw_tile_alt="在 IBM Bluemix 云平台上开发并部署您的下一个应用。现在就开始免费试用";var dw_campaign="bluemix";var dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-2];if(dw_content=="library"){dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-1];dw_content=window.location.pathname.split("/")[window.location.pathname.split("/").length-3]+"-"+dw_content.substring(0,dw_content.indexOf(".html"))}var bluDevComURL="https://developer.ibm.com/bluemix/";var bluLink="https://www.bluemix.net/";var lnkID;var lnkIDd;var lnkIDt;var bLinkEnd;var bLinkTemp;var idTrkr=[];var idCnt;var artTop=dojo.query("div.ibm-col-1-1")[0];var artChildren=dojo.query(artTop).children();var edgy=false;if(dojo.hasClass(artChildren[0],"ibm-inset"))edgy=true;if((artChildren[0].nodeName=="H2")&&(dojo.hasClass(artChildren[1],"ibm-inset")))edgy=true;if(dojo.hasClass(artChildren[0],"codesection"))edgy=true;if((artChildren[0].nodeName=="H5")&&(dojo.hasClass(artChildren[1],"codesection")))edgy=true;if((artChildren[0].nodeName=="H5")&&(artChildren[1].width>=701))edgy=true;if(artChildren[1].width>=701)edgy=true;if(dojo.hasClass(artChildren[0],"ibm-data-table"))edgy=true;if((artChildren[0].nodeName=="H5")&&(dojo.hasClass(artChildren[1],"ibm-data-table")))edgy=true;if(!(edgy)){var sBarAB='<div class="dw-article-sidebar dw-bluemix" id="dwc-exp-a">'+'<img src="//dw1.s81c.com/developerworks/i/bluemix-graphic.png" height="64" width="64" alt=""/>'+'<p>'+dw_vp+'</p>'+'<p class="ibm-button-link-alternate dw-button-green">'+'<a id="tutc-sbar-bmix-home-btn-ABa" href="'+bluLink+'" class="dw-button-large">'+dw_cta+'</a></p></div>';dojo.place(sBarAB,artTop,"first")}var omitList=["#","/catalog","/doc","/solutions"];dojo.forEach(dojo.query("#ibm-content-main a"),function(item,index){var bLink=dojo.attr(item,"href");if(bLink&&bLink.indexOf("/marketplace/cloud/developerworks/")>-1)bLink=bLink.replace("/developerworks/","/developer-program/");if(bLink&&(bLink.indexOf("//bluemix.net")>-1))bLink=bLink.replace("//bluemix.net","//www.bluemix.net");if(bLink&&(bLink.indexOf("//ace.ng.bluemix.net")>-1))bLink=bLink.replace("//ace.ng.bluemix.net","//www.bluemix.net");if(bLink&&(bLink.indexOf("//console.ng.bluemix.net")>-1))bLink=bLink.replace("//console.ng.bluemix.net","//www.bluemix.net");if(bLink&&((bLink.indexOf("/marketplace/cloud/developer-program")>-1)||(bLink.indexOf("developer.ibm.com/sso/bmregistration")>-1)||(bLink.indexOf("//www.bluemix.net")>-1)||(bLink.indexOf("//hub.jazz.net")>-1)||(bLink.indexOf("//developer.ibm.com/open")>-1))){var omitIt=false;for(var i=omitList.length-1;i>=0;--i){if(bLink.indexOf(omitList[i])!=-1){omitIt=true;break}}if(!(omitIt)){var linkClass=dojo.attr(item,"class");var dw_medium="article";if((dojo.attr(item,"id")!=null)&&(dojo.attr(item,"id").indexOf("-sbar-")>-1))dw_medium="sidebar";if((dojo.attr(item,"id")!=null)&&(dojo.attr(item,"id").indexOf("-vpromo-")>-1))dw_medium="video-promotion";if(dojo.query(item).parents(".dw-article-ps-sidebar").length!=0)dw_medium="sidebar";if(dojo.query(item).children("img").length!=0)dw_medium="ad";if(dojo.query(item).parents("ul.ibm-portrait-module-list").length!=0)dw_medium="tile";bLinkEnd="";bLink=bLink.split("?");if((bLink[1])&&(bLink[1].indexOf("repository=")!=-1)){var deployBtn=true;bLink[0]=bLink[0]+"?"+bLink[1];bLink[1]=null}if((bLink[1])&&(bLink[1].indexOf("/")!=-1))bLinkEnd=bLink[1].substring(bLink[1].indexOf("/"));bLink=bLink[0];if(bLink.indexOf("//developer.ibm.com/open")==-1){if(bLink.indexOf("//hub.jazz.net")>-1){if(!(deployBtn)&&((bLink.indexOf("//hub.jazz.net/git")>-1)||(bLink.indexOf("//hub.jazz.net/project")>-1))){bLink=bLink+"?utm_source="+dw_source+"&utm_medium="+dw_medium+"&utm_content="+dw_content+"&utm_campaign="+dw_campaign}else{if(deployBtn){bLink=bLink+"&cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}else{bLink=bLink+"?utm_source="+dw_source+"&utm_campaign="+dw_campaign+"&utm_content="+dw_content+"&utm_medium="+dw_medium}}}else{if(bLink.indexOf("/#/")==-1){if(bLink.substring(bLink.length-7)=="/docs/#"){bLink=bLink.replace("/docs/#","/docs/"+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium)}else if(bLink.substring(bLink.length-5)=="/docs"){bLink=bLink.replace("/docs","/docs/"+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium)}else if(bLink.indexOf("/marketplace/cloud/developer-program")!=-1){bLink=bLink+"?cm_sp="+dw_source+"-premium"+"-_-"+dw_content+"-_-"+dw_medium;}else{bLink=bLink+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}}else{bLink=bLink.substring(0,bLink.indexOf("#"))+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium+bLink.substring(bLink.indexOf("#")-1)}}if(bLinkEnd)bLink=bLink+bLinkEnd;if(linkClass.indexOf("bluemix-home")==-1){if((bLink.indexOf("#")==-1)&&(bLink.indexOf("/solutions")==-1)&&(bLink.indexOf("/catalog")==-1)&&((bLink.indexOf("developer.ibm.com/sso/bmregistration")!=-1)||(bLink.indexOf("//www.bluemix.net/")!=-1))){if(bLink.indexOf("//www.bluemix.net/")!=-1)bLink=bLink.replace("//www.bluemix.net/","//developer.ibm.com/sso/bmregistration");if(bLink.indexOf("http://")==0)bLink=bLink.replace("http://","https://");if(bLink.indexOf("//")==0)bLink=bLink.replace("//","https://");if(bLink.indexOf("?cm_mmc=")!=-1)bLink=bLink.replace("?cm_mmc=","?lang="+dw_lang+"&ca=")}if((bLink.indexOf("#")==-1)&&(bLink.indexOf("/solutions")==-1)&&(bLink.indexOf("//www.bluemix.net?")!=-1)){bLink=bLink.replace("//www.bluemix.net","//developer.ibm.com/sso/bmregistration");if(bLink.indexOf("http://")==0)bLink=bLink.replace("http://","https://");if(bLink.indexOf("//")==0)bLink=bLink.replace("//","https://");if(bLink.indexOf("?cm_mmc=")!=-1)bLink=bLink.replace("?cm_mmc=","?lang="+dw_lang+"&ca=")}}if((bLink.indexOf("#")!=-1)&&(bLink.indexOf("solutions")!=-1)){bLinkTemp=bLink.substring(0,bLink.indexOf("?"));bLink=bLink.substring(bLink.indexOf("/#/")+3,bLink.length);bLink=bLinkTemp+bLink;bLinkTemp=bLink.substring(0,bLink.indexOf("solution="));bLink=bLink.substring(bLink.indexOf("/solution=")+10,bLink.length);bLink=bLinkTemp+bLink;bLink=bLink+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}if((bLink.indexOf("#")!=-1)&&(bLink.indexOf("store")!=-1)){if(bLink.indexOf("&cloudOEPaneId=store")!=-1){bLinkTemp=bLink.split("&cloudOEPaneId=store");bLink=bLinkTemp[0]}bLinkTemp=bLink.substring(bLink.indexOf("serviceOfferingGuid=")+20,bLink.length);bLink=bLink.substring(0,bLink.indexOf(".net/")+5)+"catalog/"+bLinkTemp+"?cm_mmc="+dw_source+"-_-"+dw_campaign+"-_-"+dw_content+"-_-"+dw_medium}}dojo.attr(item,"href",bLink);}}});});</script>  <!-- LEADSPACE_STYLES -->
+
+<script type="text/javascript" src="./被误解的 Node.js_files/cnzh-utf8.js" id="dojoIoScript2" charset="utf-8"></script><script type="text/javascript" src="./被误解的 Node.js_files/saved_resource" id="dojoIoScript3" charset="utf-8"></script><script type="text/javascript" src="./被误解的 Node.js_files/profiling.js" id="dojoIoScript4" charset="utf-8"></script><script type="text/javascript" src="./被误解的 Node.js_files/atrk.js" id="dojoIoScript5" charset="utf-8"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/move.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/TimedMoveable.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/_CssStateMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/_FormMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/_DialogMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/DialogUnderlay.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/ContentPane.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/common.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/TooltipDialog.xd.js"></script><script type="text/javascript" src="./被误解的 Node.js_files/blackwhite_lists.json" id="dojoIoScript6" charset="utf-8"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/Mover.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/Moveable.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/_ContentPaneResizeMixin.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/html.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/loading.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/common.xd(1).js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/autoscroll.xd.js"></script><script type="text/javascript" charset="utf-8" src="./被误解的 Node.js_files/_LayoutWidget.xd.js"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1790.js" id="utag_ibm.main_1790"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1239.js" id="utag_ibm.main_1239"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.684.js" id="utag_ibm.main_684"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.694.js" id="utag_ibm.main_694"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.699.js" id="utag_ibm.main_699"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.752.js" id="utag_ibm.main_752"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.763.js" id="utag_ibm.main_763"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1150.js" id="utag_ibm.main_1150"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1172.js" id="utag_ibm.main_1172"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1197.js" id="utag_ibm.main_1197"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1260.js" id="utag_ibm.main_1260"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1278.js" id="utag_ibm.main_1278"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1175.js" id="utag_ibm.main_1175"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1897.js" id="utag_ibm.main_1897"></script><script async="" src="./被误解的 Node.js_files/hotjar-42920.js"></script><script src="./被误解的 Node.js_files/modules-c69666eaf6b3072ebc80c2f8d535b527.js"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/i.js" id="tealium_setTTDid"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/i.js" id="tealium_setTTDid"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.v.js" id="tiqapp"></script><script language="javascript" type="text/javascript" src="./被误解的 Node.js_files/50200000.js"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/i.js" id="tealium_setTTDid"></script><script language="javascript" type="text/javascript" src="./被误解的 Node.js_files/cookie-id.js"></script><script language="javascript" type="text/javascript" src="./被误解的 Node.js_files/rules_50200000.js"></script><script language="javascript" type="text/javascript" src="./被误解的 Node.js_files/dispatcher-v3.js"></script><script src="./被误解的 Node.js_files/yahoo-min.js" type="text/javascript"></script><script src="./被误解的 Node.js_files/cp-v3.js" type="text/javascript"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/i.js" id="tealium_setTTDid"></script><script src="./被误解的 Node.js_files/json-min.js" type="text/javascript"></script><script language="javascript" type="text/javascript" src="./被误解的 Node.js_files/50200000.js"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/utag.1245.js" id="utag_ibm.main_1245"></script><script language="javascript" type="text/javascript" src="./被误解的 Node.js_files/50200000.js"></script><script type="text/javascript" async="" charset="utf-8" src="./被误解的 Node.js_files/015337a12b1200028f72e1d590e205071003d06900838" id="tealium_visitor_service_1175main"></script></head>
+<body id="ibm-com" class="v17" aria-busy="false">
+<div id="dw-regbar" class="dw-home-band" aria-labelledby="dw-regbar-vp" role="complementary" style="opacity: 1; top: 0px;">
+    <div class="ibm-columns">
+        <div class="ibm-col-6-6">
+            <span id="dw-regbar-bluemix">IBM <strong>Bluemix</strong></span>
+            <span id="dw-regbar-vp">点击按钮，开始云上的开发！</span>
+            <p class="ibm-button-link-alternate dw-button-green">
+                <a class="dw-button-large dw-regbar-btn" href="https://developer.ibm.com/sso/bmregistration?lang=zh_CN&amp;ca=dwchina-_-bluemix-_-1201_wangqf_nodejs-_-regbar-article" id="article-rbar-bmix-home-regbar">开始您的试用</a>
+            </p>
+        </div>
+    </div>
+    <span>
+        <a onclick="dwHideRegbar();" role="button">
+            <span id="dw-close-regbar" aria-label="Close the registration bar" title="Close the registration bar" role="button">
+        </span></a>
+    </span>
+</div>
+	<div id="ibm-top" class="ibm-landing-page ibm-no-scroll" style="margin-top: 42px;"><img src="./被误解的 Node.js_files/ibm_logo_print.png" width="43" height="15" id="ibm-print-masthead" alt="IBM Print">
+
+<!-- MASTHEAD_BEGIN -->		
+<div id="ibm-masthead" role="banner">
+
+    <!-- TOP ROW -->    
+	<div id="dw-masthead-top-row">
+		<ul id="ibm-mast-options-dw" role="toolbar" aria-label="Masthead navigation">
+			<li id="dw-mast-top-4" role="presentation">
+				<a href="http://www.ibm.com/developerworks/cn/" tabindex="0"><img src="./被误解的 Node.js_files/dwn-dw-badge.png" width="43" height="22" alt="dW" aria-label="dW"></a>
+			</li>
+			<li id="dw-mast-top-0" role="presentation">
+				<div id="dw-mast-signin">
+					<a id="dw-mf-signin-link" class="" href="https://www.ibm.com/developerworks/dwwi/jsp/ssologin.jsp?d=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F&amp;lang=zh_CN&amp;a=dwmav" title="" tabindex="2">登录</a>
+					<span class="dw-mf-signin-spacer">|</span>
+					<a id="dw-mf-reg-link" class="" href="https://www.ibm.com/developerworks/dwwi/jsp/ssoregister.jsp?d=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F&amp;lang=zh_CN&amp;a=dwmav" title="" tabindex="3">注册</a>
+				</div>
+				<div id="dw-mast-auth-link" class="dw-mf-hide">
+					<a class="authenticated ibm-active" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#" role="button" tabindex="2"></a>
+					<ul id="dw-mast-auth-menu" class="dw-mf-hide">
+						<li class="dw-mast-auth-menu-title" aria-hidden="true">developerWorks 社区</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="https://www.ibm.com/developerworks/community/profiles/html/myProfileView.do?lang=zh" tabindex="3">我的概要信息</a>
+						</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="https://www.ibm.com/developerworks/community/groups/service/html/mycommunities?lang=zh" tabindex="4">我的社区</a>
+						</li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a href="https://www.ibm.com/developerworks/community/news/?lang=zh" tabindex="5">设置</a>
+						</li>
+						<li class="dw-mast-auth-menu-divider"><hr></li>
+						<li>
+							<span class="dw-mast-auth-menu-arrow" aria-hidden="true">›</span><a id="dw-mast-signout-link" href="https://www.ibm.com/developerworks/dwwi/jsp/ssologout.jsp?d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2F&amp;a=dwmav" tabindex="6">退出</a>
+						</li>
+					</ul>				
+				</div>
+			</li>
+			<li id="dw-mast-top-1">
+				<div></div>
+			</li>
+			<li id="dw-mast-top-3" role="presentation">
+				<a href="http://www.ibm.com/cn/zh/" tabindex="1">IBM</a>
+			</li>
+		</ul>
+	</div>
+
+    <!-- BOTTOM ROW -->
+	<div id="ibm-universal-nav-dw" aria-label="Site map">
+		<ul id="ibm-unav-links-dw">
+			<li id="ibm-unav-home-dwlogo">
+				<a href="http://www.ibm.com/developerworks/cn/"><img src="./被误解的 Node.js_files/dwn-dw-wordmark.png" width="225" height="28" alt="developerWorks®"></a>
+			</li>
+		</ul>
+		<ul id="ibm-menu-links-dw" class="ibm-menu-links-dw-cn" role="toolbar" aria-label="Site map">
+			<li id="dw-mast-nav-0" role="presentation"><a href="http://www.ibm.com/developerworks/cn/topics/" tabindex="0">技术主题</a></li>
+			<li id="dw-mast-nav-1" role="presentation"><a href="http://www.ibm.com/developerworks/cn/downloads/" tabindex="0">软件下载</a></li>
+			<li id="dw-mast-nav-2" role="presentation"><a href="http://www.ibm.com/developerworks/community/?lang=zh" tabindex="0">社区</a></li>
+			<li id="dw-mast-nav-3" role="presentation"><a href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&amp;lang=zh" tabindex="0">技术讲座</a></li>
+		</ul>
+		<form id="ibm-search-form" action="https://www.ibm.com/search/csass/search/" method="get" name="form1" aria-label="搜索 developerWorks" role="search">
+			<p>
+				<label for="q"><span class="ibm-access">搜索 developerWorks</span></label>
+				<input id="q" type="text" name="q" value="搜索 developerWorks" maxlength="100">
+				<input type="hidden" name="sn" value="dw">
+				<input type="hidden" name="lang" value="zh">
+				<input type="hidden" name="cc" value="CN">
+				<input type="hidden" name="en" value="utf">
+				<input type="hidden" name="hpp" value="20">
+				<input type="hidden" name="dws" value="cndw">
+				<input type="hidden" name="lo" value="zh">
+				<input id="ibm-search" class="ibm-btn-search" type="submit" value="提交">
+			</p>
+		</form>
+	</div>    
+	
+<div id="ibm-social-tools" role="navigation" aria-label="社交工具" style="display: block;"><ul role="toolbar" aria-label="Social tool list"><li><a class="ibm-share-print" title="打印本页面" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#" rel="print" dojoattrid="0" role="button" tabindex="0">打印本页面</a></li><li><a class="ibm-share-email" title="用电子邮件发送本页面" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#" rel="email" dojoattrid="1" role="button" tabindex="-1">用电子邮件发送本页面</a></li><li></li><li></li><li><a class="ibm-share-weibo" tabindex="-1" role="button" dojoattrid="2" rel="新浪微博" title="新浪微博" href="http://service.weibo.com/share/share.php?title=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js&amp;url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F&amp;language=zh_cn" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://service.weibo.com/share/share.php?title=%{TITLE}&amp;url=%{URL}&amp;language=zh_cn&#39;});">新浪微博</a></li><li><a class="ibm-share-renren" tabindex="-1" role="button" dojoattrid="3" rel="人人网" title="人人网" href="http://share.renren.com/share/buttonshare?title=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js&amp;link=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://share.renren.com/share/buttonshare?title=%{TITLE}&amp;link=%{URL}&#39;});">人人网</a></li><li><a class="dwcn-tencent-link" tabindex="-1" role="button" dojoattrid="4" rel="腾讯微博" title="腾讯微博" href="http://v.t.qq.com/share/share.php?title=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js&amp;url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://v.t.qq.com/share/share.php?title=%{TITLE}&amp;url=%{URL}&#39;});">腾讯微博</a></li><li><a class="dwcn-sohu-link" tabindex="-1" role="button" dojoattrid="5" rel="搜狐微博" title="搜狐微博" href="http://t.sohu.com/third/post.jsp?title=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js%20&amp;link=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://t.sohu.com/third/post.jsp?title=%{TITLE}%20&amp;link=%{URL}&#39;});">搜狐微博</a></li><li><a class="dwcn-netease-link" tabindex="-1" role="button" dojoattrid="6" rel="网易微博" title="网易微博" href="http://t.163.com/article/user/checkLogin.do?info=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js%20https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://t.163.com/article/user/checkLogin.do?info=%{TITLE}%20%{URL}&#39;});">网易微博</a></li><li><a class="ibm-share-digg" title="Digg" href="http://digg.com/submit?phase=2&amp;url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F&amp;title=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js" rel="digg" dojoattrid="7" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://digg.com/submit?phase=2&amp;url=%{URL}&amp;title=%{TITLE}&#39;});">Digg</a></li><li><a class="ibm-share-facebook" title="Facebook" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F&amp;t=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js" rel="facebook" dojoattrid="8" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://www.facebook.com/sharer.php?u=%{URL}&amp;t=%{TITLE}&#39;});">Facebook</a></li><li><a class="ibm-share-twitter" title="Twitter" href="http://twitter.com/?status=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F%20-%20%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js" rel="twitter" dojoattrid="9" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://twitter.com/?status=%{URL}%20-%20%{TITLE}&#39;});">Twitter</a></li><li><a class="ibm-share-delicious" title="Delicious" href="http://delicious.com/post?url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F&amp;title=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js" rel="delicious" dojoattrid="10" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://delicious.com/post?url=%{URL}&amp;title=%{TITLE}&#39;});">Delicious</a></li><li><a class="ibm-share-linkedin" title="Linked In" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F&amp;title=%E8%A2%AB%E8%AF%AF%E8%A7%A3%E7%9A%84%20Node.js" rel="linkedin" dojoattrid="11" role="button" tabindex="-1" onclick="ibmweb.sbs.clickHandler(event,{url:&#39;http://www.linkedin.com/shareArticle?mini=true&amp;url=%{URL}&amp;title=%{TITLE}&#39;});">Linked In</a></li></ul></div></div>
+<div id="fdiv" class="ibm-access"></div><!-- MASTHEAD_END -->
+	    
+<!-- LAYOUT -->
+<!-- LEADSPACE_BEGIN --> 
+<div id="ibm-access-cntr" role="main"><div id="ibm-leadspace-head">
+	<!-- LEADSPACE_BODY_BEGIN --> 
+	<div id="ibm-leadspace-body">
+		<!-- Navigation_Trail_BEGIN -->
+      <ul id="ibm-navigation-trail" role="directory" aria-label="Bread Crumbs"><li><a href="http://www.ibm.com/developerworks/cn/">developerWorks 中国</a></li><li><a href="http://www.ibm.com/developerworks/cn/topics/">技术主题</a></li><li><a href="http://www.ibm.com/developerworks/cn/web/">Web development</a></li><li><a href="http://www.ibm.com/developerworks/cn/views/web/libraryview.jsp">文档库</a></li></ul>
+		<!-- END_Navigation_Trail -->
+			<!-- Title_Subtitle -->
+			<h1>被误解的 Node.js
+		</h1>
+	</div>
+	<!-- LEADSPACE_BODY_END --> 
+	<!-- SUMMARY_BEGIN -->
+	<div id="dw-summary-area" class="dw-summary-columns">
+		<div class="ibm-col-6-4">
+		<p>如果经常浏览各大技术网站，那么你会发现自己很难错过 Node.js，程序员们兴奋地说：JavaScript 也可以开发服务器端的程序了！没错，Node.js 的确为我们提供了这种便利，前台后台都用同一种语言实现。但这种兴奋，却极易掩盖 Node.js 另外一个重要的特性：基于事件驱动的编程模型。而后者，才真正使得 Node.js 成为开发高并发大型网络应用的关键。本文详细介绍了 Node.js 的核心，即基于事件驱动的编程模型，并与传统的单线程和多线程编程模型进行对比。文章最后提供了一个完整的 Web 应用，帮助您理解 Node.js 的编程方式。</p>
+		<p class="ibm-no-print ibm-ind-link">
+
+			
+			<span id="nCmts"><span>7</span><img class="dw-cmts-arrow" alt="" src="./被误解的 Node.js_files/dw-cmts-arrow.png" height="7" width="7"> <a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#icomments" class="dw-cmt-link">评论：</a></span>
+		</p>
+		</div>
+		<div class="ibm-col-6-2 dw-toc-margin">
+			<p class="dw-summary-author"><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#authorN10018" class="ibm-popup-link" onclick="ibmweb.overlay.show(&#39;authorN10018&#39;,this);return false;" role="button">王 群锋</a>, 软件工程师,  IBM</p>
+<div id="authorN10018" class="ibm-common-overlay"><div class="ibm-head"><p><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#close" class="ibm-common-overlay-close">关闭 [x]</a></p></div><div class="ibm-body"><div class="ibm-main"><div class="ibm-title"><!--this is where the h2 usually goes--></div><div class="ibm-container ibm-alternate"><div class="ibm-container-body">
+<p><!--.-->
+王群锋现供职于 IBM 中国研发中心，从事统计数据可视化的工作。</p><br><br></div></div></div></div><div class="ibm-footer"><!----></div></div>
+			<p class="dw-summary-date">2012 年 1 月 31 日</p>
+			
+
+
+			<div aria-hidden="true" class="ibm-container" id="dw-toc"><div class="ibm-container-body"><ul class="ibm-twisty"><li><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#toggle" class="ibm-twisty-trigger ibm-twisty-trigger-closed"><img src="./被误解的 Node.js_files/c.gif" alt="expand"></a><span class="ibm-twisty-head">内容</span><div class="ibm-twisty-body" style="display: none;"><ul style="font-size:0.8em" class="ibm-link-list">
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#major1">网络应用的性能瓶颈</a></li>
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#major2">传统的处理方式</a></li>
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#major3">事件驱动</a></li>
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#major4">Node.js 简介</a></li>
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#major5">为什么选用 JavaScript</a></li>
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#major6">一个例子</a></li>
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#major7">结束语</a></li>
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#resources">参考资料 </a></li>
+<li><a class="ibm-anchor-down-em-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#icomments">评论</a></li></ul></div></li></ul></div></div>
+		</div>
+	</div>
+	<!-- SUMMARY_END -->
+</div><div id="ibm-pcon">
+
+<!-- BEGIN_IBM-CONTENT -->
+<div id="ibm-content">
+
+<!-- BEGIN_IBM-CONTENT-BODY -->
+<div id="ibm-content-body">
+
+<!-- BEGIN_IBM-CONTENT-MAIN -->
+<div id="ibm-content-main">
+
+<!-- 1_1_COLUMN_BEGIN -->
+<div class="ibm-columns">
+<div class="ibm-col-1-1"><div class="dw-article-sidebar dw-bluemix" id="dwc-exp-a"><img src="./被误解的 Node.js_files/bluemix-graphic.png" height="64" width="64" alt=""><p>在 IBM Bluemix 云平台上开发并部署您的下一个应用。</p><p class="ibm-button-link-alternate dw-button-green"><a id="tutc-sbar-bmix-home-btn-ABa" href="https://developer.ibm.com/sso/bmregistration?lang=zh_CN&amp;ca=dwchina-_-bluemix-_-1201_wangqf_nodejs-_-sidebar" class="dw-button-large">开始您的试用</a></p></div>
+
+<p>Node.js 被设计用来开发大规模高并发的网络应用，这种网络应用的瓶颈之一是在 I/O 的处理效率上。由于硬件及网络的限制，I/O 的速度往往是固定的，如何在此前提下尽可能处理更多的客户请求，提高 CPU 使用效率，便成了开发人员面临的最大问题。得益于基于事件驱动的编程模型，Node.js 使用单一的 Event loop 线程处理客户请求，将 I/O 操作分派至各异步处理模块，既解决了单线程模式下 I/O 阻塞的问题，又避免了多线程模式下资源分配及抢占的问题。至于使用 JavaScript 开发服务器端代码，这并不是什么新鲜事物，JavaScript 本来就是一种完备的编程语言，微软的 IIS 服务器很早就支持 JavaScript 在其中运行。本文将重点讲述 Node.js 基于事件的编程模型，并与传统的处理方式进行对比，帮助您更好的理解 Node.js。</p><h2 id="major1">网络应用的性能瓶颈</h2><p>网络应用的性能瓶颈之一在于 I/O 处理上，下表来自 Node.js 的作者 Ryan Dahl 为 JSConf 大会所作的 <a href="http://s3.amazonaws.com/four.livejournal/20091117/jsconf.pdf">讲演</a>，对比了在不同介质上进行 I/O 操作所花费的 CPU 时间。您能够清楚的发现，访问磁盘及网络数据所花费的 CPU 时间是访问内存时的数十万倍，而现在的网络应用，却需要大量的访问磁盘及网络，比如数据库查询、访问互联网等。如何提高此时 CPU 的利用效率，便成了提升网络应用性能的关键。</p><h5 id="N10042">表 1. 不同介质下 I/O 操作花费对比</h5><table border="0" cellpadding="0" cellspacing="0" class="ibm-data-table" summary="不同介质下 I/O 操作花费对比"><thead xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><tr><th><strong>I/O</strong></th><th><strong>CPU Cycle</strong></th></tr></thead><tbody xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><tr><td>
+ L1-cache 
+</td><td>
+ 3 
+</td></tr><tr><td>
+ L2-cache 
+</td><td>
+ 14 
+</td></tr><tr><td>
+ RAM 
+</td><td>
+ 250 
+</td></tr><tr><td>
+ Disk 
+</td><td>
+ 41000000 
+</td></tr><tr><td>
+ Network 
+</td><td>
+ 240000000  
+</td></tr></tbody></table><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="major2">传统的处理方式</h2><h3 id="minor2.1">单线程</h3><h5 id="listing1">清单 1. 单线程下的阻塞式 I/O</h5><div class="codesection"><pre class="displaycode"> var result = 
+ db.query("select * from T"); 
+ // 使用该查询结果</pre></div><p>上述代码描述了一个常见的案例，客户端发起一个 I/O 请求，然后等待服务器端返回 I/O 结果，结果返回后再对其进行操作，但这种请求常常需要很长时间（对于服务器的 CPU 处理能力来说）。这一过程中，服务器无法接受新的请求，即阻塞式 I/O。这种处理方式虽然简单，却不实用，尤其是面对大量请求的时候，简直就不可用。这种情景类似在火车站售票窗口排队买票，如果您在春节期间去北京火车站排队买过票，绝不会认为这是一种好的处理方式。庆幸的是，现在很少有服务器采取这种处理方式。</p><h3 id="minor2.2">多线程</h3><h5 id="listing2">清单 2. 多线程下的阻塞式 I/O</h5><div class="codesection"><pre class="displaycode"> var result = 
+ db.query("select * from T"); 
+ // 使用该查询结果</pre></div><p>该方式下，服务器为每个请求分配一个线程，所有任务均在该线程内执行，就像火车站多开了几个卖票窗口，处理效率高了许多。但就如读者看到的那样，在春节期间各个售票窗口前还是人满为患，为什么火车站不再多开一些售票窗口呢？当然是因为成本。线程也一样，服务器每创建一个线程，每个线程大概会占用 2M 的系统内存，而且线程之间的切换也会降低服务器的处理效率，基于成本的考虑，这种处理方式也有一定的局限性。然而，这却不是最主要的，主要的是开发多线程程序非常困难，容易出错。程序员需考虑死锁，数据不一致等问题，多线程的程序极难调试和测试。基本上在程序运行出错的时候，程序员才知道自己的程序有错误。而这种错误的代价往往又是巨大的，那些访问量巨大的电子商务网站时常会曝出价格错误等导致公司损失的新闻。</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="major3">事件驱动</h2><h5 id="listing3">清单 3. 基于事件驱动的编程模型</h5><div class="codesection"><pre class="displaycode"> db.query("select..", function (result) { 
+ // 使用该查询结果
+ }); 
+ // 继续干其他的事
+ // ……</pre></div><p>上述代码的好处是：使用一个线程执行，客户发起 I/O 请求的同时传入一个函数，该函数会在 I/O 结果返回后被自动调用，而且该请求不会阻塞后续操作。就像电话订票，设想你一大早来到办公室，给火车站打个电话，将自己的票务信息，地址告诉对方，然后放下电话，泡杯茶，浏览一下网页，回复一下今天的电子邮件，你完全不用管火车票的事了，如果订到票，火车站会派快递公司按你电话中提到的联系方式送票给你。无疑，这是一种极其理想的处理方式。</p><p>下图说明了这种编程模型，所有请求以及同时传入的回调函数均发送至同一线程，该线程通常叫做 Event loop 线程，该线程负责在 I/O 执行完毕后，将结果返回给回调函数。这里要注意的是 I/O 操作本身并不在该线程内执行，所以不会阻塞后续请求。</p><h5 id="fig1">图 1. Event loop</h5><img alt="图 1. Event loop" src="./被误解的 Node.js_files/image002.png" width="378"><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="major4">Node.js 简介</h2><p>有了上面对于事件处理编程模型的介绍，Node.js 就很好理解了。Node.js 是采用事件处理编程模型的 JavaScript 平台，它允许程序员开发大规模高并发的网络应用。这个概念并不新鲜，在 Node.js 之前，很多语言都提供了类似的平台：Python 的 Twisted，Perl 的 AnyEvent，Ruby 的 EventMachine。Node.js 优于其他平台的另一个好处是所有的 I/O 操作都以异步方式实现，让程序员将主要精力放在应用的业务逻辑上。</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="major5">为什么选用 JavaScript</h2><p>事实上，在实现 Node.js 之初，作者 Ryan Dahl 并没有选择 JavaScript，他尝试过 C、Lua，皆因其欠缺一些高级语言的特性，如闭包、函数式编程，致使程序复杂，难以维护。而 JavaScript 则是支持函数式编程范型的语言，很好地契合了 Node.js 基于事件驱动的编程模型。加之 Google 提供的 V8 引擎，使 JavaScript 语言的执行速度大大提高。最终呈现在我们面前的就成了 Node.js，而不是 Node.c，Node.lua 或其他语言的实现。</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="major6">一个例子</h2><p>本文将在这里使用 Node.js 实现一个小型的 Web 应用，它将随机为用户显示一条谚语或名人名言，并允许浏览者添加自己喜欢的谚语。用 Node.js 开发 Web 应用非常简单，下面这段一百多行的代码就实现了一个完整的应用。如果您尚未安装好 Node.js，请登录其 <a href="http://nodejs.org/">官方网站</a>查看详细安装说明。</p><h5 id="listing4">清单 4. 导入所需要的模块（proverbs.js）</h5><div class="codesection"><pre class="displaycode"> // 导入所需模块
+ var http = require("http"); 
+ var url = require("url"); 
+ var qs = require('querystring');</pre></div><p>首先需要导入该应用所需要的模块，其中 http 模块负责创建 Web 服务器及 HTTP 相关服务，url 模块负责解析 URL 地址，querystring 模块负责处理请求参数。</p><h5 id="listing5">清单 5. 数据存储（proverbs.js）</h5><div class="codesection"><pre class="displaycode"> // 这里为了方便使用了全局变量
+ var proverbs = [ 
+		"The turtle wins the race.", 
+		"God hides in the details.", 
+        "There are two ways to write error-free programs; only the third one works.", 
+        "Perfect practice makes perfect."
+ ];</pre></div><p>这里为了方便，使用全局变量 <code>proverbs</code>存储已有谚语，在正式的应用中，应该考虑使用文件或数据库存储。</p><h5 id="listing6">清单 6. 创建 Web 服务器（proverbs.js）</h5><div class="codesection"><pre class="displaycode"> // 创建一个 Web 服务器
+ http.createServer(onRequest).listen(8888); 
+ console.log("server is running...");</pre></div><p>使用 Node.js 开发 Web 应用非常简单，甚至不用配置 Web 服务器，一行代码就创建成功一个 Web 服务器，同时传入一个回调函数，服务器创建成功后，代码并没有阻塞到那里，而是接着往下执行，这就是事件驱动模型的编程风格，在 Node.js 里将会大量采用这种方式。</p><h5 id="listing7">清单 7. 请求处理函数（proverbs.js）</h5><div class="codesection"><pre class="displaycode"> // 请求处理函数
+ function onRequest(request, response) { 
+	 var pathname = url.parse(request.url).pathname; 
+	 console.log("Reqeust for " + pathname + " received."); 
+
+ if (pathname === "/" || pathname === "/index" || pathname === "/proverb") { 
+		 getProverb(response); 
+	 } else if (pathname === "/add") { 
+
+		 if (request.method.toLowerCase() == 'post') { 
+			 var body = ''; 
+			 request.on('data', function(data) { 
+				 body += data; 
+			 }); 
+
+			 request.on('end', function() { 
+
+				 var POST = qs.parse(body); 
+				 add(POST.text, response); 
+
+			 }); 
+		 } else { 
+			 addProverb(response); 
+		 } 
+
+	 } else { 
+		 response.writeHead(404, { 
+			"Content-Type" : "text/plain"
+		 }); 
+		 response.write("404 Not found"); 
+		 response.end(); 
+	 } 
+
+ }</pre></div><p>该函数负责分发请求，将接收到的 URL 根据规则转发至对应的请求处理模块。</p><h5 id="listing8">清单 8. GET 请求（proverbs.js）</h5><div class="codesection"><pre class="displaycode"> function getProverb(response) { 
+	 var body = '&lt;html&gt;'
+			 + '&lt;head&gt;'
+			 + '&lt;meta http-equiv="Content-Type" content="text/html; '
+			 + 'charset=UTF-8" /&gt;'
+			 + '&lt;/head&gt;'
+             + '&lt;body style="font-size: 4em;line-height: 1.2; margin-top: 200;"&gt;'
+             + '&lt;blockquote&gt;'+ proverbs[Math.floor(Math.random()* proverbs.length)]
+                + '&lt;/blockquote&gt;' + '&lt;/body&gt;'
+			 + '&lt;/html&gt;'; 
+
+	 response.writeHead(200, { 
+		"Content-Type" : "text/html"
+	 }); 
+	 response.write(body); 
+	 response.end(); 
+
+ }</pre></div><p>该函数负责处理 GET 请求，随机向用户返回一条谚语。细心的读者可能会发现该函数将 HTML，CSS 以及数据混在一起，显然不符合 MVC 的编程模式。Node.js 有很多第三方开发的模块，其中 <a href="http://expressjs.com/">express</a>就是一款优秀的 Web 开发框架，有兴趣的读者可以研究一下。</p><h5 id="listing9">清单 9. 用户输入表单（proverbs.js）</h5><div class="codesection"><pre class="displaycode"> function addProverb(response) { 
+	 var body = '&lt;html&gt;'
+			 + '&lt;head&gt;'
+			 + '&lt;meta http-equiv="Content-Type" content="text/html; '
+			 + 'charset=UTF-8" /&gt;'
+			 + '&lt;/head&gt;'
+             + '&lt;body style="font-size: 4em;line-height: 1.2; margin-top: 200;"&gt;'
+			 + '&lt;form action="/add" method="post"&gt;'
+			 + '&lt;textarea name="text" rows="10" cols="60"&gt;&lt;/textarea&gt;&lt;p&gt;'
+			 + '&lt;input type="submit" value="Submit" 
+			    /&gt;' + '&lt;/form&gt;' + '&lt;/body&gt;'
+			 + '&lt;/html&gt;'; 
+
+	 response.writeHead(200, { 
+		"Content-Type" : "text/html"
+	 }); 
+	 response.write(body); 
+	 response.end(); 
+
+ }</pre></div><p>该函数返回一个 HTML 表单，允许用户输入自己喜欢的谚语或格言。</p><h5 id="listing10">清单 10. POST 请求（proverbs.js）</h5><div class="codesection"><pre class="displaycode"> function add(proverb, response) { 
+	 proverbs.push(proverb); 
+
+	 var body = '&lt;html&gt;'
+			 + '&lt;head&gt;'
+			 + '&lt;meta http-equiv="Content-Type" content="text/html; '
+			 + 'charset=UTF-8" /&gt;'
+			 + '&lt;/head&gt;'
+             + '&lt;body style="font-size: 4em;line-height: 1.2; margin-top: 200;"&gt;'
+			 + '&lt;blockquote&gt;' + proverb + '&lt;/blockquote&gt;' + '&lt;/body&gt;'
+			 + '&lt;/html&gt;'; 
+
+	 response.writeHead(200, { 
+		"Content-Type" : "text/html"
+	 }); 
+	 response.write(body); 
+	 response.end(); 
+
+ }</pre></div><p>该函数负责用户的 POST 请求，将用户输入保存到服务器端，并返回给用户结果。</p><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><h2 id="major7">结束语</h2><p>本文给大家介绍了基于事件的编程模型，这种编程模型正是 Node.js 这项最近流行技术的核心，希望读者能利用 Node.js 的优势，为自己的开发工作带来便利。</p><!--CMA ID: 788231--><!--Site ID: 10--><!--XSLT stylesheet used to transform this file: dw-document-html-7.0.xsl-->
+
+
+</div>
+</div>
+<!-- 1_1_COLUMN_END -->
+
+<!-- SPLIT_COLUMNS_BEGIN -->
+<div class="ibm-columns">
+
+<!-- 6_4_COLUMN_BEGIN -->
+<div class="ibm-col-6-4">
+
+<h2 id="resources" class="ibm-rule">参考资料 </h2><h3 class="dw-resources-category-heading">学习</h3><ul class="ibm-bullet-list"><li>
+				参考 <a href="http://nodejs.org/">nodejs</a>官方主页，了解 Node.js。
+			</li><li><a href="http://nodebeginner.org/index.html">The Node Beginner Book</a>：一个非常好的 Node.js 教程，同时介绍了 JavaScript 中的高级特性。
+			</li><li><a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding Node.js</a>：一篇有助于理解 Node.js 的文章。
+			</li><li><a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>深入介绍了基于事件驱动的编程模型，并与传统的处理方式进行对比。
+			</li><li>“<a href="http://www.ibm.com/developerworks/cn/opensource/os-nodejs/">Node.js 究竟是什么？</a>”（developerWorks，2011 年 6 月）：你们中的许多人可能听说过新近出现的 Node.js，也许现在还在猜测它究竟是何物？Michael Abernethy 在本文中简要介绍了 Node 的作用及其当前局限性。</li><li>“<a href="http://www.ibm.com/developerworks/cn/cloud/library/cl-nodejscloud/">使用 Node.js 作为完整的云环境开发堆栈</a>”（developerWorks，2011 年 8 月）：本文探讨 Node.js，这是一个用于 UNIX 类平台上 V8 JavaScript 引擎的事件驱动的 I/O 框架，设计这一框架的目的是为了编写可伸缩的网络程序，如 Web 服务器。本文通过一个完整的例子说明如何在 Node.js 中构建聊天服务器，分析了这个框架以及围绕它的生态系统（包括云计算产品），并对这个框架进行了总结。</li><li>“<a href="http://www.ibm.com/developerworks/cn/web/1107_chengfu_nodejs/">使用 node.js 进行服务器端 JavaScript 编程</a>”（developerWorks，2011 年 7 月）：node.js 是一个可以使用 JavaScript 开发服务器端应用的平台。它依托于 Google V8 JavaScript 引擎，并采用事件 I/O 的架构，可以用来创建高性能服务器。本文详细介绍了 node.js 的基本知识、模块化的结构、事件驱动的机制以及常用的模块。</li><li>“<a href="http://www.ibm.com/developerworks/cn/java/j-nodejs/">面向 Java 开发人员的 Node.js</a>”（developerWorks，2011 年 12 月）：Node.js 是一种激动人心的开发方式，可替代传统的 Java 并发性，只要有一个开放的心态和一点点 JavaScript 知识，就可以立即开始进行开发。</li><li><a href="http://www.ibm.com/developerworks/cn/web/">developerWorks Web development
+               专区</a>：通过专门关于 Web 技术的文章和教程，扩展您在网站开发方面的技能。</li><li><a href="http://www.ibm.com/developerworks/cn/ajax/">developerWorks Ajax 资源中心</a>：这是有关 Ajax 编程模型信息的一站式中心，包括很多文档、教程、论坛、blog、wiki 和新闻。任何 Ajax 的新信息都能在这里找到。</li><li><a href="http://www.ibm.com/developerworks/cn/web20/">developerWorks Web 2.0 资源中心</a>，这是有关 Web 2.0 相关信息的一站式中心，包括大量 Web 2.0 技术文章、教程、下载和相关技术资源。您还可以通过 <a href="http://www.ibm.com/developerworks/cn/web20/newto/">Web 2.0 新手入门</a> 栏目，迅速了解 Web 2.0 的相关概念。</li></ul><h3 class="dw-resources-category-heading">讨论</h3><ul class="ibm-bullet-list"><li>加入 <a href="http://www.ibm.com/developerworks/cn/community/" onmouseover="linkQueryAppend(this)">developerWorks 中文社区</a>。查看开发人员推动的博客、论坛、组和维基，并与其他 developerWorks 用户交流。</li></ul>
+
+<!-- INLINE_COMMENTS_BEGIN -->
+<h2 id="icomments" class="ibm-alternate-rule ibm-no-print">条评论</h2>
+    
+<div class="ibm-no-print" id="dw-icomments-container">	
+	<div id="threadShow"><img id="imgPlHdr" src="./被误解的 Node.js_files/animated-progress-38x38c.gif" alt="" style="display: none;"><div id="cmtTog"><div class="ibm-container ibm-alternate-two dw-commentbox dw-noborder"><div class="ibm-container-body dw-commentbox dw-noborder"><p id="signInSect">请 <a onclick="var e=arguments[0] || window.event; dwsi.siInst &amp;&amp; dwsi.siInst.showSignIn(); if (e.stopPropagation){ e.stopPropagation();} else { e.cancelBubble = true; } e.preventDefault &amp;&amp; e.preventDefault(); return false;" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#">登录</a> 或 <a href="https://www.ibm.com/developerworks/dwwi/jsp/ssoregister.jsp?d=https%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2F1201_wangqf_nodejs%2F%23icomments&amp;lang=cn&amp;a=dwmav">注册</a>  后发表评论。</p><p id="cmtHead"><label for="newCmt"><strong>添加评论:</strong></label></p><p>注意：评论中不支持 HTML 语法</p><div id="infoCmt"></div><form focus="name" enctype="multipart/form-data" method="post" action="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/" name="form" class="ibm-column-form ibm-styled-form"><p class="6-4-textarea"><textarea rows="5" name="newCmt" id="newCmt" class="dw-inoperable" disabled=""></textarea><br></p><span class="ibm-input-group"><input type="checkbox" value="1" name="comment_notification" id="comment_notification" disabled="disabled"><label id="notifyText" class="ibm-form-note dw-btn-cancel-sec" for="comment_notification">有新评论时提醒我</label></span><span class="ibm-form-note dw-btn-cancel-sec notifySection" id="maxCharsCount">剩余 <span id="charCount">1000</span> 字符</span><p class="ibm-buttons-row"><input type="button" value="发布" name="postCmt" id="postCmt" class="ibm-btn-sec ibm-btn-small ibm-disabled" disabled="disabled"></p></form></div></div><div class="ibm-alternate-rule"><hr></div><div id="topControl" class="ibm-container ibm-alternate-two dw-comment-totals" style=""><div class="ibm-container-body"><form id="selectComments" method="get" action="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/"><p>&nbsp;<span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts">7</span>)</strong></span><span class="dw-how-many-comments-label" id="dropdownCmts"><label for="howManyComments"><strong>显示：</strong></label>&nbsp;<select name="comments" id="howManyComments" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论 </option><option value="all">所有评论</option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./被误解的 Node.js_files/short-btn.gif" alt="Go"><br></span></p></form></div></div><div id="cmtSect"><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>文章很有帮助，谢谢</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/V_Star">V_Star</a></strong>  于 2014年07月18日发布 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=zh&amp;referingURL=https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/&amp;mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20%E6%96%87%E7%AB%A0%E5%BE%88%E6%9C%89%E5%B8%AE%E5%8A%A9%EF%BC%8C%E8%B0%A2%E8%B0%A2%0D%E7%94%B1%20V_Star%20%20%E4%BA%8E%202014%E5%B9%B407%E6%9C%8818%E6%97%A5%E5%8F%91%E5%B8%83%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_self">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="ibm-rule"><hr></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>清单 10 括号的问题已经解决。</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/Chris-L">Chris-L</a></strong>  于 2012年12月04日发布 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=zh&amp;referingURL=https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/&amp;mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20%E6%B8%85%E5%8D%95%2010%20%E6%8B%AC%E5%8F%B7%E7%9A%84%E9%97%AE%E9%A2%98%E5%B7%B2%E7%BB%8F%E8%A7%A3%E5%86%B3%E3%80%82%0D%E7%94%B1%20Chris-L%20%20%E4%BA%8E%202012%E5%B9%B412%E6%9C%8804%E6%97%A5%E5%8F%91%E5%B8%83%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_self">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="ibm-rule"><hr></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>清单 10 括号的问题已经接近。</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/Chris-L">Chris-L</a></strong>  于 2012年12月04日发布 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=zh&amp;referingURL=https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/&amp;mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20%E6%B8%85%E5%8D%95%2010%20%E6%8B%AC%E5%8F%B7%E7%9A%84%E9%97%AE%E9%A2%98%E5%B7%B2%E7%BB%8F%E6%8E%A5%E8%BF%91%E3%80%82%0D%E7%94%B1%20Chris-L%20%20%E4%BA%8E%202012%E5%B9%B412%E6%9C%8804%E6%97%A5%E5%8F%91%E5%B8%83%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_self">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="ibm-rule"><hr></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>清单 10. POST 请求（proverbs.js）里的代码有个小错误。<br><br>proverbs.push&lt;a href="http://www.ibm.com/developerworks/forums/"&gt;proverb&lt;/a&gt;; //这里应该为圆括号()才对。</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/Waigo">Waigo</a></strong>  于 2012年12月03日发布 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=zh&amp;referingURL=https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/&amp;mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20%E6%B8%85%E5%8D%95%2010.%20POST%20%E8%AF%B7%E6%B1%82%EF%BC%88proverbs.js%EF%BC%89%E9%87%8C%E7%9A%84%E4%BB%A3%E7%A0%81%E6%9C%89%E4%B8%AA%E5%B0%8F%E9%94%99%E8%AF%AF%E3%80%82proverbs.push%26lt%3Ba%20href%3D%22http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fforums%2F%22%26gt%3Bproverb%26lt%3B%2Fa%26gt%3B%3B%20%2F%2F%E8%BF%99%E9%87%8C%E5%BA%94%E8%AF%A5%E4%B8%BA%E5%9C%86%E6%8B%AC%E5%8F%B7()%E6%89%8D%E5%AF%B9%E3%80%82%0D%E7%94%B1%20Waigo%20%20%E4%BA%8E%202012%E5%B9%B412%E6%9C%8803%E6%97%A5%E5%8F%91%E5%B8%83%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_self">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="ibm-rule"><hr></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>处理http request的线程与执行回调函数的线线是否是同一线程？如果是同一线程的话，当这一线程正在处理http request时,一个IO操作执行完毕后要执行一个回调函数，但线程正忙着处理大量的http request，这时这个回调函数是如何执行的？</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/TerrySun">TerrySun</a></strong>  于 2012年02月14日发布 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=zh&amp;referingURL=https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/&amp;mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20%E5%A4%84%E7%90%86http%20request%E7%9A%84%E7%BA%BF%E7%A8%8B%E4%B8%8E%E6%89%A7%E8%A1%8C%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E7%9A%84%E7%BA%BF%E7%BA%BF%E6%98%AF%E5%90%A6%E6%98%AF%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%EF%BC%9F%E5%A6%82%E6%9E%9C%E6%98%AF%E5%90%8C%E4%B8%80%E7%BA%BF%E7%A8%8B%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%BD%93%E8%BF%99%E4%B8%80%E7%BA%BF%E7%A8%8B%E6%AD%A3%E5%9C%A8%E5%A4%84%E7%90%86http%20request%E6%97%B6%2C%E4%B8%80%E4%B8%AAIO%E6%93%8D%E4%BD%9C%E6%89%A7%E8%A1%8C%E5%AE%8C%E6%AF%95%E5%90%8E%E8%A6%81%E6%89%A7%E8%A1%8C%E4%B8%80%E4%B8%AA%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BD%86%E7%BA%BF%E7%A8%8B%E6%AD%A3%E5%BF%99%E7%9D%80%E5%A4%84%E7%90%86%E5%A4%A7%E9%87%8F%E7%9A%84http%20request%EF%BC%8C%E8%BF%99%E6%97%B6%E8%BF%99%E4%B8%AA%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F%0D%E7%94%B1%20TerrySun%20%20%E4%BA%8E%202012%E5%B9%B402%E6%9C%8814%E6%97%A5%E5%8F%91%E5%B8%83%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_self">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div></div></div><div id="bottomControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display:none"><div class="ibm-container-body"><form id="selectComments2" method="get" action="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/"><p>&nbsp;<span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts2">7</span>)</strong></span><span class="dw-how-many-comments-label" id="dropdownCmts2"><label for="howManyComments2"><strong>显示：</strong></label>&nbsp;<select name="comments" id="howManyComments2" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论 </option><option value="all">所有评论</option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./被误解的 Node.js_files/short-btn.gif" alt="Go"><br></span></p></form></div></div></div>
+</div>
+<!-- Sign in OVERLAY STARTS HERE -->
+    
+<!-- Sign in OVERLAY STARTS HERE -->
+<div class="ibm-common-overlay" id="signin_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#" onclick="dwsi.siInst.clearForm();">关闭 [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+
+ <div class="ibm-title">
+<h2>developerWorks: 登录</h2>
+<div id="ibm-overlay-error-signin" class="no-display"></div>
+</div>
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<p class="ibm-overlay-intro">标有星（<span class="ibm-required">*</span>）号的字段是必填字段。</p> 
+<form class="ibm-column-form" id="sFormId" action="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/" method="post" name="sForm" onsubmit="return false;">
+<p><label for="ibmid">IBM ID:<span class="ibm-required">*</span></label><span>
+    <input name="ibm-id" id="ibmid" size="25" value="" class="required" type="text" onkeypress="dwsi.siInst.handleEP(event,this.form);" aria-required="true">
+    <br><a onclick="window.location=&#39;/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh_CN&amp;d=&#39;+encodeURIComponent(location.protocol + &#39;//&#39; + location.hostname + location.pathname + &#39;#icomments&#39;); return false;" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#" class="ibm-forward-link">需要一个 IBM ID？</a> <br>
+    <a class="ibm-forward-link" href="https://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=zh_CN">忘记 IBM ID？</a> 
+</span>
+</p> 
+<p><label for="password">密码：<span class="ibm-required">*</span></label><span>
+    <input name="password" id="password" size="25" value="" class="required" type="password" onkeypress="dwsi.siInst.handleEP(event,this.form);">
+    <br><a class="ibm-forward-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#" onclick="(function ()
+        {window.location=&#39;https://www.ibm.com/account/profile?page=forgot&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(dwsi.siInst.getAuthUrl())+&#39;%3Fm%3Dloginpage%26lang%3Dzh_CN%26d%3D&#39;+encodeURIComponent(location.href);})();">忘记密码？</a>
+    <br><a class="ibm-forward-link" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=chpw&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(location.href);})();">更改您的密码</a></span></p> 
+<p class="dw-perm-box">
+	<span><input id="perm" type="checkbox" name="perm_name"><label for="perm"> 保持登录。</label></span>
+</p>
+<p>单击提交则表示您同意developerWorks 的条款和条件。 <a href="https://www.ibm.com/developerworks/community/terms?lang=zh">查看条款和条件</a>。</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="dwsi.siInst.signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="dwsi.siInst.clearForm();ibmweb.overlay.hide(&#39;signin_overlay&#39;);return false;"></p>
+</div>
+</form>
+ <div class="ibm-overlay-rule"><hr></div> 
+
+<p>在您首次登录 developerWorks 时，会为您创建一份个人概要。<strong>您的个人概要中的信息（您的姓名、国家/地区，以及公司名称）是公开显示的，而且会随着您发布的任何内容一起显示，除非您选择隐藏您的公司名称。</strong>您可以随时更新您的 IBM 帐户。</p>
+<div><p class="dw-c-overlay-secure">所有提交的信息确保安全。</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Display name OVERLAY STARTS HERE -->
+<div class="ibm-common-overlay" id="displayname_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#" onclick="dwsi.siInst.clearForm();">关闭 [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+<div class="ibm-title">
+<h2>选择您的昵称</h2><br><br>
+<div id="ibm-overlay-error-dname" class="no-display"></div>
+</div>
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<p class="ibm-overlay-intro">当您初次登录到 developerWorks 时，将会为您创建一份概要信息，您需要指定一个昵称。您的昵称将和您在 developerWorks 发布的内容显示在一起。</p><p><strong>昵称长度在 3 至 31 个字符之间</strong>。 
+    您的昵称在 developerWorks 社区中必须是唯一的，并且出于隐私保护的原因，不能是您的电子邮件地址。</p>
+<p class="ibm-overlay-intro">标有星（<span class="ibm-required">*</span>）号的字段是必填字段。</p> 
+<form id="dFormId" method="post" action="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/" name="dForm" onsubmit="return false;" class="ibm-column-form">
+<p><label for="displayname">昵称：<span class="ibm-required">*</span></label><span>
+    <input name="displayname" id="displayname" size="25" value="" type="text" onkeypress="dwsi.siInst.handleEP(event,this.form);" aria-required="true"></span>
+    <span class="ibm-form-note">(昵称长度在 3 至 31 个字符之间)</span>
+</p>
+<p>单击<strong>提交</strong>则表示您同意developerWorks 的条款和条件。 <a href="https://www.ibm.com/developerworks/community/terms?lang=zh">查看条款和条件</a>.</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="dwsi.siInst.signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="dwsi.siInst.clearForm();ibmweb.overlay.hide(&#39;displayname_overlay&#39;);return false;"></p>
+</div>
+</form>
+<div class="ibm-overlay-rule"><hr></div>
+<div><p class="dw-c-overlay-secure">所有提交的信息确保安全。</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+
+
+<!-- INLINE_COMMENTS_END -->
+
+</div>
+<!-- 6_4_COLUMN_END -->
+
+<!-- 6_2_COLUMN_BEGIN -->
+<div class="ibm-col-6-2">
+
+<!-- Next_Steps -->
+<!-- Dig_Deeper -->
+
+
+<!-- Promotion_Module -->
+    
+<!-- PROMOTION_MODULE_START -->
+<div class="ibm-alternate-rule"><hr></div>
+<ul class="ibm-portrait-module-list">
+<li><a class="" href="http://www.ibm.com/developerworks/cn/cloud/bluemix/" tabindex="-1" role="presentation"><img height="60" width="60" src="./被误解的 Node.js_files/sm-f-bluemixrobot60.png" alt="IBM Bluemix 资源中心"></a>
+<h3><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/cloud/bluemix/">IBM Bluemix 资源中心</a></h3>
+<p>文章、教程、演示，帮助您构建、部署和管理云应用。</p></li>
+<li><a class="" href="http://www.ibm.com/developerworks/cn/community/" tabindex="-1" role="presentation"><img height="60" width="60" src="./被误解的 Node.js_files/sm-f-comcommunity60.png" alt="developerWorks 中文社区"></a>
+<h3><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/community/">developerWorks 中文社区</a></h3>
+<p>立即加入来自 IBM 的专业 IT 社交网络。</p></li>
+<li><a class="" href="http://bluemixathon.devpost.com/" tabindex="-1" role="presentation"><img height="60" width="60" src="./被误解的 Node.js_files/sm-f-bluemixathon60.png" alt="Bluemixathon 挑战赛"></a>
+<h3><a class="ibm-feature-link" href="http://bluemixathon.devpost.com/">Bluemixathon 挑战赛</a></h3>
+<p>为灾难恢复构建应用，赢取现金大奖。</p></li>
+</ul>
+<!-- PROMOTION_MODULE_END -->
+</div>
+<!-- 6_2_COLUMN_END -->
+
+</div>
+<!-- SPLIT_COLUMNS_END -->
+
+<!-- BOTTOM_BACK_TO_TOP -->
+<div class="ibm-columns">
+<div class="ibm-col-1-1">
+	<div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p>
+</div>
+</div>
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div class="metavalue">SITE_ID=10</div><div class="metavalue">Zone=Web development</div><div class="metavalue">ArticleID=788231</div><div class="metavalue">ArticleTitle=被误解的 Node.js
+		</div><div class="metavalue">publish-date=01312012</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href.replace(/</g,  '%3C')+'</div>');</script><div class="metavalue">url=https://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- END_IBM_CONTENT_MAIN -->
+
+</div>
+<!-- END_IBM_CONTENT_BODY -->
+
+</div>
+<!-- END_IBM_CONTENT -->
+
+</div></div>
+<!-- LEADSPACE_END -->
+
+
+<!-- END_IBM_PCON -->
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer" aria-label="页脚"><!-- IBM footer container; disabled --></div>
+
+<div id="ibm-footer-module-dwwrapper" role="contentinfo" aria-label="developerWorks Footer">
+
+<div id="ibm-footer-module-dw">
+	<div class="dw-footer-columns">
+		<div class="dw-footer-col-6-1 dw-footer-col-6-1-cn">
+			<ul>
+				<li><a href="https://www.ibm.com/developerworks/secure/feedback.jsp?domain=dwchina" tabindex="0">帮助</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/author/" tabindex="0">联系编辑</a></li>
+				<li><a href="https://www.ibm.com/developerworks/secure/myideas2.jsp?domain=dwchina" tabindex="0">提交内容</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/rss/" tabindex="0">订阅源</a></li>
+			</ul>
+        </div>
+		<div class="dw-footer-col-6-2">
+			<ul>
+				<li><a href="http://www.ibm.com/vrm/newsletter/10104?S_TACT=105AGX52&amp;S_CMP=dwcntop" tabindex="0">在线浏览每周时事通讯</a></li>
+				<li><a class="dwcn-sina-link" href="http://weibo.com/ibmdw/" target="_blank" tabindex="0">新浪微博</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/report?lang=zh" tabindex="0">报告滥用</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/terms?lang=zh" tabindex="0">使用条款</a></li>
+				<li><a href="https://www.ibm.com/developerworks/cn/community/terms/thirdparty/" tabindex="0">第三方提示</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-3">
+			<ul>
+				<li><a href="http://www.ibm.com/privacy/cn/zh/" tabindex="0">隐私条约</a></li>
+				<li><a href="http://www.ibm.com/ibm/accessibility/cn/" tabindex="0">浏览辅助</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/academic/" tabindex="0">IBM 教育学院教育培养计划</a></li><li><a href="http://www.ibm.com/developerworks/cn/gep/">IBM 创业企业全球扶持计划</a></li><li><a href="http://www.ibm.com/partnerworld/isv/">ISV 资源 (英语)</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-4"> 
+			<ul>
+				<li><a href="https://www.ibm.com/developerworks/cn/newsletter/" tabindex="0">dW 中国每周时事通讯</a></li>
+			</ul>
+			
+		</div>
+		<div class="dw-footer-col-6-5">
+			<ul>
+				<li class="dw-footer-lang-head">选择语言：</li>
+				<li><a href="http://www.ibm.com/developerworks/" tabindex="0">English</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/" lang="zh" tabindex="0">中文</a></li>
+				<li><a href="http://www.ibm.com/developerworks/jp/" lang="ja" tabindex="0">日本語</a></li>
+				<li><a href="http://www.ibm.com/developerworks/ru/" lang="ru" tabindex="0">Русский</a></li>
+				<li><a href="http://www.ibm.com/developerworks/br/" lang="pt" tabindex="0">Português (Brasil)</a></li>
+				<li><a href="http://www.ibm.com/developerworks/ssa/" lang="es" tabindex="0">Español</a></li>
+				<li><a href="http://www.ibm.com/developerworks/vn/" lang="vi" tabindex="0">Việt</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-6">
+			<img width="223" height="46" alt="IBM®" src="./被误解的 Node.js_files/dwn-ibm-logo-v17.png">
+			<img class="dw-preload" src="./被误解的 Node.js_files/ibm_sprite_social_blue_ON.png" alt="" width="1" height="1">
+		</div>
+	</div>
+</div>
+
+</div><!-- FOOTER_END -->
+
+<!-- END_IBM-TOP -->
+</div>
+
+<!-- SCRIPTS_INCLUDE_BEGIN -->
+<script type="text/javascript" src="./被误解的 Node.js_files/dw-comments.js">//</script>
+<script type="text/javascript" language="JavaScript">
+	dojo.ready(function(){
+		rBHash = typeof rBHash == "undefined" ? {} : rBHash;
+		rBHash['viperLang'] = 'zh';
+		rBHash['urlLang'] = 'cn';
+		rBHash['dwwi2Lang'] = 'zh_CN';
+		rBHash['appCode'] = 'dwmav';
+		rBHash['signoutUrl'] = (location.host.toLowerCase() === "www.ibm.com" || location.host.toLowerCase() === "developer.ibm.com") ? 'http://www.ibm.com/developerworks/cn/' : ''; 
+		dwsi.siInst = new dwweb.dynnav.dwsi();
+		dwsi.siInst.initSI();		
+
+		// construct the comment widget
+dwc.cmts = '条评论';
+dwc.signInPreText = '请';
+dwc.signIn = '登录';
+dwc.or = '或';
+dwc.register = '注册';
+dwc.signInPostText = '';
+dwc.leaveCmt = '后发表评论。';
+dwc.view = '查看';
+dwc.totalCmts = '共有评论';
+dwc.postYourCmt = '添加您的评论';
+dwc.show = '显示：';
+dwc.recentCmts = '最新评论';
+dwc.allCmts = '所有评论';
+dwc.tooLongCmt = '您的评论超过了 1000 字符限制';
+dwc.numCharsLeft = '剩余 <span id="charCount">{1}</span> 字符';
+dwc.reportAbuse = '报告滥用';
+dwc.notifyMsg = '有新评论时提醒我';
+dwc.htmlWarning = '注意：评论中不支持 HTML 语法'; 
+dwc.cmt = '评论：';
+dwc.addCmts = '添加评论';
+dwc.addCmt = '添加评论';
+dwc.doNotErase = '--在下方添加评论--'; 
+dwc.viewOrAddCmts = '查看或添加评论';
+dwc.reportInapprCont = '举报不良信息';
+dwc.reportInapprContLink = 'http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1834';
+dwc.postingCmt = '正在发布评论……';
+dwc.noCmt = '快来添加第一条评论';
+dwc.netwkErr = '在检索评论时出错，请稍后刷新。';
+dwc.addACmt = '添加评论';
+dwc.instructCmt = '标有星号（<span class="ibm-required">*</span>）的是必填项目。';
+dwc.btnPost = '发布';
+dwc.btnPostAnon = '匿名发布';
+dwc.btnClrCmt = '清除评论';
+dwc.btnCancel = '取消';
+dwc.showRecent = '显示最新的 {1} 条评论'; // {1} is the count to be substituted
+dwc.showNext = '显示后 {1} 条评论'; // {1} is the count to be substituted
+dwc.showAllCmts = '显示所有评论';
+dwc.enterCmt = '请输入评论内容。';
+dwc.loginErr = '暂时无法验证您的登录状态，请稍后再试。';
+dwc.postErr = '暂时无法发布您的评论，请稍后再试。';
+dwc.postBy = '由 <strong>{1}</strong>  于 {2} '; // {1} is the author to be substituted; {2} is the date
+dwc.siteId = 10;
+dwc.lang = 'zh_CN';
+dwc.viperLang = 'zh';
+//dwc.abuseHref =  null;
+dwc.maxChars = 1000;
+dwc.cmtTxt =  '评论：';
+dwc.cmtsTxt =  '评论：';  
+		dwc && new dwc.comments('threadShow','95%',5,'nCmts','icomments');
+		});
+</script>
+
+
+
+<!-- BEGIN: Use this section to set page specific variables for the Unica Page Tag -->
+<script language="JavaScript">var NTPT_PGEXTRA="ibmSkillLevel=2&ibmCmaId=788231&ibmContentAreas=web";</script>
+<!--END --><!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="./被误解的 Node.js_files/stats.js" type="text/javascript">//</script>
+</div>
+
+
+
+<div id="ads"></div></body></html>

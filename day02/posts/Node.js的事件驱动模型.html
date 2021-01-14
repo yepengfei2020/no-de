@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.edwardesire.com/nodejs-event-model/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>Node.js的事件驱动模型</title>
+        
+        <meta name="designer" content="Hayden Bleasel">
+        <meta name="rating" content="general">
+        <meta name="keywords" content="ghost, blog, Node.js的事件驱动模型">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="msapplication-TileImage" content="/assets/images/windows-tile.png?v=d2cc701471">
+        <meta name="msapplication-TileColor" content="#262A2D">
+
+        <meta name="robots" content="index, follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <meta property="og:title" content="Node.js的事件驱动模型">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:title" content="Node.js的事件驱动模型">
+
+        <link rel="icon" href="http://edwardsblog.qiniudn.com/0/6d/3ad2e76ce64d5f292e1de76f57909.ico">
+        <link rel="icon" sizes="196x196" href="http://www.edwardesire.com/assets/images/android-homescreen.png?v=d2cc701471">
+        <link rel="apple-touch-icon" href="http://www.edwardesire.com/assets/images/apple-touch-icon.png?v=d2cc701471">
+
+            <link rel="prerender" href="http://edwardsblog.qiniudn.com/image/8/b6/9606b1118fb3747ef4a3876d0fecc.jpg">
+            <link rel="prefetch" href="http://edwardsblog.qiniudn.com/image/8/b6/9606b1118fb3747ef4a3876d0fecc.jpg">
+        <link rel="dns-prefetch" href="http://fonts.googleapis.com/">
+
+        <link rel="stylesheet" href="./Node.js的事件驱动模型_files/normalize.css">
+        <link rel="stylesheet" href="./Node.js的事件驱动模型_files/basics.css">
+        <link rel="stylesheet" href="./Node.js的事件驱动模型_files/animate.css">
+        <link rel="stylesheet" href="./Node.js的事件驱动模型_files/gist.css">
+        <link rel="stylesheet" href="./Node.js的事件驱动模型_files/phantom.css">
+        <script src="./Node.js的事件驱动模型_files/html5shiv-printshiv.js"></script>
+        <script src="./Node.js的事件驱动模型_files/respond.js"></script>
+
+        <link href="./Node.js的事件驱动模型_files/monokai_sublime.min.css" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="./Node.js的事件驱动模型_files/lightbox.css">
+
+            <meta name="author" content="Zida">
+    <meta name="description" content="Node利用Javascript的特性，比如Continuation Passing Style(CPS)以及Event Loop，使得程序运行时表现优秀，CPS和Event Loop一套机制是用libuv库(libuv又根据OS的不同抽象了Unix下libev和Windos下ICOP)提供的。JS中处理IO业务...">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.edwardesire.com/nodejs-event-model/">
+    <meta property="twitter:url" content="http://www.edwardesire.com/nodejs-event-model/">
+    <meta property="og:description" content="Node利用Javascript的特性，比如Continuation Passing Style(CPS)以及Event Loop，使得程序运行时表现优秀，CPS和Event Loop一套机制是用libuv库(libuv又根据OS的不同抽象了Unix下libev和Windos下ICOP)提供的。JS中处理IO业务...">
+    <meta property="twitter:description" content="Node利用Javascript的特性，比如Continuation Passing Style(CPS)以及Event Loop，使得程序运行时表现优秀，CPS和Event Loop一套机制是用libuv库(libuv又根据OS的不同抽象了Unix下libev和Windos下ICOP)提供的。JS中处理IO业务...">
+        <meta property="og:image" content="http://edwardsblog.qiniudn.com/image/8/cc/bda1cd5709197b969722c81a76e98.jpg">
+        <meta property="twitter:image" content="http://edwardsblog.qiniudn.com/image/8/cc/bda1cd5709197b969722c81a76e98.jpg">
+
+
+        <link rel="canonical" href="http://www.edwardesire.com/nodejs-event-model/">
+    
+    <meta property="og:site_name" content="Edward Desire">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Node.js的事件驱动模型">
+    <meta property="og:description" content="Node利用Javascript的特性，比如Continuation Passing Style(CPS)以及Event Loop，使得程序运行时表现优秀，CPS和Event Loop一套机制是用libuv库(libuv又根据OS的不同抽象了Unix下libev和Windos下ICOP)提供的。JS中处理IO业务的方法将回调函数当参数传递的编程风格就是CPS。而成为参数的回调函数的调用问题就得需要叫事件循环来控制。这一切就实现了Node的异步IO。 经典的服务器执行模型 经典的服务器执行模型有同步式、进程式、线程式。 同步式模型就是每次值处理一个请求，迭代地将所有请求处理完毕。无并发可言，处理效率当然很低。 进程式模型为每一个Web请求开启一个进程，这样可以同时处理多个请求，但式当请求量太大时有限的系统资源就比较吃紧了。并且为每个请求现场分配一个子进程比较消耗cpu时间。 线程式模型为每一个ieWeb请求开启一个线程处理。线程式又包括单线程模型、多线程模型，也就是一个进程中几个个线程，像Apache就可以选择Worker MPM(多进程多线程)还是Prefork MPM(多进程单线程)。多线程模型处理并发的方式是将每一个IO操作分配到单独的线程中。当客户端发出请求给服务器，服务器会对请求处理并准备好响应回传给客户端，...">
+    <meta property="og:url" content="http://www.edwardesire.com/nodejs-event-model/">
+    <meta property="og:image" content="http://edwardsblog.qiniudn.com/image/8/cc/bda1cd5709197b969722c81a76e98.jpg">
+    <meta property="article:published_time" content="2015-05-09T03:41:16.000Z">
+    <meta property="article:modified_time" content="2015-05-10T12:19:54.000Z">
+    <meta property="article:tag" content="Nodejs">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Node.js的事件驱动模型">
+    <meta name="twitter:description" content="Node利用Javascript的特性，比如Continuation Passing Style(CPS)以及Event Loop，使得程序运行时表现优秀，CPS和Event Loop一套机制是用libuv库(libuv又根据OS的不同抽象了Unix下libev和Windos下ICOP)提供的。JS中处理IO业务的方法将回调函数当参数传递的编程风格就是CPS。而成为参数的回调函数的调用问题就得需要叫事件循环来控制。这一切就实现了Node的异步IO。 经典的服务器执行模型 经典的服务器执行模型有同步式、进程式、线程式。 同步式模型就是每次值处理一个请求，迭代地将所有请求处理完毕。无并发可言，处理效率当然很低。 进程式模型为每一个Web请求开启一个进程，这样可以同时处理多个请求，但式当请求量太大时有限的系统资源就比较吃紧了。并且为每个请求现场分配一个子进程比较消耗cpu时间。 线程式模型为每一个ieWeb请求开启一个线程处理。线程式又包括单线程模型、多线程模型，也就是一个进程中几个个线程，像Apache就可以选择Worker MPM(多进程多线程)还是Prefork MPM(多进程单线程)。多线程模型处理并发的方式是将每一个IO操作分配到单独的线程中。当客户端发出请求给服务器，服务器会对请求处理并准备好响应回传给客户端，...">
+    <meta name="twitter:url" content="http://www.edwardesire.com/nodejs-event-model/">
+    <meta name="twitter:image:src" content="http://edwardsblog.qiniudn.com/image/8/cc/bda1cd5709197b969722c81a76e98.jpg">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Edward Desire",
+    "author": {
+        "@type": "Person",
+        "name": "Zida",
+        "image": "http://edwardsblog.qiniudn.com/avatar.png",
+        "url": "http://www.edwardesire.com/author/zida",
+        "sameAs": "http://edwardesire.com",
+        "description": "目前Web开发"
+    },
+    "headline": "Node.js的事件驱动模型",
+    "url": "http://www.edwardesire.com/nodejs-event-model/",
+    "datePublished": "2015-05-09T03:41:16.000Z",
+    "dateModified": "2015-05-10T12:19:54.000Z",
+    "image": "http://edwardsblog.qiniudn.com/image/8/cc/bda1cd5709197b969722c81a76e98.jpg",
+    "keywords": "Nodejs",
+    "description": "Node利用Javascript的特性，比如Continuation Passing Style(CPS)以及Event Loop，使得程序运行时表现优秀，CPS和Event Loop一套机制是用libuv库(libuv又根据OS的不同抽象了Unix下libev和Windos下ICOP)提供的。JS中处理IO业务的方法将回调函数当参数传递的编程风格就是CPS。而成为参数的回调函数的调用问题就得需要叫事件循环来控制。这一切就实现了Node的异步IO。 经典的服务器执行模型 经典的服务器执行模型有同步式、进程式、线程式。 同步式模型就是每次值处理一个请求，迭代地将所有请求处理完毕。无并发可言，处理效率当然很低。 进程式模型为每一个Web请求开启一个进程，这样可以同时处理多个请求，但式当请求量太大时有限的系统资源就比较吃紧了。并且为每个请求现场分配一个子进程比较消耗cpu时间。 线程式模型为每一个ieWeb请求开启一个线程处理。线程式又包括单线程模型、多线程模型，也就是一个进程中几个个线程，像Apache就可以选择Worker MPM(多进程多线程)还是Prefork MPM(多进程单线程)。多线程模型处理并发的方式是将每一个IO操作分配到单独的线程中。当客户端发出请求给服务器，服务器会对请求处理并准备好响应回传给客户端，..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6">
+    <link rel="alternate" type="application/rss+xml" title="Edward Desire" href="http://www.edwardesire.com/rss/">
+
+    <script type="text/javascript" async="" src="./Node.js的事件驱动模型_files/embed.js" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="./Node.js的事件驱动模型_files/embed.default.css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">.MathJax_Preview .MJXc-math {color: inherit!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXc-script {font-size: .8em}
+.MJXc-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXc-bold {font-weight: bold}
+.MJXc-italic {font-style: italic}
+.MJXc-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-largeop {font-size: 150%}
+.MJXc-largeop.MJXc-int {vertical-align: -.2em}
+.MJXc-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXc-display {display: block; text-align: center; margin: 1em 0}
+.MJXc-math span {display: inline-block}
+.MJXc-box {display: block!important; text-align: center}
+.MJXc-box:after {content: " "}
+.MJXc-rule {display: block!important; margin-top: .1em}
+.MJXc-char {display: block!important}
+.MJXc-mo {margin: 0 .15em}
+.MJXc-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXc-denom {display: inline-table!important; width: 100%}
+.MJXc-denom > * {display: table-row!important}
+.MJXc-surd {vertical-align: top}
+.MJXc-surd > * {display: block!important}
+.MJXc-script-box > *  {display: table!important; height: 50%}
+.MJXc-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXc-script-box > *:last-child > * {vertical-align: bottom}
+.MJXc-script-box > * > * > * {display: block!important}
+.MJXc-mphantom {visibility: hidden}
+.MJXc-munderover {display: inline-table!important}
+.MJXc-over {display: inline-block!important; text-align: center}
+.MJXc-over > * {display: block!important}
+.MJXc-munderover > * {display: table-row!important}
+.MJXc-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXc-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXc-mtr {display: table-row!important}
+.MJXc-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXc-mtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-mlabeledtr {display: table-row!important}
+.MJXc-mlabeledtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mlabeledtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXc-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXc-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXc-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXc-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXc-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXc-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXc-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXc-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXc-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXc-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_CHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+    <body class="post-template tag-nodejs"><div id="MathJax_Message" style="display: none;"></div>
+        <nav class="main-header animated fadeIn navigation">
+            <div class="container">
+                <a href="http://www.edwardesire.com/" class="text-right sidebar brand">
+                    <img src="./Node.js的事件驱动模型_files/logo.jpg" alt="Edward Desire">
+                </a>
+                <p class="content">Edward Desire</p><p class="content desc" style="font-size:76%; padding-left:0.5%;">Code High</p>
+                <ul class="nav">
+    <li class="nav-" role="presentation"><a href="http://www.edwardesire.com/">首页</a></li>
+    <li class="nav-node" role="presentation"><a href="http://www.edwardesire.com/tag/nodejs/">Node</a></li>
+    <li class="nav-dtree" role="presentation"><a href="http://54.68.187.225:4000/">Dtree</a></li>
+    <li class="nav-" role="presentation"><a href="http://www.edwardesire.com/ghost/">登录</a></li>
+</ul>
+            </div>
+
+        </nav>
+        <div class="main">
+            
+
+    
+    <header class="animated fadeIn" style="background-image: url(http://edwardsblog.qiniudn.com/image/8/cc/bda1cd5709197b969722c81a76e98.jpg)">
+        <div class="container" data-stellar-ratio="0.75">
+            <div class="title animated fadeInUp">
+    <h1>Node.js的事件驱动模型</h1>
+</div>
+            <div class="sidebar text-right meta">
+    <div class="published animated fadeInUp">
+        <strong>Published</strong>
+        <time datetime="2015-05-09">09 May 2015</time>
+    </div>
+    <span class="separator animated fadeInUp">//</span>
+    <div class="tags animated fadeInUp">
+            <strong>Tags</strong>
+            <a href="http://www.edwardesire.com/tag/nodejs/">Nodejs</a>
+    </div>
+</div>
+        </div>
+    </header>
+
+    <div class="push-article">
+
+<article class="animated fadeIn post tag-nodejs">
+    <div class="container">
+        <p>Node利用Javascript的特性，比如Continuation Passing Style(CPS)以及Event Loop，使得程序运行时表现优秀，CPS和Event Loop一套机制是用libuv库(libuv又根据OS的不同抽象了Unix下libev和Windos下ICOP)提供的。JS中处理IO业务的方法将回调函数当参数传递的编程风格就是CPS。而成为参数的回调函数的调用问题就得需要叫事件循环来控制。这一切就实现了Node的异步IO。</p>
+
+<hr>
+
+<ol>
+<li><p>经典的服务器执行模型</p>
+
+<p>经典的服务器执行模型有同步式、进程式、线程式。</p>
+
+<p>同步式模型就是每次值处理一个请求，迭代地将所有请求处理完毕。无并发可言，处理效率当然很低。</p>
+
+<p>进程式模型为每一个Web请求开启一个进程，这样可以同时处理多个请求，但式当请求量太大时有限的系统资源就比较吃紧了。并且为每个请求现场分配一个子进程比较消耗cpu时间。</p>
+
+<p>线程式模型为每一个ieWeb请求开启一个线程处理。线程式又包括单线程模型、多线程模型，也就是一个进程中几个个线程，像Apache就可以选择Worker MPM(多进程多线程)还是Prefork MPM(多进程单线程)。多线程模型处理并发的方式是将每一个IO操作分配到单独的线程中。当客户端发出请求给服务器，服务器会对请求处理并准备好响应回传给客户端，服务器通过维持一个有限的线程池来执行能分离开的处理任务。</p>
+
+<p class="article-image" rel="lightbox"><a href="./Node.js的事件驱动模型_files/92b8c17b1a1131b98aae301eac61b.png" rel="lightbox"><img src="./Node.js的事件驱动模型_files/92b8c17b1a1131b98aae301eac61b.png" alt="" title=""></a></p>
+
+<p>每一个线程分担一个任务听起来很不错，但这会冒出两个问题：其一，线程的数量是有限制的，当你的任务量大于可调度的线程时，就会发生等待处理资源的情况；其二，线程上的任务是共用资源，当线程面对堵塞IO的事务很长时间时，通过线程锁来阻止资源的使用。对于数据密集性的应用来说，这两个问题可能会导致低效的Web服务。建立一个单独的线程需要一些资源配置(runtime、heap、memory)以及处理线程之间的上下文。像图中这种web请求可能还好，文件请求和数据库请求基还是正交的，可以单独处理执行；但这还是避免不了在等待数据结果时当前线程的空闲等待，异步处理就能提高程序运行的效率。</p></li>
+<li><p>事件驱动</p>
+
+<p>与Nginx的服务原理类似，Node采用事件驱动的运行方式。不过nginx式多进程单线程，而Node通过事件驱动的方式处理请求时无需为每一个请求创建额外的线程。在事件驱动的模型当中，每一个IO工作被添加到事件队列中，线程循环地处理队列上的工作任务，当执行过程中遇到来堵塞(读取文件、查询数据库)时，线程不会停下来等待结果，而是留下一个处理结果的回调函数，转而继续执行队列中的下一个任务。这个传递到队列中的回调函数在堵塞任务运行结束后才被线程调用。</p>
+
+<p class="article-image" rel="lightbox"><a href="./Node.js的事件驱动模型_files/c00ec61c78177ea9aa0e2e698bd0c.png" rel="lightbox"><img src="./Node.js的事件驱动模型_files/c00ec61c78177ea9aa0e2e698bd0c.png" alt="" title=""></a></p>
+
+<p>前面也说过Node Async IO = CPS + Callback，这一套实现开始于Node开始启动的进程，在这个进程中Node会创建一个循环，每次循环运行就是一个Tick周期，每个Tick周期中会从事件队列查看是否有事件需要处理，如果有就取出事件并执行相关的回调函数。事件队列事件全部执行完毕，node应用就会终止。Node对于堵塞IO的处理在幕后使用线程池来确保工作的执行。Node从池中取得一个线程来执行复杂任务，而不占用主循环线程。这样就防止堵塞IO占用空闲资源。当堵塞任务执行完毕通过添加到事件队列中的回调函数来处理接下来的工作。</p>
+
+<p class="article-image" rel="lightbox"><a href="./Node.js的事件驱动模型_files/20667b5e8f16f2aeb543d206c1614.png" rel="lightbox"><img src="./Node.js的事件驱动模型_files/20667b5e8f16f2aeb543d206c1614.png" alt="" title=""></a></p>
+
+<p>当然这么华丽的运行机制就能解决前面说的两个弊端。node基于事件的工作调度能很自然地将主要的调度工作限制到了一个线程，应用能很高效地处理多任务。程序每一时刻也只需管理一个工作中的任务。当必须处理堵塞IO时，通过将这个部分的IO控制权交给池中的线程，能最小地影响到应用处理事件，快速地反应web请求。
+当然对机器方便的事情对于写代码的人来说就需要更小心地划分业务逻辑，我们需要将工作划分为合理大小的任务来适配事件模型这一套机制。</p></li>
+<li><p>事件队列调度</p>
+
+<p>Node可以通过传递回调函数将任务添加到事件队列中，这种异步的调度可以通过5种方式来实现这个目标：异步堵塞IO库(db处理、fs处理)，Node内置的事件和事件监听器(http、server的一些预定义事件)，开发者自定义的事件和监听器、定时器以及Node全局对象process的.nextTick()API。</p>
+
+<p>3.1 异步堵塞IO库</p>
+
+<p>其IO库提供的API有Node自带的Module(比如fs)和数据库驱动API，比如mongoose的.save(doc, callback)就是将繁重的数据库Insert操作以及回调函数交给子线程来操作，主线程只负责任务的调度。当MongoDB返回给Node操作结果后，回调函数才开始执行。</p>
+
+<pre><code class="hljs javascript">Dtree.create(frontData, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, dtree</span>) </span>{
+      <span class="hljs-keyword">if</span> (err) {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Error: createDTree: DB failed to create due to '</span>, err);
+            res.send({<span class="hljs-string">'success'</span>: <span class="hljs-literal">false</span>, <span class="hljs-string">'err'</span>: err});
+      } <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Info: createDTree: DB created successfully dtree = '</span>, dtree);
+            res.send({<span class="hljs-string">'success'</span>: <span class="hljs-literal">true</span>, <span class="hljs-string">'created_id'</span>: dtree._id.toHexString()});
+      }
+});
+</code></pre>
+
+<p>比如这段处理Dtree存储的回调函数只有当事件队列中的接收到来自堵塞IO处理线程的执行完毕才会被执行。</p>
+
+<p>3.2 Node内置的事件和事件监听器</p>
+
+<p>Node原生的模块都预定义来一些事件，比如NET模块的一套服务状态事件。当Net中的Socket检测到close就会调用放置在事件循环中的回调函数，下例中就是将sockets数组中删除相应的socket连接对象。</p>
+
+<pre><code class="hljs javascript">socket.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connection closed'</span>);
+  <span class="hljs-keyword">var</span> index = sockets.indexOf(socket);
+  <span class="hljs-comment">//服务器端断开相应连接</span>
+  sockets.splice(index, <span class="hljs-number">1</span>);
+});
+</code></pre>
+
+<p>3.3 开发者自定义的事件</p>
+
+<p>Node自身和很多模块都支持开发者自定义事件和处理持戟处理函数，当然既然是自定义，那么触发事件也是显性地需要开发者。在Socket.io编程中就有很好的例子，开发者可以自定义消息事件来处理端对端的交互。</p>
+
+<pre><code class="hljs javascript"><span class="hljs-comment">//socket监听自定义的事件消息</span>
+socket.on(<span class="hljs-string">'chatMessage'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">message</span>)</span>{
+  message.type = <span class="hljs-string">'message'</span>;
+  message.created = <span class="hljs-built_in">Date</span>.now();
+  message.username = socket.request.user.username;
+  <span class="hljs-built_in">console</span>.log(message);
+  <span class="hljs-comment">//同时也可以像对方发出事件消息</span>
+  io.emit(<span class="hljs-string">'chatMessage'</span>, message);
+});
+</code></pre>
+
+<p>3.4 计时器(Timers)</p>
+
+<p>Node使用前端一致的Timeout和Interval计时器，他们的区别在Timeout是延时执行，Interval是间隔一段事件执行。值得注意的是这组函数其实不属于JS语言标准，他们只是扩展。在浏览器中，他们属于BOM，即它的确切定义为：window.setTimeout和window.setInterval；与window.alert, window.open等函数处于同一层次。Node把这组函数放置于全局范围中。</p>
+
+<p>除了这两个函数，Node还添加Immediate计时器，setImmediate()函数是没有事件参数的，在事件队列中的当前任务执行结束后执行，并且优先级比Timeout、Interbal高。</p>
+
+<p>计时器的问题在于它在事件循环中并非精确的执行回调函数。《深入浅出Node.js》举了一个例子：当通过setTimeout()设定一个任务在10毫秒后执行，但是如果在9毫秒后，有一个任务占用了5毫秒的CPU，再次炖老定时器执行时，事件就已经过期了。</p>
+
+<p>3.5 Node全局对象process的.nextTick()API</p>
+
+<p>这个延时执行函数函数是在添加任务到队列的开头，下一次Tick周期开始时就执行，也就是在其他任务前调度。</p>
+
+<p>nextTick的优先级是高于immediate的。并且每轮循环，nextTick中的回调函数全部都会执行完，而Immediate只会执行一个回调函数。这里有得说明每个Tick过程中，判断事件循环中是否有事件要处理的观察者。在Node的底层libuv，事件循环是一个典型的生产者/消费者模型。异步IO、网络请求是事件的生产者，回调函数是事件的消费者，而观察者则是在中间将传递过来的事件暂存起来。回调函数的idle观察者在每轮事件循环开始被检查，而check观察者后于idle观察者检查，两者之间被检查的就是IO操作的观察者。</p></li>
+<li><p>事件驱动与高性能服务器</p>
+
+<p>前面大致介绍了Node的事件驱动模型，事件驱动的实质就是主循环线程+事件触发的方式来运行程序。Node的异步IO成功地使得IO操作与CPU操作分离成为一套高性能平台，既可以像Nginx一样构建服务器平台，也可以处理具体的业务。虽然Node没有Nginx在Web服务器方面那么专业，但不错的性能和更多的使用场景使得在实际开发中能够达到优异的性能。这一切也都归功与异步IO实现的核心——事件循环。在实际的项目中，我们可以结合不同工具的优点达到应用的最优性能。</p></li>
+</ol>
+
+<hr>
+
+<p>references:</p>
+
+<ol>
+<li><a href="http://stackoverflow.com/a/14797359">Answer of Async</a>  </li>
+<li><a href="http://blog.csdn.net/cnnzp/article/details/7832106">Continuation-passing Style</a>  </li>
+<li><a href="https://cnodejs.org/topic/4f16442ccae1f4aa2700109b">关于Timeout计时器的文章</a>  </li>
+<li><a href="http://nikhilm.github.io/uvbook/index.html">An Introduction to libuv</a>  </li>
+<li><a href="http://becausejavascript.com/node-js-process-nexttick-vs-setimmediate/">process.nextTick() vs. setImmediate()</a>  </li>
+<li><a href="http://book.douban.com/subject/25768396/">Book: 深入浅出Node.js</a>  </li>
+<li><a href="http://book.douban.com/subject/25924232/">Book: Node.js, MongoDB, and AngularJS Web Development</a></li>
+</ol>
+    </div>
+</article>
+
+    </div>
+
+    <div class="container">
+        <div class="author animated fadeIn clearfix">
+            <div class="author-imagepost">
+                <img class="" src="./Node.js的事件驱动模型_files/avatar.png" alt="Zida">
+                <div class="info">
+                    <a href="http://www.edwardesire.com/author/zida/" class="name">Zida</a>
+                    <p class="bio">目前Web开发</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="comments animated fadeInUp">
+<div class="container">
+    <div class="column-large">
+        <div id="disqus_thread"></div>
+        <div class="ds-thread" data-thread-key="nodejs-event-model" data-title="Node.js的事件驱动模型" data-url="http://www.edwardesire.com/nodejs-event-model/" id="ds-thread"><div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"></span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc">最新</a><a class="ds-order-asc ds-current">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);">0条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post ds-post-placeholder">还没有评论，沙发等你来抢</li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://edwardesire.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://edwardesire.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://edwardesire.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://edwardesire.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://edwardesire.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://edwardesire.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://edwardesire.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://edwardesire.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./Node.js的事件驱动模型_files/noavatar_default.png" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="1268238284127993895">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="56c5910f7a5a5"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">Edward Desire正在使用多说</a></p></div></div>
+    </div>
+</div>
+</section>
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"edwardesire"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+        </div>
+        <footer class="animated fadeIn" id="footer">
+            <div class="container text-center">
+                <p class="copyright"><span>Made by Edward Desire.</span> <span>Powered by Ghost.</span></p>
+                <a href="https://github.com/haydenbleasel/phantom" class="theme">Theme: Phantom by Hayden Bleasel, customized by Zida</a>
+                <br><a class="theme" href="http://www.miitbeian.gov.cn/">京ICP备14046809号</a>
+
+            </div>
+        </footer>
+
+        <script src="./Node.js的事件驱动模型_files/jquery.min.js"></script>
+
+        <script src="./Node.js的事件驱动模型_files/fastclick.js"></script>
+        <script src="./Node.js的事件驱动模型_files/stellar.js"></script>
+        <script src="./Node.js的事件驱动模型_files/phantom.js"></script>
+        <script src="./Node.js的事件驱动模型_files/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>  
+        <script src="./Node.js的事件驱动模型_files/jquery-1.11.2.min.js"></script>
+        <script src="./Node.js的事件驱动模型_files/lightbox.min.js"></script>
+        <script type="text/javascript" src="./Node.js的事件驱动模型_files/MathJax.js"></script> 
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253503981'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/stat.php%3Fid%3D1253503981%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1253503981"><a href="http://www.cnzz.com/stat/website.php?web_id=1253503981" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./Node.js的事件驱动模型_files/pic2.gif"></a></span><script src="./Node.js的事件驱动模型_files/stat.php" type="text/javascript"></script><script src="./Node.js的事件驱动模型_files/core.php" charset="utf-8" type="text/javascript"></script>
+    
+
+<div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="http://www.edwardesire.com/nodejs-event-model/"><div class="lb-nav"><a class="lb-prev" href="http://www.edwardesire.com/nodejs-event-model/"></a><a class="lb-next" href="http://www.edwardesire.com/nodejs-event-model/"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>
