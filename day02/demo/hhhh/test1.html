@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<title>添加附件</title>
+	</head>
+ 
+	<body>
+		<button id="addAttachement">添加附件</button>
+		<ul id="attachement"></ul>
+		<script>
+			var addAttachementElement = document.getElementById('addAttachement')
+			var attachementElement = document.getElementById('attachement');
+			var buttonElements;
+			addAttachementElement.onclick = function() {
+				//添加以前判断是否有3个
+				if(attachementElement.children.length < 5) {
+					//在ul中添加一个li\n
+					var liElement = document.createElement('li');
+					attachementElement.appendChild(liElement);
+					//在li中添加上传框和对应的删除按钮
+					//上传框
+					var inputElement = document.createElement('input');
+					inputElement.type = 'file';
+					liElement.appendChild(inputElement);
+					//删除按钮
+					var buttonElement = document.createElement('button');
+					buttonElement.name = 'delete';
+					buttonElement.innerHTML = '删除';
+					liElement.appendChild(buttonElement);
+					//保证能够动态生成元素的点击事件的删除
+					buttonElements = document.getElementsByName('delete');
+					for(var i = 0; i < buttonElements.length; i++) {
+						buttonElements[i].onclick = function() {
+							//添加一个判断，是否删除
+							if(confirm('确认删除吗？')) {
+								var liElement = this.parentNode;
+								liElement.parentNode.removeChild(liElement);
+							}
+						}
+ 
+					}
+				} else {
+					alert('只能添加5个附件！');
+				}
+			}
+		</script>
+	</body>
+ 
+</html>

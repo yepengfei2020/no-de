@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<body>
+    <input type="text" οnchange="aa(this)" οninput="aa(this)" οnblur="aa(this)" οnfοcus="aa(this)">
+
+    <form action="" method="post">
+
+        <input type="radio" name="love" value="喜欢">单选框</input>
+        <input type="radio" name="love" value="不喜欢">单选框</input>
+        <input type="radio" name="love" value="无所谓">单选框</input>
+        </br>
+        <input type="checkbox" name="sport" value="跑步">单选框</input>
+        <input type="checkbox" name="sport" value="爬山">单选框</input>
+        <input type="checkbox" name="sport" value="羽毛球">单选框</input>
+        
+    </form>
+    <script type="text/javascript">
+       $("input").bind('input',function () {
+           console.log(this);
+       });
+        $(document).on("input","input",function () {
+            console.log(this);
+        });
+        document.querySelector("input").oninput = function (ev) {
+            console.log("111");
+        };
+    
+       $("input").bind('change',function () {
+           console.log(this);
+       });
+       $(document).on("change","input",function () {
+           console.log(this);
+       });
+       document.querySelector("input").onchange = function (ev) {
+           console.log("111");
+       };
+    
+        function aa(e) {
+            console.log(e);
+        }
+    </script>
+    </body>
+</html>

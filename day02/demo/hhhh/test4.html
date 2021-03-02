@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<script type="text/javascript">
+    function check(){
+     //检查文件是不是存在
+     // 存在 上传文件
+     // 不存在
+     F_Open_dialog();
+     
+     }
+     function F_Open_dialog() 
+     { 
+         document.getElementById("btn_file").click(); 
+         var  ss = document.getElementById("btn_file");
+         console.log('文件信息',ss)
+
+     } 
+
+ </script>
+</head>
+<body>
+<div>
+     <input type="file" id="btn_file" style="display:none">
+     <input type="button" value="Click me" onclick="check()" />
+ </div>
+
+</body>
+</html>

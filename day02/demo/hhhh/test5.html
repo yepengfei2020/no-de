@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>checkbox</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+
+<form>
+<input type="checkbox" >选中
+<input type="checkbox" >选中
+<input type="checkbox" >选中
+<input type="checkbox" >选中
+<div class="btn" id="btn">全选</div>
+<div class="btn" id="cancer">取消</div>
+
+</form>
+<script type="text/javascript">
+
+var btn=document.getElementById('btn');
+var inputs=document.getElementsByTagName('input');
+btn.onclick=function (argument) {
+for (var i = inputs.length - 1; i >= 0; i--) {
+inputs[i].setAttribute("checked",true);
+};
+alert(inputs[1].getAttribute("checked"));
+}
+
+var cancer=document.getElementById('cancer');
+cancer.onclick=function (argument) {
+for (var i = inputs.length - 1; i >= 0; i--) {
+inputs[i].removeAttribute("checked");
+};
+alert(inputs[1].getAttribute("checked"));
+}
+
+</script>
+</body>
+</html>
